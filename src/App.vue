@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'main' }">Home</router-link>|
       <router-link :to="{ name: 'search' }">Search</router-link>|
       <span v-if="!$root.store.username">
-        Guest:
+      <!--  Guest: -->
         <router-link :to="{ name: 'register' }">Register</router-link>|
         <router-link :to="{ name: 'login' }">Login</router-link>|
       </span>
