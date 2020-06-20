@@ -1,31 +1,13 @@
 <template>
   <div class="container">
-    <h1 class="title">Main Page</h1>
-    <RecipePreviewList title="Random Recipes:" pageType="random" class="RandomRecipes center" />
-    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to login to view this</router-link>
-    <RecipePreviewList
-      title="Last Viewed Recipes:"
-      pageType="lastSeen"
-      :class="{
-        RandomRecipes: true,
-        blur: !$root.store.username,
-        center: true
-      }"
-      disabled
-    ></RecipePreviewList>
-    <!-- <div
-      style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
-    >
-      Centeredasdasdad
-    </div>-->
    <!-- <h1 class="title">Main Page</h1>-->
     <b-container class="bv-example-row">
       <b-row >
         <b-col >
-          <RecipePreviewList title="Explore these Recipes" recipeType="random" class="RandomRecipes" />
+          <RecipePreviewList title="Explore these Recipes" pageType="random" recipeType="random" class="RandomRecipes" />
           <br>
           <div class="new">
-            <button @click="updateNewRandomRecipes">View other Recipes!</button> <!--  עדיין לא עובד כמו שצריך-->
+            <button @click="updateNewRandomRecipes">view other recipes!</button> <!--  עדיין לא עובד כמו שצריך-->
           </div>
         </b-col>
         <b-col>
@@ -35,6 +17,7 @@
            <div v-else >
              <RecipePreviewList
             title="Last Watched Recipes"
+             pageType="lastSeen"
             :class="{
               RandomRecipes: true,
               blur: !$root.store.username,
