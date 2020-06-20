@@ -14,9 +14,10 @@
           type="text"
           :state="validateState('username')"
         ></b-form-input>
-        <b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.username.required">
           Username is required
         </b-form-invalid-feedback>
+        
       </b-form-group>
 
       <b-form-group
@@ -128,4 +129,8 @@ export default {
 .container {
   max-width: 400px;
 }
+.title{
+  text-align: center;
+}
+
 </style>

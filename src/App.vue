@@ -5,6 +5,7 @@
       <b-nav tabs>
         <router-link :to="{ name: 'main' }">Home</router-link>|
         <router-link :to="{ name: 'search' }">Search</router-link>|
+        <router-link :to="{ name: 'about' }">About</router-link>|
         <b-navbar-nav class="ml-auto">
         <span v-if="!$root.store.username">
           Hello Guest: 

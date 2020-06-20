@@ -4,10 +4,10 @@
     <b-container class="bv-example-row">
       <b-row >
         <b-col >
-          <RecipePreviewList title="Explore these Recipes" class="RandomRecipes" />
+          <RecipePreviewList title="Explore these Recipes" recipeType="random" class="RandomRecipes" />
           <br>
           <div class="new">
-            <button @click="updateRecipes">New Recipes</button> <!--  עדיין לא עובד כמו שצריך-->
+            <button @click="updateNewRandomRecipes">View other Recipes!</button> <!--  עדיין לא עובד כמו שצריך-->
           </div>
         </b-col>
         <b-col>
@@ -40,29 +40,15 @@ import Login from "../pages/LoginPage";
 export default {
   components: {
     RecipePreviewList,
-   
     Login,
   
   },
-   mounted() {
-    this.updateRecipes();
-  },
+   
   methods: {
-    async updateRecipes() {
-      try {
-        const response = await this.axios.get(
-          "https://test-for-3-2.herokuapp.com/recipes/random"
-        );
-
-        // console.log(response);
-        const recipes = response.data.recipes;
-        this.recipes = [];
-        this.recipes.push(...recipes);
-        // console.log(this.recipes);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    updateNewRandomRecipes() { //<!-- לא מצליח-->
+      this.$emit("updateRecipes", "random");
+    },
+   
   }
 };
 </script>
