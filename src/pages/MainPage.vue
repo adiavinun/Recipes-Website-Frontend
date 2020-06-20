@@ -4,10 +4,10 @@
     <b-container class="bv-example-row">
       <b-row >
         <b-col >
-          <RecipePreviewList title="Explore these Recipes" recipeType="random" class="RandomRecipes" />
+          <RecipePreviewList title="Explore these Recipes" pageType="random" recipeType="random" class="RandomRecipes" />
           <br>
           <div class="new">
-            <button @click="updateNewRandomRecipes">View other Recipes!</button> <!--  עדיין לא עובד כמו שצריך-->
+            <button @click="updateNewRandomRecipes">view other recipes!</button> <!--  עדיין לא עובד כמו שצריך-->
           </div>
         </b-col>
         <b-col>
@@ -17,6 +17,7 @@
            <div v-else >
              <RecipePreviewList
             title="Last Watched Recipes"
+             pageType="lastSeen"
             :class="{
               RandomRecipes: true,
               blur: !$root.store.username,

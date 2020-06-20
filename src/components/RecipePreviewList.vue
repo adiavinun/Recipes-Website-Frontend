@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <h3>
-      {{ title }}:
+      {{ title }}
       <slot></slot>
     </h3>
     <b-row>
@@ -23,6 +23,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    pageType: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -37,11 +41,11 @@ export default {
     async updateRecipes() {
       try {
         const response = await this.axios.get(
-          "https://test-for-3-2.herokuapp.com/recipes/random"
+          "https://ass3-2-adi-nicole.herokuapp.com/recipes/3randomRecipes"
         );
 
         // console.log(response);
-        const recipes = response.data.recipes;
+        const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
         // console.log(this.recipes);
