@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-<<<<<<< HEAD
     <h1 class="title">Main Page</h1>
     <RecipePreviewList title="Random Recipes:" pageType="random" class="RandomRecipes center" />
     <router-link v-if="!$root.store.username" to="/login" tag="button">You need to login to view this</router-link>
@@ -19,7 +18,6 @@
     >
       Centeredasdasdad
     </div>-->
-=======
    <!-- <h1 class="title">Main Page</h1>-->
     <b-container class="bv-example-row">
       <b-row >
@@ -50,7 +48,6 @@
       </b-row>
     </b-container>
    
->>>>>>> 5a4b4f632225dbbe2e7d17076c4ed16479fd807e
   </div>
 </template>
 
