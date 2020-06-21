@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <h1 class="title">My Recipes</h1>
-    <RecipePreviewList class="MyRecipes center" />
+    <div>
+      <RecipePreviewList title="" pageType="myrecipes" class="MyRecipes center" />
+    </div>
   </div>
 </template>
 
