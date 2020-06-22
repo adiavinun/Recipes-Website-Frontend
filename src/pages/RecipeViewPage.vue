@@ -41,7 +41,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   data() {
@@ -102,7 +101,23 @@ export default {
     } catch (error) {
       console.log(error);
     }
-  }
+},
+methods: {
+    async addToFavorites() {
+      try {
+        this.recipe.favorite = true;
+        const post = await this.axios.post(
+          "https://ass3-2-adi-nicole.herokuapp.com/user/addFavRecipe",
+          {
+            recipe_id: this.recipe.id,
+            withCredentials: true,
+          }
+        );
+      } catch (error) {
+        console.log(error.response);
+      }
+    },
+  },
 };
 </script>
 

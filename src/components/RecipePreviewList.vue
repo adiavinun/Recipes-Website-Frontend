@@ -44,41 +44,44 @@ export default {
     this.updateRecipes(this.pageType);
   },
   methods: {
-    async updateRecipes(type) {
+    async updateRecipes() {
       try {
         var recipes;
-        if (type && type == "random" && this.pageType == type) {
-          const response = await this.axios.get(
-            "https://ass3-2-adi-nicole.herokuapp.com/recipes/3randomRecipes"
-          );
-          recipes = response.data;
-        } else if (type && type == "lastSeen" && this.pageType == type) {
-          const response = await this.axios.get(
-            "https://ass3-2-adi-nicole.herokuapp.com/user/last3SeenRecipes",
+        let url = "https://ass3-2-adi-nicole.herokuapp.com/";
+        if (this.pageType == "random") {
+            url += "recipes/3randomRecipes";
+        } else if (this.pageType == "lastSeen") {
+            url += "user/last3SeenRecipes";
+        } else if (this.pageType == "myrecipes") {
+            url += "user/myPersonalRecipesPreview";
+        } else if (this.pageType == "family") {
+            url += "user/myFamilyRecipesPreview";
+        } else if (this.pageType == "favorite") {
+            url += "user/myFavRecipes";
+        }
+        const response = await this.axios.get(
+            url, { withCredentials: true }
+        );
+        recipes = response.data;
+
+        if (this.$root.store.username) {
+          const recipe_ids = Object.keys(recipes);
+          const responseRecipeInfo = await this.axios.get(
+            "https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
             { withCredentials: true }
           );
-          recipes = response.data;
-        } else if (type && type == "myrecipes" && this.pageType == type) {
-          const response = await this.axios.get(
-            "https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipesPreview",
-            { withCredentials: true }
-          );
-          recipes = response.data;
-        } else if (type && type == "family" && this.pageType == type) {
-          const response = await this.axios.get(
-            "https://ass3-2-adi-nicole.herokuapp.com/user/myFamilyRecipesPreview",
-            { withCredentials: true }
-          );
-          recipes = response.data;
-        } else if (type && type == "favorite" && this.pageType == type) {
-          const response = await this.axios.get(
-            "https://ass3-2-adi-nicole.herokuapp.com/user/myFavRecipes",
-            { withCredentials: true }
-          );
-          recipes = response.data;
+          var recipeInfo = responseRecipeInfo.data;
         }
         this.recipes = [];
-        this.recipes.push(...recipes);
+        for (var recipe_id in recipes) {
+          var currRecipe = recipes[recipe_id];
+          if (recipeInfo) {
+            currRecipe.watched = recipeInfo[recipe_id].watched;
+            currRecipe.saved = recipeInfo[recipe_id].saved;
+          }
+          this.recipes.push(currRecipe);
+
+        }
       } catch (error) {
         console.log(error);
       }
