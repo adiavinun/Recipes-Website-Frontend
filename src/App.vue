@@ -21,7 +21,8 @@
           {{ $root.store.username }}: <button @click="Logout">Logout</button>
         <!--לנסות להוסיף תמונות פרופיל בצד-->
           <!-- <img :src="$root.store.profileImg" class="profile-image" /> -->
-           
+
+         <!--לבדוק אם יש עוד דרך אחרת או לוותר על זה בכללי-->  
         </span>
         </b-navbar-nav>
         </b-nav >
