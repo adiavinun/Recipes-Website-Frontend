@@ -19,6 +19,9 @@
             <b-dropdown-item :to="{ name: 'family' }">Family Recipes</b-dropdown-item>
           </b-dropdown>
           {{ $root.store.username }}: <button @click="Logout">Logout</button>
+        <!--לנסות להוסיף תמונות פרופיל בצד-->
+          <!-- <img :src="$root.store.profileImg" class="profile-image" /> -->
+           
         </span>
         </b-navbar-nav>
         </b-nav >
