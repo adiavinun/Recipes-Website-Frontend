@@ -6,8 +6,12 @@
     </h3>
     <b-row>
       <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
-
+        <div v-if="pageType === 'family'">
+          <FamilyRecipePreview class="recipePreview" :recipe="r" />
+        </div>
+        <div v-else>
+          <RecipePreview class="recipePreview" :recipe="r" />
+        </div>
       </b-col>
     </b-row>
   </b-container>
@@ -15,24 +19,25 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
+import FamilyRecipePreview from "./FamilyRecipePreview.vue";
 export default {
   name: "RecipePreviewList",
   components: {
-    RecipePreview
+    RecipePreview, FamilyRecipePreview
   },
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     pageType: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      recipes: []
+      recipes: [],
     };
   },
   mounted() {
@@ -42,37 +47,33 @@ export default {
     async updateRecipes(type) {
       try {
         var recipes;
-        if (type && type == "random" && this.pageType == type){
+        if (type && type == "random" && this.pageType == type) {
           const response = await this.axios.get(
-          "https://ass3-2-adi-nicole.herokuapp.com/recipes/3randomRecipes"
+            "https://ass3-2-adi-nicole.herokuapp.com/recipes/3randomRecipes"
           );
           recipes = response.data;
-        }
-        else if (type && type == "lastSeen" && this.pageType == type){
+        } else if (type && type == "lastSeen" && this.pageType == type) {
           const response = await this.axios.get(
-          "https://ass3-2-adi-nicole.herokuapp.com/user/last3SeenRecipes",
-          { withCredentials: true }
+            "https://ass3-2-adi-nicole.herokuapp.com/user/last3SeenRecipes",
+            { withCredentials: true }
           );
           recipes = response.data;
-        }
-        else if (type && type == "myrecipes" && this.pageType == type){
+        } else if (type && type == "myrecipes" && this.pageType == type) {
           const response = await this.axios.get(
-          "https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipesPreview",
-          { withCredentials: true }
+            "https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipesPreview",
+            { withCredentials: true }
           );
           recipes = response.data;
-        }
-        else if (type && type == "family" && this.pageType == type){
+        } else if (type && type == "family" && this.pageType == type) {
           const response = await this.axios.get(
-          "https://ass3-2-adi-nicole.herokuapp.com/user/myFamilyRecipesPreview",
-          { withCredentials: true }
+            "https://ass3-2-adi-nicole.herokuapp.com/user/myFamilyRecipesPreview",
+            { withCredentials: true }
           );
           recipes = response.data;
-        }
-          else if (type && type == "favorite" && this.pageType == type){
+        } else if (type && type == "favorite" && this.pageType == type) {
           const response = await this.axios.get(
-          "https://ass3-2-adi-nicole.herokuapp.com/user/myFavRecipes",
-          { withCredentials: true }
+            "https://ass3-2-adi-nicole.herokuapp.com/user/myFavRecipes",
+            { withCredentials: true }
           );
           recipes = response.data;
         }
@@ -81,8 +82,8 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
