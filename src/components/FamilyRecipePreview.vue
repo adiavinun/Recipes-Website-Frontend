@@ -3,50 +3,6 @@
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
     class="recipe-preview"
   >
-    <!--<b-card
-      no-body
-      style="max-width: 20rem;"
-      :img-src="recipe.image"
-      img-alt="Image"
-      class="recipe-image"
-      img-top
-    >
-      <b-card-body>
-        <b-card-title :title="recipe.title" class="recipe-title">
-          {{ recipe.title }}
-        </b-card-title>
-        <b-card-sub-title class="mb-2"
-          >Ready in {{ recipe.readyInMinutes }} minutes</b-card-sub-title
-        >
-        <b-card-text> {{ recipe.aggregateLikes }} likes </b-card-text>
-      </b-card-body>
-
-      <b-list-group flush>
-        <b-list-group-item
-          >vegetarian: {{ recipe.vegetarian }}</b-list-group-item
-        >
-        <b-list-group-item>vegan: {{ recipe.vegan }}</b-list-group-item>
-        <b-list-group-item
-          >gluten free: {{ recipe.glutenFree }}</b-list-group-item
-        >
-      </b-list-group>
-    </b-card>-->
-
-    <!--<b-card
-      :title="recipe.title"
-      :img-src="recipe.image"
-      img-alt="Card Image"
-      text-variant="white"
-      class="recipe-image"
-      sub-title="Subtitle"
-      style="max-width: 20rem; max-length: 30rem"
-    >
-      <b-card-text>
-        Some quick example text to build on the card and make up the bulk of the
-        card's content.
-      </b-card-text>
-    </b-card>-->
-
     <b-card-group deck>
       <b-card
         :title="recipe.title"
@@ -55,17 +11,13 @@
         img-top
       >
         <b-card-text>
-          <div v-if="recipe.aggregateLikes">{{ recipe.aggregateLikes }} likes</div>
+          Recipe Owner: {{ recipe.recipeOwner }}
           <br />
-          vegetarian: {{ recipe.vegetarian }}
-          <br />
-          vegan: {{ recipe.vegan }}
-          <br />
-          gluten free: {{ recipe.glutenFree }}
+          Recipe Occasion: {{ recipe.whenUsuallyMakeRecipe }}
         </b-card-text>
         <template v-slot:footer>
           <small class="text-muted"
-            >Ready in {{ recipe.readyInMinutes }} minutes</small
+            ></small
           >
         </template>
       </b-card>
