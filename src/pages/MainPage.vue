@@ -1,6 +1,7 @@
 <template>
   <div class="container">
    <!-- <h1 class="title">Main Page</h1>-->
+   
     <b-container class="bv-example-row">
       <b-row >
         <b-col >

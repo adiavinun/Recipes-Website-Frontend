@@ -67,6 +67,23 @@
           Have length between 5-10 characters long
         </b-form-invalid-feedback>
       </b-form-group>
+<!-- nicole-->
+      <b-form-group
+        id="input-group-country"
+        label-cols-sm="3"
+        labelast="LL:"
+        label-for="country"
+      >
+        <b-form-select
+          id="country"
+          v-model="$v.form.country.$model"
+          :options="countries"
+          :state="validateState('country')"
+        ></b-form-select>
+        <b-form-invalid-feedback>
+          Country is required
+        </b-form-invalid-feedback>
+      </b-form-group>
 
       <b-form-group
         id="input-group-confirmedPassword"
