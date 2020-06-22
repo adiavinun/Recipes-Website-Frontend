@@ -45,10 +45,41 @@ export default {
     Login,
   
   },
+  data(){
+    return{
+      recipes: []
+    };
+  },
    
   methods: {
-    updateNewRandomRecipes() { //<!-- לא מצליח-->
-      this.$emit("updateRecipes", "random");
+    async updateNewRandomRecipes() { //<!-- לא מצליח-->
+     try {
+        const response = await this.axios.get(
+          "https://ass3-2-adi-nicole.herokuapp.com/recipes/3randomRecipes",
+          {
+            params: {
+              limitLicense: true,
+              number: 3,
+              //apiKey: process.env.VUE_APP_SPOONCULAR_API_KEY
+            }
+          }
+        );
+
+        console.log(response);
+        const recipes = response.data.recipes.map((r) => {
+          return {
+            id: r.id,
+            title: r.title,
+            readyInMinutes: r.readyInMinutes,
+            image: r.image,
+            aggregateLikes: r.aggregateLikes
+          };
+        });
+        this.recipes = [];
+        this.recipes.push(...recipes);
+      } catch (error) {
+        console.log(error);
+      }  
     },
    
   }
