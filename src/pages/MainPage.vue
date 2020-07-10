@@ -5,11 +5,8 @@
     <b-container class="bv-example-row">
       <b-row >
         <b-col >
-          <RecipePreviewList title="Explore these Recipes" pageType="random" :recipesList="recipes" class="RandomRecipes" />
-          <br>
-          <div class="new">
-            <button @click="updateNewRandomRecipes">view other recipes!</button> <!--  עדיין לא עובד כמו שצריך-->
-          </div>
+          <RandomRecipes title="Explore these Recipes" pageType="random" :recipesList="recipes" class="RandomRecipes" />
+          
         </b-col>
         <b-col>
           <div v-if="!$root.store.username" to="/login" >
@@ -37,44 +34,17 @@
 </template>
 
 <script>
-import RecipePreviewList from "../components/RecipePreviewList";
+import RandomRecipes from "../components/RandomRecipes.vue";
+import RecipePreviewList from "../components/RecipePreviewList.vue";
 import RecipePreview from "../components/RecipePreview.vue";
 import Login from "../pages/LoginPage";
 export default {
   components: {
     RecipePreviewList,
     Login,
+    RandomRecipes,
   
   },
-  data(){
-    return{
-      recipes: []
-    };
-  },
-   
-  methods: {
-    async updateNewRandomRecipes() { //<!-- לא מצליח-->
-     try {
-        const response = await this.axios.get(
-          "https://ass3-2-adi-nicole.herokuapp.com/recipes/3randomRecipes"
-          /*{
-            params: {
-              limitLicense: true,
-              number: 3,
-              //apiKey: process.env.VUE_APP_SPOONCULAR_API_KEY
-            }
-          }*/
-        );
-        //console.log(response);
-        const recipes = response.data ;
-        this.recipes = [];
-        this.recipes.push(...recipes);
-      } catch (error) {
-        console.log(error);
-      }  
-    },
-   
-  }
 };
 </script>
 

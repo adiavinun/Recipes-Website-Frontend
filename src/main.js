@@ -6,6 +6,10 @@ import axios from "axios";
 import routes from "./routes";
 import VueRouter from "vue-router";
 import VueCookies from 'vue-cookies';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -71,6 +75,9 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
+  //BASE_URL: "https://ass3-2-adi-nicole.herokuapp.com",
+  BASE_URL: "http://localhost:3000",
+  
   username: localStorage.username,
   login(username) {
     localStorage.setItem("username", username);

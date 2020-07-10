@@ -135,7 +135,7 @@ export default {
       } else {
         response = await this.axios.get(
           "http://localhost:3000/recipes/fullRecipeInfo/id/[" +
-            //"https://ass3-2-adi-nicole.herokuapp.com/recipes/fullRecipeInfo/id/[" +
+            //this.$$root.BASE_URL + "/recipes/fullRecipeInfo/id/[" +
             this.$route.params.recipeId +
             "]",
           { withCredentials: true }

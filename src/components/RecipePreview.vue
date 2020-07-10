@@ -100,7 +100,7 @@ export default {
       try {
         this.recipe.favorite = true;
         const post = await this.axios.post(
-          "https://ass3-2-adi-nicole.herokuapp.com/user/addFavRecipe",
+          this.$root.BASE_URL + "/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
             withCredentials: true,
