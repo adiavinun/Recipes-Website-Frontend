@@ -15,7 +15,7 @@
         <h5 v-else-if="recipe.vegetarian && recipe.glutenFree">
           vegetarian, gluten free
         </h5>
-         <h5 v-else-if="recipe.vegetarian">
+        <h5 v-else-if="recipe.vegetarian">
           vegetarian
         </h5>
         <h5 v-else-if="recipe.vegan">
@@ -26,7 +26,7 @@
         </h5>
 
         <img :src="recipe.image" class="center" />
-        <br>
+        <br />
       </div>
       <div class="recipe-body">
         <div class="mb-3">
@@ -36,7 +36,7 @@
                 ><b-icon-clock-history></b-icon-clock-history> Ready in
                 {{ recipe.readyInMinutes }} minutes
               </b-col>
-              <b-col
+              <b-col v-if="recipe.aggregateLikes"
                 ><b-icon-hand-thumbs-up></b-icon-hand-thumbs-up>
                 {{ recipe.aggregateLikes }} likes</b-col
               >
@@ -44,8 +44,10 @@
                 ><b-icon-people></b-icon-people>
                 {{ recipe.servings }} servings</b-col
               >
-              <b-col 
-                ><button style ="color:#F874C4"><b-icon-heart-fill ></b-icon-heart-fill></button>
+              <b-col
+                ><button @click="addToFavorites" style="color:#F874C4">
+                  <b-icon-heart-fill></b-icon-heart-fill>
+                </button>
                 Add to favorites</b-col
               >
             </b-row>
@@ -53,7 +55,7 @@
         </div>
         <div class="wrapper">
           <div class="wrapped">
-            <strong style= "font-size: 18px">Ingredients:</strong>
+            <strong style="font-size: 18px">Ingredients:</strong>
             <ul>
               <li
                 v-for="(r, index) in recipe.ingredients"
@@ -64,7 +66,7 @@
             </ul>
           </div>
           <div class="wrapped">
-            <strong style= "font-size: 18px">Instructions:</strong>
+            <strong style="font-size: 18px">Instructions:</strong>
             <ol>
               <li v-for="s in recipe.instructions" :key="s.number">
                 {{ s }}
@@ -95,40 +97,39 @@ export default {
   data() {
     return {
       recipe: null,
+      likes: null
     };
   },
   async created() {
     try {
       let response;
-      //try {
       //personal recipe
-      /*if (this.$root.store.username) {
-          response = await this.axios.get(
-            this.$$root.BASE_URL + "/user/myPersonalRecipeFull/id/" + this.$route.params.recipeId,
-            { withCredentials: true }
-          );
-        } else {*/
-      /*response = await this.axios.get(
+      console.log(this.$route.params);
+      if (!this.$route.params.likes) {
+        response = await this.axios.get(
+          "http://localhost:3000/user/myPersonalRecipeFull/id/" +
+          //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
+            this.$route.params.recipeId,
+          { withCredentials: true }
+        );
+      } else {
+        response = await this.axios.get(
           "http://localhost:3000/recipes/fullRecipeInfo/id/[" +
             //this.$$root.BASE_URL + "/recipes/fullRecipeInfo/id/[" +
             this.$route.params.recipeId +
             "]",
           { withCredentials: true }
         );
-        console.log(response.data[0].instructions);
-        //}
-        // console.log("response.status", response.status);
-        if (response.status !== 200) this.$router.replace("/NotFound");
-      } catch (error) {
-        console.log("error.response.status", error.response.status);
-        this.$router.replace("/NotFound");
-        return;
       }
-      let _recipe = response.data[0];*/
+      //console.log(response.data[0].instructions);
+      //}
+      // console.log("response.status", response.status);
+      //if (response.status !== 200) this.$router.replace("/NotFound");
+      let _recipe = response.data[0];
       //get watched and saved
 
-      //this.recipe = _recipe;
-      this.recipe = {
+      this.recipe = _recipe;
+      /*this.recipe = {
         id: 638741,
         title: "Chipotle Black Bean Soup with Avocado Cream",
         readyInMinutes: 45,
@@ -170,9 +171,12 @@ export default {
           "Serve planks on platter with dill sauce.",
         ],
         servings: 8,
-      };
+      };*/
     } catch (error) {
+      //console.log("error.response.status", error.response.status);
       console.log(error);
+      this.$router.replace("/NotFound");
+      return;
     }
   },
   methods: {
@@ -195,7 +199,7 @@ export default {
 </script>
 
 <style scoped>
-.header{
+.header {
   font-family: Impact, Charcoal, sans-serif;
 }
 .wrapper {
@@ -218,7 +222,6 @@ export default {
   border-style: groove;
   border-radius: 5px;
   padding: 2px;
-
 }
 /* .recipe-header{
 

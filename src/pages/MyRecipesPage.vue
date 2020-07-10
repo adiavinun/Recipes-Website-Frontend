@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="title">My Recipes</h1>
     <div>
-      <RecipePreviewList title="" pageType="myrecipes" class="MyRecipes center" />
+      <RecipePreviewList title="" pageType="myrecipes" :recipesList="recipes" class="MyRecipes center" />
     </div>
   </div>
 </template>
@@ -12,7 +12,12 @@ import RecipePreviewList from "../components/RecipePreviewList";
 export default {
   components: {
     RecipePreviewList
-  }
+  },
+  data(){
+    return{
+      recipes: []
+    };
+  },
 };
 </script>
 

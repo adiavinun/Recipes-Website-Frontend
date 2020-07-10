@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+    :to="{ name: 'recipe', params: { recipeId: recipe.id, likes: recipe.aggregateLikes } }"
     class="recipe-preview"
   >
     <!--<b-card

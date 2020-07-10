@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+    :to="{ name: 'fullFamily', params: { recipeId: recipe.id } }"
     class="recipe-preview"
   >
     <b-card-group deck>
