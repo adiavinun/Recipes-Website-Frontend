@@ -16,8 +16,8 @@
             <Login />
            </div>
            <div v-else >
-             <RecipePreviewList  
-             title="Last Watched Recipes"
+             <RecipePreviewList
+             title="Last Visited Recipes"
              pageType="lastSeen"
              :recipesList="recipes"
             :class="{
