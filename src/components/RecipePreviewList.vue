@@ -35,10 +35,10 @@ export default {
       required: true,
     },
     //<!--chen-->
-    recipesList: {
+    /*recipesList: {
       type: Array,
       required: true,
-    },
+    },*/
   },
   data() {
     return {
@@ -52,7 +52,8 @@ export default {
     async updateRecipes() {
       try {
         var recipes;
-        let url = "https://ass3-2-adi-nicole.herokuapp.com/";
+        //let url = "https://ass3-2-adi-nicole.herokuapp.com/";
+        let url = "http://localhost:3000/"
         if (this.pageType == "random") {
             url += "recipes/3randomRecipes";
         } else if (this.pageType == "lastSeen") {
@@ -72,7 +73,8 @@ export default {
         if (this.$root.store.username) {
           const recipe_ids = Object.keys(recipes);
           const responseRecipeInfo = await this.axios.get(
-            "https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
+            "http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
+            //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
             { withCredentials: true }
           );
           var recipeInfo = responseRecipeInfo.data;
@@ -85,8 +87,8 @@ export default {
             currRecipe.saved = recipeInfo[recipe_id].saved;
           }
           this.recipes.push(currRecipe);
-
         }
+        //sconsole.log(recipes);
       } catch (error) {
         console.log(error);
       }
