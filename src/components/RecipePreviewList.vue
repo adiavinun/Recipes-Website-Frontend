@@ -34,6 +34,11 @@ export default {
       type: String,
       required: true,
     },
+    //<!--chen-->
+    recipesList: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {

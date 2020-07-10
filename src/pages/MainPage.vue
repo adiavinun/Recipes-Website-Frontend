@@ -5,7 +5,7 @@
     <b-container class="bv-example-row">
       <b-row >
         <b-col >
-          <RecipePreviewList title="Explore these Recipes" pageType="random" class="RandomRecipes" />
+          <RecipePreviewList title="Explore these Recipes" pageType="random" :recipesList="recipes" class="RandomRecipes" />
           <br>
           <div class="new">
             <button @click="updateNewRandomRecipes">view other recipes!</button> <!--  עדיין לא עובד כמו שצריך-->
@@ -16,9 +16,10 @@
             <Login />
            </div>
            <div v-else >
-             <RecipePreviewList
+             <RecipePreviewList  
              title="Last Watched Recipes"
              pageType="lastSeen"
+             :recipesList="recipes"
             :class="{
               RandomRecipes: true,
               blur: !$root.store.username,
@@ -55,26 +56,17 @@ export default {
     async updateNewRandomRecipes() { //<!-- לא מצליח-->
      try {
         const response = await this.axios.get(
-          "https://ass3-2-adi-nicole.herokuapp.com/recipes/3randomRecipes",
-          {
+          "https://ass3-2-adi-nicole.herokuapp.com/recipes/3randomRecipes"
+          /*{
             params: {
               limitLicense: true,
               number: 3,
               //apiKey: process.env.VUE_APP_SPOONCULAR_API_KEY
             }
-          }
+          }*/
         );
-
         console.log(response);
-        const recipes = response.data.recipes.map((r) => {
-          return {
-            id: r.id,
-            title: r.title,
-            readyInMinutes: r.readyInMinutes,
-            image: r.image,
-            aggregateLikes: r.aggregateLikes
-          };
-        });
+        const recipes = response.data ;
         this.recipes = [];
         this.recipes.push(...recipes);
       } catch (error) {
