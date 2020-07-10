@@ -17,7 +17,7 @@
            </div>
            <div v-else >
              <RecipePreviewList
-             title="Last Watched Recipes"
+             title="Last Visited Recipes"
              pageType="lastSeen"
             :class="{
               RandomRecipes: true,
