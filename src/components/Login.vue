@@ -95,7 +95,8 @@ export default {
     async Login() {
       try {
         const response = await this.axios.post(
-          this.$root.BASE_URL + "/login",
+            "http://localhost:3000/login",
+          //this.$root.BASE_URL + "/login",
           //"http://localhost:3000/login",
           {
             username: this.form.username,
