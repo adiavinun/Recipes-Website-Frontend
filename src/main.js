@@ -71,7 +71,9 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
-  BASE_URL: "https://ass3-2-adi-nicole.herokuapp.com",
+  //BASE_URL: "https://ass3-2-adi-nicole.herokuapp.com",
+  BASE_URL: "http://localhost:3000",
+  
   username: localStorage.username,
   login(username) {
     localStorage.setItem("username", username);
