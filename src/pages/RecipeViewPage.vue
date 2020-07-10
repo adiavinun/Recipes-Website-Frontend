@@ -180,7 +180,7 @@ export default {
       try {
         this.recipe.favorite = true;
         const post = await this.axios.post(
-          this.$$root.BASE_URL + "/user/addFavRecipe",
+          this.$root.BASE_URL + "/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
             withCredentials: true,

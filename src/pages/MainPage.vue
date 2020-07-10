@@ -56,7 +56,7 @@ export default {
     async updateNewRandomRecipes() { //<!-- לא מצליח-->
      try {
         const response = await this.axios.get(
-          this.$$root.BASE_URL + "/recipes/3randomRecipes"
+          this.$root.BASE_URL + "/recipes/3randomRecipes"
           /*{
             params: {
               limitLicense: true,
