@@ -104,13 +104,13 @@ export default {
       //personal recipe
       /*if (this.$root.store.username) {
           response = await this.axios.get(
-            "https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" + this.$route.params.recipeId,
+            this.$$root.BASE_URL + "/user/myPersonalRecipeFull/id/" + this.$route.params.recipeId,
             { withCredentials: true }
           );
         } else {*/
       /*response = await this.axios.get(
           "http://localhost:3000/recipes/fullRecipeInfo/id/[" +
-            //"https://ass3-2-adi-nicole.herokuapp.com/recipes/fullRecipeInfo/id/[" +
+            //this.$$root.BASE_URL + "/recipes/fullRecipeInfo/id/[" +
             this.$route.params.recipeId +
             "]",
           { withCredentials: true }
@@ -180,7 +180,7 @@ export default {
       try {
         this.recipe.favorite = true;
         const post = await this.axios.post(
-          "https://ass3-2-adi-nicole.herokuapp.com/user/addFavRecipe",
+          this.$$root.BASE_URL + "/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
             withCredentials: true,

@@ -72,7 +72,7 @@ export default {
         if (this.$root.store.username) {
           const recipe_ids = Object.keys(recipes);
           const responseRecipeInfo = await this.axios.get(
-            "https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
+            this.$$root.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
             { withCredentials: true }
           );
           var recipeInfo = responseRecipeInfo.data;

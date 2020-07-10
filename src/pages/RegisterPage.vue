@@ -279,7 +279,7 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://ass3-2-adi-nicole.herokuapp.com/register",
+          this.$$root.BASE_URL + "/register",
           {
             username: this.form.username,
             password: this.form.password
