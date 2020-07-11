@@ -7,27 +7,42 @@
     
       <b-nav tabs >
          
-        <router-link :to="{ name: 'main' }" class="nav-link"><b-icon icon="house-door"></b-icon>Home </router-link>  
-        <router-link :to="{ name: 'search' }" class="nav-link">Search</router-link>  
-        <router-link :to="{ name: 'about' }" class="nav-link">About</router-link>  
+        <b-nav-item><router-link :to="{ name: 'main' }" ><b-icon icon="house-door"></b-icon>Home </router-link>  </b-nav-item>
+        
+        <b-nav-item><router-link :to="{ name: 'search' }" ><b-icon icon="search"></b-icon>Search</router-link> </b-nav-item>
+         
+        <b-nav-item><router-link :to="{ name: 'about' }"><b-icon icon="receipt"></b-icon>About</router-link> </b-nav-item> 
         <b-navbar-nav class="ml-auto">
         <span v-if="!$root.store.username">
-          Hello Guest: 
-          <router-link :to="{ name: 'register' }" >Register</router-link>|
-          <router-link :to="{ name: 'login' }" >Login</router-link>
+           <b-nav tabs fill>
+         
+          <b-nav-item disabled> Hello Guest: </b-nav-item>
+         <b-nav-item> <router-link :to="{ name: 'register' }" ><b-icon icon="person-circle"></b-icon>Register</router-link></b-nav-item>
+          
+         <b-nav-item> <router-link :to="{ name: 'login' }" ><b-icon icon="lock"></b-icon>Login</router-link></b-nav-item>
+          </b-nav>
         </span>
-        <span v-else>
-          <b-dropdown text="Personal" size="sm">
+        
+        <span v-else >
+          <b-nav>
+          <b-icon icon="unlock"></b-icon>
+          {{ $root.store.username }}:
+        
+          <b-dropdown text="Personal" size="sm"> 
+             <b-icon icon="person-lines-fill"></b-icon>
             <b-dropdown-item :to="{ name: 'myrecipes' }" >My Recipes</b-dropdown-item>
             <b-dropdown-item :to="{ name: 'favorite' }" >Favorite Recipes</b-dropdown-item>
             <b-dropdown-item :to="{ name: 'family' }" >Family Recipes</b-dropdown-item>
+            
           </b-dropdown>
-          {{ $root.store.username }}: <button @click="Logout">Logout</button>
+          <b-nav-item active @click="Logout"><b-icon icon="power"></b-icon>Logout</b-nav-item>
         <!--לנסות להוסיף תמונות פרופיל בצד-->
           <!-- <img :src="$root.store.profileImg" class="profile-image" /> -->
 
          <!--לבדוק אם יש עוד דרך אחרת או לוותר על זה בכללי-->  
+        </b-nav>
         </span>
+        
         </b-navbar-nav>
         </b-nav >
         </div>
