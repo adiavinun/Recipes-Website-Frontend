@@ -25,8 +25,9 @@
         
         <span v-else >
           <b-nav>
-          <b-icon icon="unlock"></b-icon>
-          {{ $root.store.username }}:
+          
+          <b-nav-item disabled><b-icon icon="unlock"></b-icon> {{ $root.store.username }}: </b-nav-item>
+         
         
           <b-dropdown text="Personal" size="sm"> 
              <b-icon icon="person-lines-fill"></b-icon>
