@@ -1,10 +1,11 @@
 <template>
 <div>
     <RecipePreviewList title="Explore these Recipes" pageType="random" :recipesList="recipes" class="RandomRecipes" />
-    <div class="new">
+    
         <b-button v-on:click="this.updateNewRandomRecipes">view other recipes!</b-button> 
         <!--<ButtonRandom  v-on:addItem="this.updateNewRandomRecipes"> view other recipes!</ButtonRandom>-->
-    </div>   
+
+    
 </div>
 </template>
 
