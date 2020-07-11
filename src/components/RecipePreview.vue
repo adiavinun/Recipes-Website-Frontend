@@ -36,38 +36,41 @@
         <b-list-group flush class="body">
           <b-list-group-item
             v-if="recipe.vegetarian || recipe.vegan || recipe.glutenFree"
-            ><b-card-text v-if="recipe.vegetarian"
-              ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png"
-                class="vegetarian"
-              ></b-card-img
-            ></b-card-text>
-            <b-card-text v-if="recipe.vegan"
-              ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png"
-                class="vegan"
-              ></b-card-img
-            ></b-card-text>
-            <b-card-text v-if="recipe.glutenFree"
-              ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
-                class="gluten"
-              ></b-card-img
-            ></b-card-text>
+            ><b-card-text
+              ><small v-if="recipe.vegetarian"
+                ><b-card-img
+                  src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png"
+                  class="vegetarian"
+                ></b-card-img>
+              </small>
+              <small v-if="recipe.vegan"
+                ><b-card-img
+                  src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png"
+                  class="vegan"
+                ></b-card-img>
+              </small>
+              <small v-if="recipe.glutenFree"
+                ><b-card-img
+                  src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
+                  class="gluten"
+                ></b-card-img>
+              </small>
+            </b-card-text>
           </b-list-group-item>
 
           <b-list-group-item
             v-if="this.$root.store.username && recipe.aggregateLikes"
-            ><b-card-text v-if="recipe.watched"
-              ><b-icon-eye></b-icon-eye
-            ></b-card-text>
-            <b-card-text v-if="!recipe.saved"
-              ><button @click="addToFavorites" style="color:#F874C4">
-                <b-icon-heart-fill></b-icon-heart-fill></button
-            ></b-card-text>
-            <b-card-text v-else-if="recipe.saved"
-              ><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill
-            ></b-card-text>
+            ><b-card-text>
+              <large v-if="recipe.watched" class="h4 mb-2"><b-icon-eye></b-icon-eye></large>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <large v-if="!recipe.saved"
+                ><button @click="addToFavorites" style="color:#F874C4" class="button">
+                  <b-icon-heart-fill></b-icon-heart-fill></button
+              ></large>
+              <large v-else-if="recipe.saved"
+                ><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill
+              ></large>
+            </b-card-text>
           </b-list-group-item>
         </b-list-group>
 
@@ -249,4 +252,10 @@ export default {
 .gluten {
   width: 40px;
 }
+.button{
+  font-size: 16px;
+}
+.image:hover{
+		transform: scale(1.2);
+	}
 </style>
