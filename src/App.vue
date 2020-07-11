@@ -83,11 +83,23 @@ export default {
   content: '';
   display: block;
   position: absolute;
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
   width: 100%;
-  height: 100%;
-  background: url('https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300280/54088843-healthy-food-background-studio-photo-of-different-fruits-on-white-wooden-table-high-resolution-produ.jpg');
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  //background: url('https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300280/54088843-healthy-food-background-studio-photo-of-different-fruits-on-white-wooden-table-high-resolution-produ.jpg');
+  background: url('https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300234/54088727-healthy-food-background-and-copy-space-studio-photo-of-different-fruits-and-vegetables-on-white-wood.jpg');
   background-size: cover;
-  top: 10%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
   opacity: 0.5;
   z-index: -1;
 }

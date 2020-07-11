@@ -3,28 +3,24 @@
     <div v-if="recipe">
       <div class="header">
         <h1>{{ recipe.title }}</h1>
-        <h5 v-if="recipe.vegetarian && recipe.vegan && recipe.glutenFree">
-          vegetarian, vegan, gluten free
-        </h5>
-        <h5 v-else-if="recipe.vegetarian && recipe.vegan">
-          vegetarian, vegan
-        </h5>
-        <h5 v-else-if="recipe.vegan && recipe.glutenFree">
-          vegan, gluten free
-        </h5>
-        <h5 v-else-if="recipe.vegetarian && recipe.glutenFree">
-          vegetarian, gluten free
-        </h5>
-        <h5 v-else-if="recipe.vegetarian">
-          vegetarian
-        </h5>
-        <h5 v-else-if="recipe.vegan">
-          vegan
-        </h5>
-        <h5 v-else-if="recipe.glutenFree">
-          gluten free  <img :src=vegan>
-        </h5>
-
+        <medium v-if="recipe.vegetarian">
+          <img
+            src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png"
+            class="vegetarian"
+          />
+        </medium>
+         <medium v-if="recipe.vegan">
+          <img
+            src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png"
+            class="vegan"
+          />
+        </medium>
+        <medium v-if="recipe.vegan">
+          <img
+            src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
+            class="gluten"
+          />
+        </medium>
         <img :src="recipe.image" class="center" />
         <br />
       </div>
@@ -146,13 +142,13 @@ export default {
       //}
       // console.log("response.status", response.status);
       //if (response.status !== 200) this.$router.replace("/NotFound");
-      console.log(response.data);
-      console.log(this.$route.params);
-      console.log("im here1");
+      //console.log(response.data);
+      //console.log(this.$route.params);
+      //console.log("im here1");
       if (this.$root.store.username) {
-        console.log("im here2");
+        //console.log("im here2");
         if (this.$route.params.likes) {
-          console.log("im here3");
+          //console.log("im here3");
           const post = await this.axios.post(
             "http://localhost:3000/user/addSeenRecipe",
             //"https://ass3-2-adi-nicole.herokuapp.com/user/addSeenRecipe",
@@ -229,7 +225,6 @@ export default {
   methods: {
     async addToFavorites() {
       try {
-        this.recipe.favorite = true;
         const post = await this.axios.post(
           "http://localhost:3000/user/addFavRecipe",
           //"https://ass3-2-adi-nicole.herokuapp.com/user/addFavRecipe",
@@ -272,7 +267,13 @@ export default {
   border-radius: 5px;
   padding: 2px;
 }
-/* .recipe-header{
-
-} */
+.vegetarian {
+  width: 52px;
+}
+.vegan {
+  width: 50px;
+}
+.gluten {
+  width: 50px;
+}
 </style>

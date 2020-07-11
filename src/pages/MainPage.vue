@@ -5,7 +5,7 @@
     <b-container class="bv-example-row">
       <b-row >
         <b-col >
-          <RandomRecipes title="Explore these Recipes" pageType="random" :recipesArray="recipesList" class="RandomRecipes" />
+          <RandomRecipes :recipesArray="recipesList" class="RandomRecipes" />
           <br>
           <ButtonRandomRecipes v-on:represhRandom="updateNewRandomRecipes"> </ButtonRandomRecipes>
          <!-- <div>
@@ -18,7 +18,7 @@
            </div>
            <div v-else >
              <RecipePreviewList
-             title="Last Visited Recipes"
+             title="Last Visited Recipes:"
              pageType="lastSeen"
          
             :class="{

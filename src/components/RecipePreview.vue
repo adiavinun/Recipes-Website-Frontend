@@ -1,35 +1,80 @@
 <template>
-  <router-link
-    :to="{ name: 'recipe', params: { recipeId: recipe.id, likes: recipe.aggregateLikes } }"
-    class="recipe-preview"
-  >
-    <b-card
-      no-body
-      :img-src="recipe.image"
-      img-alt="Image"
-      class="recipe-image"
-      img-top
-    >
-      <b-card-body>
-        <b-card-title :title="recipe.title" class="recipe-title" style="font-size: 16px">
-          {{ recipe.title }}
-        </b-card-title>
-        <b-card-text> <b-icon-clock-history></b-icon-clock-history>
-                {{ recipe.readyInMinutes }} min <b-icon-hand-thumbs-up></b-icon-hand-thumbs-up>{{ recipe.aggregateLikes }} </b-card-text>
-      </b-card-body>
-
-      <b-list-group flush>
-        <b-list-group-item
-          >vegetarian: {{ recipe.vegetarian }}</b-list-group-item
+  <div>
+    <b-card-group deck>
+      <b-card>
+        <router-link
+          :to="{
+            name: 'recipe',
+            params: { recipeId: recipe.id, likes: recipe.aggregateLikes },
+          }"
+          class="recipe-preview"
         >
-        <b-list-group-item>vegan: {{ recipe.vegan }}</b-list-group-item>
-        <b-list-group-item
-          >gluten free: {{ recipe.glutenFree }}</b-list-group-item
-        >
-      </b-list-group>
-    </b-card>
+          <b-card-img
+            :src="recipe.image"
+            img-top
+            img-width="150"
+            img-height="240"
+            class="image"
+          />
+        </router-link>
+        <b-card-body class="body">
+          <b-card-title
+            :title="recipe.title"
+            class="recipe-title"
+            style="font-size: 16px"
+          >
+            {{ recipe.title }}
+          </b-card-title>
+          <b-card-text>
+            <b-icon-clock-history></b-icon-clock-history>
+            {{ recipe.readyInMinutes }} min
+            <b-icon-hand-thumbs-up></b-icon-hand-thumbs-up
+            >{{ recipe.aggregateLikes }}
+          </b-card-text>
+        </b-card-body>
 
-    <!--<b-card
+        <b-list-group flush class="body">
+          <b-list-group-item
+            v-if="recipe.vegetarian || recipe.vegan || recipe.glutenFree"
+            ><b-card-text
+              ><small v-if="recipe.vegetarian"
+                ><b-card-img
+                  src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png"
+                  class="vegetarian"
+                ></b-card-img>
+              </small>
+              <small v-if="recipe.vegan"
+                ><b-card-img
+                  src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png"
+                  class="vegan"
+                ></b-card-img>
+              </small>
+              <small v-if="recipe.glutenFree"
+                ><b-card-img
+                  src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
+                  class="gluten"
+                ></b-card-img>
+              </small>
+            </b-card-text>
+          </b-list-group-item>
+
+          <b-list-group-item
+            v-if="this.$root.store.username && recipe.aggregateLikes"
+            ><b-card-text>
+              <large v-if="recipe.watched" class="h4 mb-2"><b-icon-eye></b-icon-eye></large>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <large v-if="!recipe.saved"
+                ><button @click="addToFavorites" style="color:#F874C4" class="button">
+                  <b-icon-heart-fill></b-icon-heart-fill></button
+              ></large>
+              <large v-else-if="recipe.saved"
+                ><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill
+              ></large>
+            </b-card-text>
+          </b-list-group-item>
+        </b-list-group>
+
+        <!--<b-card
       :title="recipe.title"
       :img-src="recipe.image"
       img-alt="Card Image"
@@ -44,7 +89,7 @@
       </b-card-text>
     </b-card>-->
 
-    <!--<b-card-group deck>
+        <!--<b-card-group deck>
       <b-card
         overlay
         :title="recipe.title"
@@ -70,19 +115,25 @@
         </template>
       </b-card>
     </b-card-group>-->
-  </router-link>
+      </b-card>
+    </b-card-group>
+  </div>
 </template>
 
 <script>
 import {
   BIconClockHistory,
   BIconHandThumbsUp,
+  BIconHeartFill,
+  BIconEye,
 } from "bootstrap-vue";
 
 export default {
   components: {
     BIconClockHistory,
     BIconHandThumbsUp,
+    BIconHeartFill,
+    BIconEye,
   },
   data() {
     return {
@@ -98,14 +149,14 @@ export default {
   methods: {
     async addToFavorites() {
       try {
-        this.recipe.favorite = true;
         const post = await this.axios.post(
-          this.$root.BASE_URL + "/user/addFavRecipe",
+          "http://localhost:3000/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
             withCredentials: true,
           }
         );
+        this.recipe.saved = true;
       } catch (error) {
         console.log(error.response);
       }
@@ -189,4 +240,22 @@ export default {
   display: table-cell;
   text-align: center;
 }
+.body {
+  font-size: 13px;
+}
+.vegan {
+  width: 35px;
+}
+.vegetarian {
+  width: 35px;
+}
+.gluten {
+  width: 40px;
+}
+.button{
+  font-size: 16px;
+}
+.image:hover{
+		transform: scale(1.2);
+	}
 </style>
