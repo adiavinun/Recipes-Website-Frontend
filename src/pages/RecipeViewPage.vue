@@ -147,13 +147,17 @@ export default {
       // console.log("response.status", response.status);
       //if (response.status !== 200) this.$router.replace("/NotFound");
       console.log(response.data);
+      console.log(this.$route.params);
+      console.log("im here1");
       if (this.$root.store.username) {
-        if (this.$route.params.like) {
+        console.log("im here2");
+        if (this.$route.params.likes) {
+          console.log("im here3");
           const post = await this.axios.post(
             "http://localhost:3000/user/addSeenRecipe",
             //"https://ass3-2-adi-nicole.herokuapp.com/user/addSeenRecipe",
             {
-              recipeID: this.$route.params.recipeId,
+              recipe_id: this.$route.params.recipeId,
               withCredentials: true,
             }
           );
