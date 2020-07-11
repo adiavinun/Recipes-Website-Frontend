@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card-group deck>
-      <b-card>
+      <b-card class="card">
         <router-link
           :to="{
             name: 'recipe',
@@ -16,105 +16,64 @@
             img-height="240"
             class="image"
           />
-        </router-link>
-        <b-card-body class="body">
+          <br />
+          <br />
+          <br />
           <b-card-title
             :title="recipe.title"
             class="recipe-title"
-            style="font-size: 16px"
+            style="font-size: 19px"
           >
             {{ recipe.title }}
           </b-card-title>
+        </router-link>
+        <b-card-body class="body">
           <b-card-text>
             <b-icon-clock-history></b-icon-clock-history>
             {{ recipe.readyInMinutes }} min
             <b-icon-hand-thumbs-up></b-icon-hand-thumbs-up
             >{{ recipe.aggregateLikes }}
           </b-card-text>
-        </b-card-body>
-
-        <b-list-group flush class="body">
-          <b-list-group-item
-            v-if="recipe.vegetarian || recipe.vegan || recipe.glutenFree"
-            ><b-card-text
-              ><small v-if="recipe.vegetarian"
-                ><b-card-img
-                  src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png"
-                  class="vegetarian"
-                ></b-card-img>
-              </small>
-              <small v-if="recipe.vegan"
-                ><b-card-img
-                  src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png"
-                  class="vegan"
-                ></b-card-img>
-              </small>
-              <small v-if="recipe.glutenFree"
-                ><b-card-img
-                  src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
-                  class="gluten"
-                ></b-card-img>
-              </small>
-            </b-card-text>
-          </b-list-group-item>
-
-          <b-list-group-item
+          <b-card-text>
+            <small v-if="recipe.vegetarian"
+              ><b-card-img
+                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png"
+                class="vegetarian"
+              ></b-card-img>
+            </small>
+            <small v-if="recipe.vegan"
+              ><b-card-img
+                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png"
+                class="vegan"
+              ></b-card-img>
+            </small>
+            <small v-if="recipe.glutenFree"
+              ><b-card-img
+                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
+                class="gluten"
+              ></b-card-img>
+            </small>
+          </b-card-text>
+          <b-card-text
             v-if="this.$root.store.username && recipe.aggregateLikes"
-            ><b-card-text>
-              <large v-if="recipe.watched" class="h4 mb-2"><b-icon-eye></b-icon-eye></large>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <large v-if="!recipe.saved"
-                ><button @click="addToFavorites" style="color:#F874C4" class="button">
-                  <b-icon-heart-fill></b-icon-heart-fill></button
-              ></large>
-              <large v-else-if="recipe.saved"
-                ><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill
-              ></large>
-            </b-card-text>
-          </b-list-group-item>
-        </b-list-group>
-
-        <!--<b-card
-      :title="recipe.title"
-      :img-src="recipe.image"
-      img-alt="Card Image"
-      text-variant="white"
-      class="recipe-image"
-      sub-title="Subtitle"
-      style="max-width: 20rem; max-length: 30rem"
-    >
-      <b-card-text>
-        Some quick example text to build on the card and make up the bulk of the
-        card's content.
-      </b-card-text>
-    </b-card>-->
-
-        <!--<b-card-group deck>
-      <b-card
-        overlay
-        :title="recipe.title"
-        :img-src="recipe.image"
-        img-alt="Card Image"
-        img-width="500"
-        img-height="200"
-        img-top
-      >
-        <b-card-text>
-          <div v-if="recipe.aggregateLikes">{{ recipe.aggregateLikes }} likes</div>
-          <br />
-          vegetarian: {{ recipe.vegetarian }}
-          <br />
-          vegan: {{ recipe.vegan }}
-          <br />
-          gluten free: {{ recipe.glutenFree }}
-        </b-card-text>
-        <template v-slot:footer>
-          <small class="text-muted"
-            >Ready in {{ recipe.readyInMinutes }} minutes</small
           >
-        </template>
-      </b-card>
-    </b-card-group>-->
+            <large v-if="recipe.watched" class="h4 mb-2"
+              ><b-icon-eye></b-icon-eye
+            ></large>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <large v-if="!recipe.saved"
+              ><button
+                @click="addToFavorites"
+                style="color:#F874C4"
+                class="button"
+              >
+                <b-icon-heart-fill></b-icon-heart-fill></button
+            ></large>
+            <large v-else-if="recipe.saved"
+              ><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill
+            ></large>
+          </b-card-text>
+        </b-card-body>
       </b-card>
     </b-card-group>
   </div>
@@ -241,7 +200,8 @@ export default {
   text-align: center;
 }
 .body {
-  font-size: 13px;
+  font-size: 16px;
+  color: black;
 }
 .vegan {
   width: 35px;
@@ -252,10 +212,19 @@ export default {
 .gluten {
   width: 40px;
 }
-.button{
+.button {
   font-size: 16px;
 }
-.image:hover{
-		transform: scale(1.2);
-	}
+.image:hover {
+  transform: scale(1.2);
+}
+.card {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.recipe-title{
+  color: black;
+    font-weight: bold;
+
+}
+
 </style>
