@@ -1,19 +1,29 @@
 <template>
   <b-container>
     <h3>
-     <span v-if="title">{{ title }}:</span>
+     {{ title }}:
       <slot></slot>
     </h3>
     <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
-        <div v-if="pageType === 'family'">
+       <div v-if="pageType === 'family'">
+          <b-col v-for="r in recipes" :key="r.id">    
           <FamilyRecipePreview class="recipePreview" :recipe="r" />
+          </b-col>
+        </div>
+        <div v-if="pageType === 'random'">
+          <b-col v-for="r in recipesList" :key="r.id"> 
+          <RecipePreview class="recipePreview" :recipe="r" />
+          </b-col>
         </div>
         <div v-else>
+          <b-col v-for="r in recipes" :key="r.id"> 
           <RecipePreview class="recipePreview" :recipe="r" />
+          </b-col>
         </div>
-      </b-col>
+      
     </b-row>
+
+
   </b-container>
 </template>
 
@@ -35,12 +45,14 @@ export default {
       type: String,
       required: true,
     },
-    //<!--chen-->
-    /*recipesList: {
+    recipesList: {
       type: Array,
-      required: true,
-    },*/
+
+    }
   },
+
+  
+   
   data() {
     return {
       recipes: [],
@@ -49,6 +61,7 @@ export default {
   mounted() {
     this.updateRecipes(this.pageType);
   },
+ 
   methods: {
     async updateRecipes() {
       try {
@@ -99,6 +112,7 @@ export default {
         console.log(error);
       }
     },
+    
   },
 };
 </script>
