@@ -4,27 +4,31 @@
       <div class="header">
         <h1>{{ recipe.title }}</h1>
         <h5 v-if="recipe.vegetarian && recipe.vegan && recipe.glutenFree">
-          vegetarian, vegan, gluten free
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png" class="vegetarian">
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png" class="vegan">
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp" class="gluten">
         </h5>
         <h5 v-else-if="recipe.vegetarian && recipe.vegan">
-          vegetarian, vegan
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png" class="vegetarian">
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png" class="vegan">
         </h5>
         <h5 v-else-if="recipe.vegan && recipe.glutenFree">
-          vegan, gluten free
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png" class="vegan">
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp" class="gluten">
         </h5>
         <h5 v-else-if="recipe.vegetarian && recipe.glutenFree">
-          vegetarian, gluten free
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png" class="vegetarian">
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp" class="gluten">
         </h5>
         <h5 v-else-if="recipe.vegetarian">
-          vegetarian
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png" class="vegetarian">
         </h5>
         <h5 v-else-if="recipe.vegan">
-          vegan
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png" class="vegan">
         </h5>
         <h5 v-else-if="recipe.glutenFree">
-          gluten free  <img :src=vegan>
+          <img src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp" class="gluten">
         </h5>
-
         <img :src="recipe.image" class="center" />
         <br />
       </div>
@@ -271,7 +275,13 @@ export default {
   border-radius: 5px;
   padding: 2px;
 }
-/* .recipe-header{
-
-} */
+.vegetarian{
+  width: 50px;
+}
+.vegan{
+  width: 50px;
+}
+.gluten{
+  width: 50px;
+}
 </style>

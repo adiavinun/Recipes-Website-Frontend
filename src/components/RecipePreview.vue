@@ -1,61 +1,77 @@
 <template>
-  <router-link
-    :to="{
-      name: 'recipe',
-      params: { recipeId: recipe.id, likes: recipe.aggregateLikes },
-    }"
-    class="recipe-preview"
-  >
-    <b-card
-      no-body
-      :img-src="recipe.image"
-      img-alt="Image"
-      class="recipe-image"
-      img-top
-    >
-      <b-card-body class="body">
-        <b-card-title
-          :title="recipe.title"
-          class="recipe-title"
-          style="font-size: 16px"
+  <div>
+    <b-card-group deck>
+      <b-card>
+        <router-link
+          :to="{
+            name: 'recipe',
+            params: { recipeId: recipe.id, likes: recipe.aggregateLikes },
+          }"
+          class="recipe-preview"
         >
-          {{ recipe.title }}
-        </b-card-title>
-        <b-card-text>
-          <b-icon-clock-history></b-icon-clock-history>
-          {{ recipe.readyInMinutes }} min
-          <b-icon-hand-thumbs-up></b-icon-hand-thumbs-up
-          >{{ recipe.aggregateLikes }}
-        </b-card-text>
-      </b-card-body>
+          <b-card-img
+            :src="recipe.image"
+            img-top
+            img-width="150"
+            img-height="240"
+            class="image"
+          />
+        </router-link>
+        <b-card-body class="body">
+          <b-card-title
+            :title="recipe.title"
+            class="recipe-title"
+            style="font-size: 16px"
+          >
+            {{ recipe.title }}
+          </b-card-title>
+          <b-card-text>
+            <b-icon-clock-history></b-icon-clock-history>
+            {{ recipe.readyInMinutes }} min
+            <b-icon-hand-thumbs-up></b-icon-hand-thumbs-up
+            >{{ recipe.aggregateLikes }}
+          </b-card-text>
+        </b-card-body>
 
-      <b-list-group flush class="body">
-        <b-list-group-item
-          ><b-card-text v-if="recipe.vegetarian">vegetarian</b-card-text>
-          <b-card-text v-if="recipe.vegan">vegan</b-card-text>
-          <b-card-text v-if="recipe.glutenFree">gluten free</b-card-text>
+        <b-list-group flush class="body">
+          <b-list-group-item
+            v-if="recipe.vegetarian || recipe.vegan || recipe.glutenFree"
+            ><b-card-text v-if="recipe.vegetarian"
+              ><b-card-img
+                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png"
+                class="vegetarian"
+              ></b-card-img
+            ></b-card-text>
+            <b-card-text v-if="recipe.vegan"
+              ><b-card-img
+                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png"
+                class="vegan"
+              ></b-card-img
+            ></b-card-text>
+            <b-card-text v-if="recipe.glutenFree"
+              ><b-card-img
+                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
+                class="gluten"
+              ></b-card-img
+            ></b-card-text>
+          </b-list-group-item>
 
-          <b-card-img src="/images/Capture.PNG" bottom></b-card-img
-        ></b-list-group-item>
-        <b-list-group-item
-          v-if="this.$root.store.username && recipe.aggregateLikes"
-          ><b-card-text v-if="recipe.watched"
-            ><b-icon-eye></b-icon-eye
-          ></b-card-text>
-          <b-card-text
-            v-if="!recipe.saved"
-            ><button @click="addToFavorites" style="color:#F874C4">
-              <b-icon-heart-fill></b-icon-heart-fill></button
-          ></b-card-text>
-          <b-card-text
-            v-else-if="recipe.saved"
-            ><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill
-          ></b-card-text>
-        </b-list-group-item>
-      </b-list-group>
-    </b-card>
+          <b-list-group-item
+            v-if="this.$root.store.username && recipe.aggregateLikes"
+            ><b-card-text v-if="recipe.watched"
+              ><b-icon-eye></b-icon-eye
+            ></b-card-text>
+            <b-card-text v-if="!recipe.saved"
+              ><button @click="addToFavorites" style="color:#F874C4">
+                <b-icon-heart-fill></b-icon-heart-fill></button
+            ></b-card-text>
+            <b-card-text v-else-if="recipe.saved"
+              ><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill
+            ></b-card-text>
+          </b-list-group-item>
+        </b-list-group>
 
-    <!--<b-card
+        <!--<b-card
       :title="recipe.title"
       :img-src="recipe.image"
       img-alt="Card Image"
@@ -70,7 +86,7 @@
       </b-card-text>
     </b-card>-->
 
-    <!--<b-card-group deck>
+        <!--<b-card-group deck>
       <b-card
         overlay
         :title="recipe.title"
@@ -96,7 +112,9 @@
         </template>
       </b-card>
     </b-card-group>-->
-  </router-link>
+      </b-card>
+    </b-card-group>
+  </div>
 </template>
 
 <script>
@@ -221,5 +239,14 @@ export default {
 }
 .body {
   font-size: 13px;
+}
+.vegan {
+  width: 35px;
+}
+.vegetarian {
+  width: 35px;
+}
+.gluten {
+  width: 40px;
 }
 </style>

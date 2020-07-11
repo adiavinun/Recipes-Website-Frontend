@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <h3>
-     {{ title }}:
+     {{ title }}
       <slot></slot>
     </h3>
     <b-row>
@@ -10,7 +10,7 @@
           <FamilyRecipePreview class="recipePreview" :recipe="r" />
           </b-col>
         </div>
-        <div v-if="pageType === 'random'">
+        <div v-else-if="pageType === 'random'">
           <b-col v-for="r in recipesList" :key="r.id"> 
           <RecipePreview class="recipePreview" :recipe="r" />
           </b-col>
@@ -20,10 +20,7 @@
           <RecipePreview class="recipePreview" :recipe="r" />
           </b-col>
         </div>
-      
     </b-row>
-
-
   </b-container>
 </template>
 
