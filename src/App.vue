@@ -26,7 +26,7 @@
         <span v-else >
           <b-nav>
           
-          <b-nav-item disabled><b-icon icon="unlock"></b-icon> {{ $root.store.username }}: </b-nav-item>
+          <b-nav-item disabled> {{ $root.store.username }}: </b-nav-item>
          
         
           <b-dropdown text="Personal" size="sm"> 
@@ -36,7 +36,7 @@
             <b-dropdown-item :to="{ name: 'family' }" >Family Recipes</b-dropdown-item>
             
           </b-dropdown>
-          <b-nav-item active @click="Logout"><b-icon icon="power"></b-icon>Logout</b-nav-item>
+          <b-nav-item active @click="Logout">Logout</b-nav-item>
         <!--לנסות להוסיף תמונות פרופיל בצד-->
           <!-- <img :src="$root.store.profileImg" class="profile-image" /> -->
 
