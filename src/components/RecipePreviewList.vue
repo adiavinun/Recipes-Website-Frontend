@@ -10,7 +10,7 @@
           <FamilyRecipePreview class="recipePreview" :recipe="r" />
           </b-col>
         </div>
-        <div v-if="pageType === 'random'">
+        <div v-else-if="pageType === 'random'">
           <b-col v-for="r in recipesList" :key="r.id"> 
           <RecipePreview class="recipePreview" :recipe="r" />
           </b-col>
@@ -68,9 +68,9 @@ export default {
         var recipes;
         //let url = "https://ass3-2-adi-nicole.herokuapp.com/";
         let url = "http://localhost:3000/"
-        if (this.pageType == "random") {
+        /*if (this.pageType == "random") {
             url += "recipes/3randomRecipes";
-        } else if (this.pageType == "lastSeen") {
+        } else*/ if (this.pageType == "lastSeen") {
             url += "user/last3SeenRecipes";
         } else if (this.pageType == "myrecipes") {
             url += "user/myPersonalRecipesPreview";
