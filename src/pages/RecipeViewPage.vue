@@ -146,13 +146,13 @@ export default {
       //}
       // console.log("response.status", response.status);
       //if (response.status !== 200) this.$router.replace("/NotFound");
-      console.log(response.data);
-      console.log(this.$route.params);
-      console.log("im here1");
+      //console.log(response.data);
+      //console.log(this.$route.params);
+      //console.log("im here1");
       if (this.$root.store.username) {
-        console.log("im here2");
+        //console.log("im here2");
         if (this.$route.params.likes) {
-          console.log("im here3");
+          //console.log("im here3");
           const post = await this.axios.post(
             "http://localhost:3000/user/addSeenRecipe",
             //"https://ass3-2-adi-nicole.herokuapp.com/user/addSeenRecipe",
@@ -229,7 +229,6 @@ export default {
   methods: {
     async addToFavorites() {
       try {
-        this.recipe.favorite = true;
         const post = await this.axios.post(
           "http://localhost:3000/user/addFavRecipe",
           //"https://ass3-2-adi-nicole.herokuapp.com/user/addFavRecipe",

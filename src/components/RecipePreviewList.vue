@@ -55,9 +55,9 @@ export default {
         var recipes;
         //let url = "https://ass3-2-adi-nicole.herokuapp.com/";
         let url = "http://localhost:3000/"
-        /*if (this.pageType == "random") {
+        if (this.pageType == "random") {
             url += "recipes/3randomRecipes";
-        } else*/ if (this.pageType == "lastSeen") {
+        } else if (this.pageType == "lastSeen") {
             url += "user/last3SeenRecipes";
         } else if (this.pageType == "myrecipes") {
             url += "user/myPersonalRecipesPreview";
@@ -70,9 +70,12 @@ export default {
             url, { withCredentials: true }
         );
         recipes = response.data;
-
         if (this.$root.store.username) {
-          const recipe_ids = Object.keys(recipes);
+          const recipe_ids = [];
+          for (var i = 0; i < recipes.length; i++){
+            recipe_ids.push(recipes[i].id);
+          }
+          //console.log(recipe_ids);
           const responseRecipeInfo = await this.axios.get(
             //this.$root.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
             "http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
@@ -80,17 +83,18 @@ export default {
             { withCredentials: true }
           );
           var recipeInfo = responseRecipeInfo.data;
+          //console.log(recipeInfo);
         }
         this.recipes = [];
-        for (var recipe_id in recipes) {
-          var currRecipe = recipes[recipe_id];
+        for (var i = 0; i < recipes.length; i++) {
+          var currRecipe = recipes[i];
           if (recipeInfo) {
-            currRecipe.watched = recipeInfo[recipe_id].watched;
-            currRecipe.saved = recipeInfo[recipe_id].saved;
+            currRecipe.watched = recipeInfo[currRecipe.id].watched;
+            currRecipe.saved = recipeInfo[currRecipe.id].saved;
           }
           this.recipes.push(currRecipe);
         }
-        //sconsole.log(recipes);
+        //console.log(recipes);
       } catch (error) {
         console.log(error);
       }

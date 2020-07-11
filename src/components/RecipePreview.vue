@@ -1,6 +1,9 @@
 <template>
   <router-link
-    :to="{ name: 'recipe', params: { recipeId: recipe.id, likes: recipe.aggregateLikes } }"
+    :to="{
+      name: 'recipe',
+      params: { recipeId: recipe.id, likes: recipe.aggregateLikes },
+    }"
     class="recipe-preview"
   >
     <b-card
@@ -10,22 +13,45 @@
       class="recipe-image"
       img-top
     >
-      <b-card-body>
-        <b-card-title :title="recipe.title" class="recipe-title" style="font-size: 16px">
+      <b-card-body class="body">
+        <b-card-title
+          :title="recipe.title"
+          class="recipe-title"
+          style="font-size: 16px"
+        >
           {{ recipe.title }}
         </b-card-title>
-        <b-card-text> <b-icon-clock-history></b-icon-clock-history>
-                {{ recipe.readyInMinutes }} min <b-icon-hand-thumbs-up></b-icon-hand-thumbs-up>{{ recipe.aggregateLikes }} </b-card-text>
+        <b-card-text>
+          <b-icon-clock-history></b-icon-clock-history>
+          {{ recipe.readyInMinutes }} min
+          <b-icon-hand-thumbs-up></b-icon-hand-thumbs-up
+          >{{ recipe.aggregateLikes }}
+        </b-card-text>
       </b-card-body>
 
-      <b-list-group flush>
+      <b-list-group flush class="body">
         <b-list-group-item
-          >vegetarian: {{ recipe.vegetarian }}</b-list-group-item
-        >
-        <b-list-group-item>vegan: {{ recipe.vegan }}</b-list-group-item>
+          ><b-card-text v-if="recipe.vegetarian">vegetarian</b-card-text>
+          <b-card-text v-if="recipe.vegan">vegan</b-card-text>
+          <b-card-text v-if="recipe.glutenFree">gluten free</b-card-text>
+
+          <b-card-img src="/images/Capture.PNG" bottom></b-card-img
+        ></b-list-group-item>
         <b-list-group-item
-          >gluten free: {{ recipe.glutenFree }}</b-list-group-item
-        >
+          v-if="this.$root.store.username && recipe.aggregateLikes"
+          ><b-card-text v-if="recipe.watched"
+            ><b-icon-eye></b-icon-eye
+          ></b-card-text>
+          <b-card-text
+            v-if="!recipe.saved"
+            ><button @click="addToFavorites" style="color:#F874C4">
+              <b-icon-heart-fill></b-icon-heart-fill></button
+          ></b-card-text>
+          <b-card-text
+            v-else-if="recipe.saved"
+            ><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill
+          ></b-card-text>
+        </b-list-group-item>
       </b-list-group>
     </b-card>
 
@@ -77,12 +103,16 @@
 import {
   BIconClockHistory,
   BIconHandThumbsUp,
+  BIconHeartFill,
+  BIconEye,
 } from "bootstrap-vue";
 
 export default {
   components: {
     BIconClockHistory,
     BIconHandThumbsUp,
+    BIconHeartFill,
+    BIconEye,
   },
   data() {
     return {
@@ -98,14 +128,14 @@ export default {
   methods: {
     async addToFavorites() {
       try {
-        this.recipe.favorite = true;
         const post = await this.axios.post(
-          this.$root.BASE_URL + "/user/addFavRecipe",
+          "http://localhost:3000/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
             withCredentials: true,
           }
         );
+        this.recipe.saved = true;
       } catch (error) {
         console.log(error.response);
       }
@@ -188,5 +218,8 @@ export default {
   width: 90px;
   display: table-cell;
   text-align: center;
+}
+.body {
+  font-size: 13px;
 }
 </style>
