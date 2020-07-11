@@ -3,6 +3,8 @@
     <div v-if="recipe">
       <div class="header">
         <h1>{{ recipe.title }}</h1>
+        <h5> By: {{recipe.recipeOwner}}</h5>
+        <h5>Occasion: {{recipe.whenUsuallyMakeRecipe}}</h5>
         <img :src="recipe.image" class="center" />
         <br />
       </div>
@@ -24,7 +26,7 @@
             <strong style="font-size: 18px">Instructions:</strong>
             <ol>
               <li v-for="s in recipe.instructions" :key="s.number">
-                {{ s }}
+                {{ s.description }}
               </li>
             </ol>
           </div>

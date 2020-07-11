@@ -3,22 +3,19 @@
     :to="{ name: 'recipe', params: { recipeId: recipe.id, likes: recipe.aggregateLikes } }"
     class="recipe-preview"
   >
-    <!--<b-card
+    <b-card
       no-body
-      style="max-width: 20rem;"
       :img-src="recipe.image"
       img-alt="Image"
       class="recipe-image"
       img-top
     >
       <b-card-body>
-        <b-card-title :title="recipe.title" class="recipe-title">
+        <b-card-title :title="recipe.title" class="recipe-title" style="font-size: 16px">
           {{ recipe.title }}
         </b-card-title>
-        <b-card-sub-title class="mb-2"
-          >Ready in {{ recipe.readyInMinutes }} minutes</b-card-sub-title
-        >
-        <b-card-text> {{ recipe.aggregateLikes }} likes </b-card-text>
+        <b-card-text> <b-icon-clock-history></b-icon-clock-history>
+                {{ recipe.readyInMinutes }} min <b-icon-hand-thumbs-up></b-icon-hand-thumbs-up>{{ recipe.aggregateLikes }} </b-card-text>
       </b-card-body>
 
       <b-list-group flush>
@@ -30,7 +27,7 @@
           >gluten free: {{ recipe.glutenFree }}</b-list-group-item
         >
       </b-list-group>
-    </b-card>-->
+    </b-card>
 
     <!--<b-card
       :title="recipe.title"
@@ -47,11 +44,14 @@
       </b-card-text>
     </b-card>-->
 
-    <b-card-group deck>
+    <!--<b-card-group deck>
       <b-card
+        overlay
         :title="recipe.title"
         :img-src="recipe.image"
-        img-alt="Image"
+        img-alt="Card Image"
+        img-width="500"
+        img-height="200"
         img-top
       >
         <b-card-text>
@@ -69,12 +69,21 @@
           >
         </template>
       </b-card>
-    </b-card-group>
+    </b-card-group>-->
   </router-link>
 </template>
 
 <script>
+import {
+  BIconClockHistory,
+  BIconHandThumbsUp,
+} from "bootstrap-vue";
+
 export default {
+  components: {
+    BIconClockHistory,
+    BIconHandThumbsUp,
+  },
   data() {
     return {
       image_load: false,

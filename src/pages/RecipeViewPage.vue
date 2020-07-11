@@ -22,7 +22,7 @@
           vegan
         </h5>
         <h5 v-else-if="recipe.glutenFree">
-          gluten free
+          gluten free  <img :src=vegan>
         </h5>
 
         <img :src="recipe.image" class="center" />
@@ -40,15 +40,24 @@
                 ><b-icon-hand-thumbs-up></b-icon-hand-thumbs-up>
                 {{ recipe.aggregateLikes }} likes</b-col
               >
-              <b-col
+              <b-col v-if="recipe.servings"
                 ><b-icon-people></b-icon-people>
                 {{ recipe.servings }} servings</b-col
               >
               <b-col
+                v-if="
+                  this.$root.store.username &&
+                    recipe.aggregateLikes &&
+                    !recipe.saved
+                "
                 ><button @click="addToFavorites" style="color:#F874C4">
                   <b-icon-heart-fill></b-icon-heart-fill>
                 </button>
                 Add to favorites</b-col
+              >
+              <b-col v-else-if="recipe.aggregateLikes && recipe.saved">
+                <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
+                recipe in favorites</b-col
               >
             </b-row>
           </b-container>
@@ -65,11 +74,19 @@
               </li>
             </ul>
           </div>
-          <div class="wrapped">
+          <div v-if="recipe.aggregateLikes" class="wrapped">
             <strong style="font-size: 18px">Instructions:</strong>
             <ol>
               <li v-for="s in recipe.instructions" :key="s.number">
                 {{ s }}
+              </li>
+            </ol>
+          </div>
+          <div v-else class="wrapped">
+            <strong style="font-size: 18px">Instructions:</strong>
+            <ol>
+              <li v-for="s in recipe.instructions" :key="s.number">
+                {{ s.description }}
               </li>
             </ol>
           </div>
@@ -97,21 +114,24 @@ export default {
   data() {
     return {
       recipe: null,
-      likes: null
+      likes: null,
+      //vegan: require('@/assets/vegan.JPG')
     };
   },
   async created() {
     try {
       let response;
+      let _recipe;
       //personal recipe
       console.log(this.$route.params);
       if (!this.$route.params.likes) {
         response = await this.axios.get(
           "http://localhost:3000/user/myPersonalRecipeFull/id/" +
-          //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
+            //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
             this.$route.params.recipeId,
           { withCredentials: true }
         );
+        _recipe = response.data;
       } else {
         response = await this.axios.get(
           "http://localhost:3000/recipes/fullRecipeInfo/id/[" +
@@ -120,15 +140,38 @@ export default {
             "]",
           { withCredentials: true }
         );
+        _recipe = response.data[0];
       }
       //console.log(response.data[0].instructions);
       //}
       // console.log("response.status", response.status);
       //if (response.status !== 200) this.$router.replace("/NotFound");
-      let _recipe = response.data[0];
-      //get watched and saved
-
+      console.log(response.data);
+      if (this.$root.store.username) {
+        if (this.$route.params.like) {
+          const post = await this.axios.post(
+            "http://localhost:3000/user/addSeenRecipe",
+            //"https://ass3-2-adi-nicole.herokuapp.com/user/addSeenRecipe",
+            {
+              recipeID: this.$route.params.recipeId,
+              withCredentials: true,
+            }
+          );
+        }
+        const responseRecipeInfo = await this.axios.get(
+          "http://localhost:3000/user/recipeInfo/id/[" +
+            this.$route.params.recipeId +
+            "]",
+          //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
+          { withCredentials: true }
+        );
+        var recipeInfo = responseRecipeInfo.data;
+      }
       this.recipe = _recipe;
+      if (recipeInfo) {
+        this.recipe.watched = recipeInfo[this.recipe.id].watched;
+        this.recipe.saved = recipeInfo[this.recipe.id].saved;
+      }
       /*this.recipe = {
         id: 638741,
         title: "Chipotle Black Bean Soup with Avocado Cream",
@@ -184,12 +227,14 @@ export default {
       try {
         this.recipe.favorite = true;
         const post = await this.axios.post(
-          this.$root.BASE_URL + "/user/addFavRecipe",
+          "http://localhost:3000/user/addFavRecipe",
+          //"https://ass3-2-adi-nicole.herokuapp.com/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
             withCredentials: true,
           }
         );
+        this.recipe.saved = true;
       } catch (error) {
         console.log(error.response);
       }
