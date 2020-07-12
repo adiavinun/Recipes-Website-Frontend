@@ -20,7 +20,6 @@
              <RecipePreviewList
              title="Last Visited Recipes:"
              pageType="lastSeen"
-         
             :class="{
               RandomRecipes: true,
               blur: !$root.store.username,
