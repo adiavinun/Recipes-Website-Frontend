@@ -48,8 +48,6 @@ export default {
     }
   },
 
-  
-   
   data() {
     return {
       recipes: [],
