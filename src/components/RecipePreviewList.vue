@@ -25,11 +25,8 @@
           <RecipePreview class="recipePreview" :recipe="r" />
           </b-col>
            </b-row >
-        </div>
-      
+        </div>     
     </b-row>
-
-
   </b-container>
 </template>
 
