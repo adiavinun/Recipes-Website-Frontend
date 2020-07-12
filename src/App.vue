@@ -24,10 +24,7 @@
         </span>
         
         <span v-else >
-          <b-nav>
-          
-          <b-nav-item disabled> {{ $root.store.username }}: </b-nav-item>
-         
+          <b-nav>         
         
           <b-dropdown text="Personal" size="sm"> 
              <b-icon icon="person-lines-fill"></b-icon>
@@ -36,7 +33,10 @@
             <b-dropdown-item :to="{ name: 'family' }" >Family Recipes</b-dropdown-item>
             
           </b-dropdown>
-          <b-nav-item active @click="Logout">Logout</b-nav-item>
+            
+          <b-dropdown :text="$root.store.username" size="sm"> 
+            <b-dropdown-item active @click="Logout" >Log Out</b-dropdown-item>
+          </b-dropdown>
         <!--לנסות להוסיף תמונות פרופיל בצד-->
           <!-- <img :src="$root.store.profileImg" class="profile-image" /> -->
 
@@ -72,7 +72,7 @@ export default {
 @import "@/scss/form-style.scss";
 
 #app {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Tahoma, Geneva, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -85,19 +85,14 @@ export default {
   position: absolute;
   min-height: 100%;
   min-width: 1024px;
-	
-  /* Set up proportionate scaling */
-  width: 100%;
+	width: 100%;
   height: auto;
-	
-  /* Set up positioning */
-  position: fixed;
+	position: fixed;
   top: 0;
   left: 0;
   //background: url('https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300280/54088843-healthy-food-background-studio-photo-of-different-fruits-on-white-wooden-table-high-resolution-produ.jpg');
   background: url('https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300234/54088727-healthy-food-background-and-copy-space-studio-photo-of-different-fruits-and-vegetables-on-white-wood.jpg');
   //background: url('https://p1.pxfuel.com/preview/914/15/585/food-knife-background-wooden.jpg');
-
   background-size: cover;
   background-attachment: fixed;
   background-position: center;

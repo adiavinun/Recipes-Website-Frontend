@@ -71,12 +71,12 @@ export default {
         );
         const recipes = response.data;
         
-       console.log(recipes);
-        console.log(111);
+        //console.log(recipes);
+        //console.log(111);
         this.recipesList= [];
         this.recipesList.push(...recipes);
-         console.log(123);
-         console.log(this.recipesList);
+        //console.log(123);
+        //console.log(this.recipesList);
 
       } catch (error) {
         console.log(error);

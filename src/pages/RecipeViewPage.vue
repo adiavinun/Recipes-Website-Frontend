@@ -5,17 +5,17 @@
         <h1>{{ recipe.title }}</h1>
         <medium v-if="recipe.vegetarian">
           <img
-            src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png"
+            src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558862/Vegetarian-2-512_jzy0lc.png"
             class="vegetarian"
           />
         </medium>
-         <medium v-if="recipe.vegan">
+        <medium v-if="recipe.vegan">
           <img
-            src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png"
+            src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558435/100-vegan-2-512_rscngh.png"
             class="vegan"
           />
         </medium>
-        <medium v-if="recipe.vegan">
+        <medium v-if="recipe.glutenFree">
           <img
             src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
             class="gluten"
@@ -40,18 +40,23 @@
                 ><b-icon-people></b-icon-people>
                 {{ recipe.servings }} servings</b-col
               >
+              <b-col v-if="this.$root.store.username && recipe.aggregateLikes"
+                ><button
+                  :disabled="recipe.saved"
+                  @click="addToFavorites"
+                >
+                  <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
+                  <a v-if="!recipe.saved"> add to favorites</a><a v-else> recipe in favorites</a>
+                </button>
+                </b-col
+              >
               <b-col
-                v-if="
+                v-else-if="
                   this.$root.store.username &&
                     recipe.aggregateLikes &&
-                    !recipe.saved
+                    recipe.saved
                 "
-                ><button @click="addToFavorites" style="color:#F874C4">
-                  <b-icon-heart-fill></b-icon-heart-fill>
-                </button>
-                Add to favorites</b-col
               >
-              <b-col v-else-if="recipe.aggregateLikes && recipe.saved">
                 <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
                 recipe in favorites</b-col
               >
@@ -111,6 +116,10 @@ export default {
     return {
       recipe: null,
       likes: null,
+      isSaved: {
+        type: Number,
+        required: false,
+      },
       //vegan: require('@/assets/vegan.JPG')
     };
   },
