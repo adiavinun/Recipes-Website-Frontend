@@ -223,8 +223,7 @@ export default {
 }
 .recipe-title{
   color: black;
-    font-weight: bold;
-
+  font-weight: bold;
 }
 
 </style>
