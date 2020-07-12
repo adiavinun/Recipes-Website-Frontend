@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title"><b-icon icon="search"></b-icon>Search Page</h1>
+    <h1 class="title"><b-icon icon="search"></b-icon>   Search Page</h1>
     <h2>What's your desire? <b-icon icon="chat-dots"></b-icon> </h2>
     
     <div style="display: flex;">
@@ -109,7 +109,23 @@ export default {
   mounted() {
     
   },
-
+  methods: {
+    async search() {
+      try {
+        var searchRecipes;
+        const response = await this.axios.post(
+          this.$root.BASE_URL + "/recipes/search/query/" + this.searchContent + "/amount/5",
+        );
+        searchRecipes = response.data;
+        // console.log(response);
+        this.recipes = [];
+        this.recipes.push(...searchRecipes);
+      } catch (err) {
+        console.log(err.response);
+        this.form.submitError = err.response.data.message;
+      }
+    },
+  }
 };
 </script>
 
