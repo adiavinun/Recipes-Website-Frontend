@@ -29,7 +29,6 @@
       </b-form-group>
       <b-button type="reset" variant="danger">Reset</b-button>
       <b-button type="button" class="btn btn-primary" tyle="width:250px;" @click="search()" variant="primary">Search</b-button>
-
      </b-form >
     </div>
    
