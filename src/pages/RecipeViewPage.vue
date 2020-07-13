@@ -3,24 +3,25 @@
     <div v-if="recipe">
       <div class="header">
         <h1>{{ recipe.title }}</h1>
-        <medium v-if="recipe.vegetarian">
+        <span v-if="recipe.vegetarian">
           <img
             src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558862/Vegetarian-2-512_jzy0lc.png"
             class="vegetarian"
           />
-        </medium>
-        <medium v-if="recipe.vegan">
+        </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span v-if="recipe.vegan">
           <img
             src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558435/100-vegan-2-512_rscngh.png"
             class="vegan"
           />
-        </medium>
-        <medium v-if="recipe.glutenFree">
+        </span>
+        <span v-if="recipe.glutenFree">
           <img
             src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
             class="gluten"
           />
-        </medium>
+        </span>
         <img :src="recipe.image" class="center" />
         <br />
       </div>
@@ -41,15 +42,16 @@
                 {{ recipe.servings }} servings</b-col
               >
               <b-col v-if="this.$root.store.username && recipe.aggregateLikes"
-                ><button
-                  :disabled="recipe.saved"
-                  @click="addToFavorites"
-                >
+                ><small v-if="!recipe.saved"
+                  ><button @click="addToFavorites" class="button">
+                    <b-icon-heart-fill
+                      style="color:#F874C4"
+                    ></b-icon-heart-fill></button
+                ></small>
+                <small v-else>
                   <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
-                  <a v-if="!recipe.saved"> add to favorites</a><a v-else> recipe in favorites</a>
-                </button>
-                </b-col
-              >
+                </small>
+              </b-col>
               <b-col
                 v-else-if="
                   this.$root.store.username &&
@@ -147,6 +149,7 @@ export default {
         );
         _recipe = response.data[0];
       }
+      console.log(_recipe);
       //console.log(response.data[0].instructions);
       //}
       // console.log("response.status", response.status);
@@ -181,6 +184,7 @@ export default {
         this.recipe.watched = recipeInfo[this.recipe.id].watched;
         this.recipe.saved = recipeInfo[this.recipe.id].saved;
       }
+      console.log(this.recipe);
       /*this.recipe = {
         id: 638741,
         title: "Chipotle Black Bean Soup with Avocado Cream",
@@ -233,10 +237,10 @@ export default {
   },
   methods: {
     async addToFavorites() {
+      console.log(this.recipe);
       try {
         const post = await this.axios.post(
           "http://localhost:3000/user/addFavRecipe",
-          //"https://ass3-2-adi-nicole.herokuapp.com/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
             withCredentials: true,
@@ -283,6 +287,6 @@ export default {
   width: 50px;
 }
 .gluten {
-  width: 50px;
+  width: 54px;
 }
 </style>

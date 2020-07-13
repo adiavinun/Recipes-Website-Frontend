@@ -28,9 +28,6 @@
         img-src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594588315/WhatsApp_Image_2020-07-12_at_23.47.35_7_qvlcsh.jpg"
       ></b-carousel-slide>
       <b-carousel-slide
-        img-src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594588318/WhatsApp_Image_2020-07-12_at_23.47.35_6_tv82oz.jpg"
-      ></b-carousel-slide>
-      <b-carousel-slide
         img-src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594588322/WhatsApp_Image_2020-07-12_at_23.47.35_5_vprj4g.jpg"
       ></b-carousel-slide>
       <b-carousel-slide
@@ -41,9 +38,6 @@
       ></b-carousel-slide>
       <b-carousel-slide
         img-src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594588387/WhatsApp_Image_2020-07-12_at_23.56.20_3_cacajr.jpg"
-      ></b-carousel-slide>
-      <b-carousel-slide
-        img-src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594588392/WhatsApp_Image_2020-07-12_at_23.56.20_2_sgrfln.jpg"
       ></b-carousel-slide>
       <b-carousel-slide
         img-src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594588396/WhatsApp_Image_2020-07-12_at_23.56.20_1_sub712.jpg"

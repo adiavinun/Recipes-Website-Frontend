@@ -10,13 +10,13 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(VueCookies);
 
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
 });
 
-Vue.use(VueCookies);
 
 import Vuelidate from "vuelidate";
 import "bootstrap/dist/css/bootstrap.css";
@@ -86,11 +86,30 @@ const shared_data = {
   },
   logout() {
     console.log("logout");
+    Vue.$cookies.remove("session");
     localStorage.removeItem("username");
     this.username = undefined;
   },
 };
 console.log(shared_data);
+/*router.beforeEach((to, from, next) => {
+  // if there was a transition from logged in to session expired or localStorage was deleted
+  // if we try to enter auth required pages and we are not authorized
+  console.log(shared_data.username);
+  console.log(Vue.$cookies.get("session"));
+  if (shared_data.username === undefined || !Vue.$cookies.get("session")) {
+    if (
+      (shared_data.username === undefined && Vue.$cookies.get("session")) ||
+      (shared_data.username !== undefined && !Vue.$cookies.get("session"))
+    ) {
+      shared_data.logout();
+    }
+    // if the route requires Authorization, (and we know the user is not authorized), we redirect to login page
+    if (to.matched.some((route) => route.meta.requiresAuth)) {
+      next({ name: "login" });
+    } else next();
+  } else next();
+});*/
 // Vue.prototype.$root.store = shared_data;
 
 new Vue({
