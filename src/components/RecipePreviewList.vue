@@ -69,9 +69,9 @@ export default {
         var recipes;
         //let url = "https://ass3-2-adi-nicole.herokuapp.com/";
         let url = "http://localhost:3000/"
-        /*if (this.pageType == "random") {
+        if (this.pageType == "random") {
             url += "recipes/3randomRecipes";
-        } else*/ if (this.pageType == "lastSeen") {
+        } else if (this.pageType == "lastSeen") {
             url += "user/last3SeenRecipes";
         } else if (this.pageType == "myrecipes") {
             url += "user/myPersonalRecipesPreview";

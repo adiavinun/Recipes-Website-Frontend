@@ -3,23 +3,21 @@
     :to="{ name: 'fullFamily', params: { recipeId: recipe.id } }"
     class="recipe-preview"
   >
-    <b-card-group deck>
+    <b-card-group deck >
       <b-card
         :title="recipe.title"
+        class="card"
+        style="font-size: 17px"
         :img-src="recipe.image"
         img-alt="Image"
         img-top
       >
-        <b-card-text>
-          Recipe Owner: {{ recipe.recipeOwner }}
+        <b-card-text class ="body">
+          By: {{ recipe.recipeOwner }}
           <br />
-          Recipe Occasion: {{ recipe.whenUsuallyMakeRecipe }}
+          Occasion: {{ recipe.whenUsuallyMakeRecipe }}
         </b-card-text>
-        <template v-slot:footer>
-          <small class="text-muted"
-            ></small
-          >
-        </template>
+       
       </b-card>
     </b-card-group>
   </router-link>
@@ -115,5 +113,10 @@ export default {
   width: 90px;
   display: table-cell;
   text-align: center;
+}
+.card {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: black;
+  font-weight: bold;
 }
 </style>

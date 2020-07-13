@@ -12,7 +12,7 @@
           <b-card-img
             :src="recipe.image"
             img-top
-            img-width="150"
+            img-width="180"
             img-height="240"
             class="image"
           />
@@ -22,7 +22,7 @@
           <b-card-title
             :title="recipe.title"
             class="recipe-title"
-            style="font-size: 19px"
+            style="font-size: 17px"
           >
             {{ recipe.title }}
           </b-card-title>
@@ -31,19 +31,21 @@
           <b-card-text>
             <b-icon-clock-history></b-icon-clock-history>
             {{ recipe.readyInMinutes }} min
-            <b-icon-hand-thumbs-up></b-icon-hand-thumbs-up
+            <b-icon-hand-thumbs-up
+              v-if="recipe.aggregateLikes"
+            ></b-icon-hand-thumbs-up
             >{{ recipe.aggregateLikes }}
           </b-card-text>
           <b-card-text>
             <small v-if="recipe.vegetarian"
               ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489780/vegetarian_tsdzrb.png"
+                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558862/Vegetarian-2-512_jzy0lc.png"
                 class="vegetarian"
               ></b-card-img>
             </small>
             <small v-if="recipe.vegan"
               ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594489562/vegan_bwcoze.png"
+                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558435/100-vegan-2-512_rscngh.png"
                 class="vegan"
               ></b-card-img>
             </small>
@@ -57,21 +59,21 @@
           <b-card-text
             v-if="this.$root.store.username && recipe.aggregateLikes"
           >
-            <large v-if="recipe.watched" class="h4 mb-2"
+            <small v-if="recipe.watched" class="h4 mb-2"
               ><b-icon-eye></b-icon-eye
-            ></large>
+            ></small>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <large v-if="!recipe.saved"
+            <small
               ><button
+                :disabled="recipe.saved"
                 @click="addToFavorites"
-                style="color:#F874C4"
                 class="button"
               >
-                <b-icon-heart-fill></b-icon-heart-fill></button
-            ></large>
-            <large v-else-if="recipe.saved"
-              ><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill
-            ></large>
+                <b-icon-heart-fill
+                  style="color:#F874C4"
+                ></b-icon-heart-fill></button
+            ></small>
+           
           </b-card-text>
         </b-card-body>
       </b-card>
@@ -204,13 +206,13 @@ export default {
   color: black;
 }
 .vegan {
-  width: 35px;
+  width: 40px;
 }
 .vegetarian {
-  width: 35px;
+  width: 40px;
 }
 .gluten {
-  width: 40px;
+  width: 45px;
 }
 .button {
   font-size: 16px;
@@ -219,11 +221,11 @@ export default {
   transform: scale(1.2);
 }
 .card {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
-.recipe-title{
+.recipe-title {
   color: black;
   font-weight: bold;
 }
-
 </style>

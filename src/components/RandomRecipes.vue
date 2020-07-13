@@ -1,6 +1,6 @@
 <template>
 <div>
-    <RecipePreviewList title="Explore these Recipes:" pageType="random"  :recipesList="recipesArray" class="RandomRecipes" />
+    <RecipePreviewList title="Explore These Recipes:" pageType="random"  :recipesList="recipesArray" class="RandomRecipes" />
     
     <!--<b-button v-on:click="this.updateNewRandomRecipes">view other recipes!</b-button> -->
         
