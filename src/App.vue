@@ -1,70 +1,18 @@
 <template>
-
   <div id="app">
-    
-    <div id="nav">
-      
-    
-      <b-nav tabs >
-         
-        <b-nav-item><router-link :to="{ name: 'main' }" ><b-icon icon="house-door"></b-icon>Home </router-link>  </b-nav-item>
-        
-        <b-nav-item><router-link :to="{ name: 'search' }" ><b-icon icon="search"></b-icon>Search</router-link> </b-nav-item>
-         
-        <b-nav-item><router-link :to="{ name: 'about' }"><b-icon icon="receipt"></b-icon>About</router-link> </b-nav-item> 
-        <b-navbar-nav class="ml-auto">
-        <span v-if="!$root.store.username">
-           <b-nav tabs fill>
-         
-          <b-nav-item disabled> Hello Guest: </b-nav-item>
-         <b-nav-item> <router-link :to="{ name: 'register' }" ><b-icon icon="person-circle"></b-icon>Register</router-link></b-nav-item>
-          
-         <b-nav-item> <router-link :to="{ name: 'login' }" ><b-icon icon="lock"></b-icon>Login</router-link></b-nav-item>
-          </b-nav>
-        </span>
-        
-        <span v-else >
-          <b-nav>         
-        
-          <b-dropdown text="Personal" size="sm"> 
-             <b-icon icon="person-lines-fill"></b-icon>
-            <b-dropdown-item :to="{ name: 'myrecipes' }" >My Recipes</b-dropdown-item>
-            <b-dropdown-item :to="{ name: 'favorite' }" >Favorite Recipes</b-dropdown-item>
-            <b-dropdown-item :to="{ name: 'family' }" >Family Recipes</b-dropdown-item>
-            
-          </b-dropdown>
-            
-          <b-dropdown :text="$root.store.username" size="sm"> 
-            <b-dropdown-item active @click="Logout" >Log Out</b-dropdown-item>
-          </b-dropdown>
-        <!--לנסות להוסיף תמונות פרופיל בצד-->
-          <!-- <img :src="$root.store.profileImg" class="profile-image" /> -->
-
-         <!--לבדוק אם יש עוד דרך אחרת או לוותר על זה בכללי-->  
-        </b-nav>
-        </span>
-        
-        </b-navbar-nav>
-        </b-nav >
-        </div>
-      <router-view />
-      
+    <NavBar />
+    <router-view />
   </div>
 </template>
 
 <script>
-export default {
-  name: "App",
-  methods: {
-    Logout() {
-      this.$root.store.logout();
-      this.$root.toast("Logout", "User logged out successfully", "success");
+import NavBar from "./components/NavBar";
 
-      this.$router.push("/").catch(() => {
-        this.$forceUpdate();
-      });
-    }
-  }
+export default {
+  components: {
+    NavBar,
+  },
+  name: "App",
 };
 </script>
 
@@ -79,18 +27,18 @@ export default {
 }
 
 #app::before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   min-height: 100%;
   min-width: 1024px;
-	width: 100%;
+  width: 100%;
   height: auto;
-	position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   //background: url('https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300280/54088843-healthy-food-background-studio-photo-of-different-fruits-on-white-wooden-table-high-resolution-produ.jpg');
-  background: url('https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300234/54088727-healthy-food-background-and-copy-space-studio-photo-of-different-fruits-and-vegetables-on-white-wood.jpg');
+  background: url("https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300234/54088727-healthy-food-background-and-copy-space-studio-photo-of-different-fruits-and-vegetables-on-white-wood.jpg");
   //background: url('https://p1.pxfuel.com/preview/914/15/585/food-knife-background-wooden.jpg');
   background-size: cover;
   background-attachment: fixed;
@@ -98,18 +46,5 @@ export default {
   background-repeat: no-repeat;
   opacity: 0.5;
   z-index: -1;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>

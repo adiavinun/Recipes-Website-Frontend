@@ -63,17 +63,15 @@
               ><b-icon-eye></b-icon-eye
             ></small>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <small
-              ><button
-                :disabled="recipe.saved"
-                @click="addToFavorites"
-                class="button"
-              >
+            <small v-if="!recipe.saved"
+              ><button @click="addToFavorites" class="button">
                 <b-icon-heart-fill
                   style="color:#F874C4"
                 ></b-icon-heart-fill></button
             ></small>
-           
+            <small v-else>
+              <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
+            </small>
           </b-card-text>
         </b-card-body>
       </b-card>
@@ -109,6 +107,7 @@ export default {
   },
   methods: {
     async addToFavorites() {
+      console.log(this.recipe);
       try {
         const post = await this.axios.post(
           "http://localhost:3000/user/addFavRecipe",
@@ -118,6 +117,7 @@ export default {
           }
         );
         this.recipe.saved = true;
+        console.log(recipe.saved);
       } catch (error) {
         console.log(error.response);
       }

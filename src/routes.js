@@ -41,6 +41,9 @@ const routes = [
     path: "/family",
     name: "family",
     component: () => import("./pages/FamilyRecipesPage"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/recipe/:recipeId",
