@@ -35,28 +35,25 @@
       <!--<b-button type="button" class="btn btn-primary" tyle="width:250px;" @click="search()" variant="primary">Search</b-button>-->
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <b-button type="button" class="btn btn-primary" style="width:330px;" @click="search()" variant="primary" :disabled="!searchContent.length">Search</b-button>
+       <br><br><br>
        <b-form-group id="input-group-sort" label-cols-sm="3" label="Sort By:" label-for="Sort By">    
           <b-form-select v-model="sort" @change="sortby" :disabled="!recipes || !recipes.length" width="20px">
             <b-form-select-option :value="null" disabled>--Sort By--</b-form-select-option>
             <b-form-select-option value="timeHigh">Sort by time high to low</b-form-select-option>
             <b-form-select-option value="timeLow">Sort by time low to high</b-form-select-option>
-            <b-form-select-option value="likeHigh">sort by popular high to low</b-form-select-option>
-            <b-form-select-option value="likeLow">sort by popular low to how</b-form-select-option>
+            <b-form-select-option value="likeHigh">Sort by popular high to low</b-form-select-option>
+            <b-form-select-option value="likeLow">Sort by popular low to how</b-form-select-option>
           </b-form-select>
       </b-form-group>
      
-      <b-form-group id="input-group-intolerances" label-cols-sm="3" label="Your last search was:" label-for="Your last search was"> 
-      <br>  
-   
-        
-            <div v-for="r in recipes" :key="r.id"> 
-            <RecipePreview title="the result search:" class="recipePreview" :recipe="r" />
-           </div>
-         
-       
-       
+      <b-form-group id="input-group-intolerances" label-cols-sm="3" label-for="Your last search was"> 
+      <br>  <h4>The result search:</h4>
+        <div v-for="r in recipes" :key="r.id"> 
+        <RecipePreview title="The result search:" class="recipePreview" :recipe="r" />
+        <br>
+        </div>
       </b-form-group>
-     <h4>Your last search was:</h4>
+     <!--<h4>Your last search was:</h4>-->
      </b-form >
      <br>
 
@@ -178,7 +175,7 @@ export default {
       }
     },
     sortby() {
-     /* if (this.sort == "timeLow") {
+      if (this.sort == "timeLow") {
         function compareTime(a, b) {
           if (a.readyInMinutes < b.readyInMinutes) return -1;
           if (a.readyInMinutes > b.readyInMinutes) return 1;
@@ -206,11 +203,11 @@ export default {
           return 0;
         }
         return this.recipes.sort(compareLikes);
-      }
+      } 
       console.log("changed");
       console.log(this.num_of_recipes);
-    },  */
-  }
+    },  
+  
   }
 };
 </script>
