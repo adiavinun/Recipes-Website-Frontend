@@ -287,13 +287,36 @@ export default {
           }
         );
         searchRecipes = response.data;
+        console.log(searchRecipes);
+        if (this.$root.store.username) {
+          const recipe_ids = [];
+          for (var i = 0; i < searchRecipes.length; i++) {
+            recipe_ids.push(searchRecipes[i].id);
+          }
+          //console.log(recipe_ids);
+          const responseRecipeInfo = await this.axios.get(
+            this.$root.store.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
+            //"http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
+            //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
+            { withCredentials: true }
+          );
+          var recipeInfo = responseRecipeInfo.data;
+          console.log(recipeInfo);
+        }
+        this.recipes = [];
+        for (var i = 0; i < searchRecipes.length; i++) {
+          var currRecipe = searchRecipes[i];
+          if (recipeInfo) {
+            currRecipe.watched = recipeInfo[currRecipe.id].watched;
+            currRecipe.saved = recipeInfo[currRecipe.id].saved;
+          }
+          this.recipes.push(currRecipe);
+        }
+        console.log(this.recipes);
 
         localStorage.setItem("lastSearchTerm", this.searchContent);
         this.lastSearchTerm = this.searchContent;
-        console.log(response);
-        this.recipes = [];
-        this.recipes.push(...searchRecipes);
-
+      
         localStorage.setItem("lastSearch", JSON.stringify(this.recipes));
 
         if (this.recipes.length == 0) {
