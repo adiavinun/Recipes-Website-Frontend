@@ -57,7 +57,7 @@
               <h4>Your last search was: {{this.lastSearchTerm}} </h4>
         </div>   
        <!--<h4 >The result search:</h4>-->   
-        <RecipePreviewList title="The result search:" pageType="search"  :recipesList="recipes" class="SearchRecipes" /> 
+        <RecipePreviewList title="Results:" pageType="search"  :recipesList="recipes" class="SearchRecipes" /> 
         <!--<div v-for="r in recipes" :key="r.id"> 
         <RecipePreview title="The result search:" class="recipePreview" :recipe="r" />
         <br>
