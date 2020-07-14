@@ -109,8 +109,9 @@ export default {
     async addToFavorites() {
       console.log(this.recipe);
       try {
-        const post = await this.axios.post(
-          "http://localhost:3000/user/addFavRecipe",
+        const post = await this.axios.post
+         this.$root.BASE_URL + "/user/addFavRecipe",(
+          //"http://localhost:3000/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
             withCredentials: true,

@@ -101,8 +101,8 @@ export default {
             }
             //console.log(recipe_ids);
             const responseRecipeInfo = await this.axios.get(
-              //this.$root.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
-              "http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
+              this.$root.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
+              //"http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
               //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
               { withCredentials: true }
             );
