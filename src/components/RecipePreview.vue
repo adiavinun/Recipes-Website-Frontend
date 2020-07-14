@@ -22,7 +22,7 @@
           <b-card-title
             :title="recipe.title"
             class="recipe-title"
-            style="font-size: 17px"
+            style="font-size: 20px"
           >
             {{ recipe.title }}
           </b-card-title>
@@ -202,17 +202,17 @@ export default {
   text-align: center;
 }
 .body {
-  font-size: 16px;
+  font-size: 17px;
   color: black;
 }
 .vegan {
-  width: 40px;
+  width: 45px;
 }
 .vegetarian {
-  width: 40px;
+  width: 45px;
 }
 .gluten {
-  width: 45px;
+  width: 50px;
 }
 .button {
   font-size: 16px;
