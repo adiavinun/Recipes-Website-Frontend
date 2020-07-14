@@ -4,15 +4,14 @@
     <h4>What's your desire? <b-icon icon="chat-dots"></b-icon> </h4>
     
     <div style="display: flex;">
-       <b-form >
-      <b-form-input id="search" v-model="searchContent" placeholder="The name of the recipe or dish you would like to look for" type="search" list="search-options-list" style="width:400px; padding: 5px;" ></b-form-input>
+       <b-form @reset.prevent="onReset">
+      <b-form-input id="search" v-model="searchContent" placeholder="The name of the recipe or dish you would like to look for" type="search" list="search-options-list" style="width:430px; padding: 5px;" ></b-form-input>
       <b-form-group label="Number of search results:">
       <b-form-radio-group id="radio-group-1" v-model="selected" :options="options" name="radio-options"></b-form-radio-group>
     </b-form-group>
       <b-form-group id="input-group-cuisines" label-cols-sm="3" label="cuisines:" label-for="cuisines">
         <b-form-select id="cuisines" v-model="cuisinesInput" name="cuisines" placeholder="Select by cuisine" :value="null">
           <option disabled value="">--Select by cuisine--</option>
-        <!--<option disabled selected value>Please Select Cuisine</option>-->
         <option v-for="(cuisine, index) in cuisines" :value="cuisine" :key="index">{{cuisine}}</option>
         </b-form-select>
       </b-form-group>
@@ -30,33 +29,37 @@
         <option v-for="(intolerance, index) in intolerances" :value="intolerance" :key="index">{{intolerance}}</option>
         </b-form-select>
       </b-form-group>
-      <b-button type="reset" variant="danger">Reset</b-button>
+    <!--  <b-button type="reset" variant="danger" @click="onReset()">Reset</b-button>-->
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <!--<b-button type="button" class="btn btn-primary" tyle="width:250px;" @click="search()" variant="primary">Search</b-button>-->
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <b-button type="button" class="btn btn-primary" style="width:330px;" @click="search()" variant="primary" :disabled="!searchContent.length">Search</b-button>
+      <b-button type="button" class="btn btn-primary" style="width:430px;" @click="search()" variant="primary" :disabled="!searchContent.length">Search</b-button>
+       <br><br><br>
        <b-form-group id="input-group-sort" label-cols-sm="3" label="Sort By:" label-for="Sort By">    
           <b-form-select v-model="sort" @change="sortby" :disabled="!recipes || !recipes.length" width="20px">
             <b-form-select-option :value="null" disabled>--Sort By--</b-form-select-option>
             <b-form-select-option value="timeHigh">Sort by time high to low</b-form-select-option>
             <b-form-select-option value="timeLow">Sort by time low to high</b-form-select-option>
-            <b-form-select-option value="likeHigh">sort by popular high to low</b-form-select-option>
-            <b-form-select-option value="likeLow">sort by popular low to how</b-form-select-option>
+            <b-form-select-option value="likeHigh">Sort by popular high to low</b-form-select-option>
+            <b-form-select-option value="likeLow">Sort by popular low to how</b-form-select-option>
           </b-form-select>
       </b-form-group>
      
-      <b-form-group id="input-group-intolerances" label-cols-sm="3" label="Your last search was:" label-for="Your last search was"> 
-      <br>  
-   
-        
-            <div v-for="r in recipes" :key="r.id"> 
-            <RecipePreview title="the result search:" class="recipePreview" :recipe="r" />
-           </div>
-         
-       
-       
+     <!--לשנות לרשימה אם משנים את דף הבית-->
+      <b-form-group v-if="recipes.length" id="input-group-intolerances" label-cols-sm="3" label-for="Your last search was" > 
+      <br>       
+       <!--<h4 >The result search:</h4>-->   
+        <RecipePreviewList title="The result search:" pageType="search"  :recipesList="recipes" class="SearchRecipes" /> 
+        <!--<div v-for="r in recipes" :key="r.id"> 
+        <RecipePreview title="The result search:" class="recipePreview" :recipe="r" />
+        <br>
+        </div>-->
       </b-form-group>
-     <h4>Your last search was:</h4>
+     <!--<h4>Your last search was:</h4>-->
+    
+      <b-form-group v-if="noResults" class="empty">
+        <h4> No results returned</h4>
+      </b-form-group>
      </b-form >
      <br>
 
@@ -70,15 +73,16 @@
   </div>
 </template>
 <script>
-import RecipePreview from "../components/RecipePreview";
+import RecipePreviewList from "../components/RecipePreviewList";
 export default {
   components: {
-    RecipePreview
+    RecipePreviewList
   },
 
   data() {
     return {
       cuisines: [
+        "",
         "African",
         "American",
         "British",
@@ -107,6 +111,7 @@ export default {
         "Vietnamese"
       ],
       diets: [
+        "",
         "Gluten Free",
         "Ketogenic",
         "Vegetarian",
@@ -119,6 +124,7 @@ export default {
         "Whole30"
       ],
       intolerances: [
+        "",
         "Dairy",
         "Egg",
         "Gluten",
@@ -136,6 +142,7 @@ export default {
       cuisinesInput: "",
       dietsInput: "",
       intolerancesInput: "",
+      noResults: false,
       recipes: [],
       sort: null,
       selected: '5',
@@ -172,13 +179,16 @@ export default {
          console.log(response);
         this.recipes = [];
         this.recipes.push(...searchRecipes);
+        if (this.recipes.length == 0) {
+          this.noResults = true;
+        }
       } catch (err) {
         console.log(err.response);
         //this.form.submitError = err.response.data.message;
       }
     },
     sortby() {
-     /* if (this.sort == "timeLow") {
+      if (this.sort == "timeLow") {
         function compareTime(a, b) {
           if (a.readyInMinutes < b.readyInMinutes) return -1;
           if (a.readyInMinutes > b.readyInMinutes) return 1;
@@ -206,11 +216,29 @@ export default {
           return 0;
         }
         return this.recipes.sort(compareLikes);
-      }
+      } 
       console.log("changed");
       console.log(this.num_of_recipes);
-    },  */
-  }
+    }, 
+    onReset() {
+      this.form = {
+        cuisines: "",
+        diets: "",
+        intolerances: "",
+        searchContent: "",
+        cuisinesInput: "",
+        dietsInput: "",
+        intolerancesInput: "",
+        noResults: false,
+        recipes: [],
+        sort: null,
+        selected: '5',
+      };
+       this.$nextTick(() => {
+        this.$reset();
+      });
+    }
+    
   }
 };
 </script>
@@ -219,4 +247,7 @@ export default {
 .container {
   max-width: 500px;
 }
+ .empty{
+   color: red;
+ }
 </style>
