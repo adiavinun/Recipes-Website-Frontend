@@ -1,33 +1,26 @@
 <template>
   <div class="container">
-    <!-- <h1 class="title">Main Page</h1>-->
+    <h1 class="title">Main Page</h1>
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
           <RandomRecipes :recipesArray="recipesList" class="RandomRecipes" />
-          <br />
-          <ButtonRandomRecipes v-on:represhRandom="updateNewRandomRecipes">
-          </ButtonRandomRecipes>
-          <!-- <div>
-             <button @click="this.updateNewRandomRecipes">Refresh</button>
-          </div>-->
+          <br/>
+          <ButtonRandomRecipes v-on:represhRandom="updateNewRandomRecipes"/>
         </b-col>
         <b-col>
           <div v-if="!$root.store.username" to="/login">
             <Login />
           </div>
           <div v-else>
-            <RecipePreviewList
-              title="Last Watched Recipes:"
-              pageType="lastSeen"
+            <RecipePreviewList title="Last Watched Recipes:" pageType="lastSeen"
               :class="{
                 RandomRecipes: true,
                 blur: !$root.store.username,
                 center: true,
               }"
               disabled
-            >
-            </RecipePreviewList>
+            />
           </div>
         </b-col>
       </b-row>
@@ -62,7 +55,8 @@ export default {
         console.log("im here");
         const response = await this.axios.get(
           //this.$root.store.server_url + "/recipes/3randomRecipes"
-          "http://localhost:3000/recipes/3randomRecipes",
+          this.$root.store.BASE_URL + "/recipes/3randomRecipes",
+          //"http://localhost:3000/recipes/3randomRecipes",
           {
             params: {
               limitLicense: true,
@@ -78,8 +72,8 @@ export default {
           }
           //console.log(recipe_ids);
           const responseRecipeInfo = await this.axios.get(
-            //this.$root.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
-            "http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
+            this.$root.store.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
+            //"http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
             //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
             { withCredentials: true }
           );

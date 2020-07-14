@@ -269,12 +269,8 @@ export default {
       try {
         var searchRecipes;
         const response = await this.axios.get(
-          //this.$root.BASE_URL + "/recipes/search/query/" + this.searchContent + "/amount/"+ this.selected,{
-          "http://localhost:3000/recipes/search/query/" +
-            this.searchContent +
-            "/amount/" +
-            this.selected,
-          {
+            this.$root.store.BASE_URL + "/recipes/search/query/" + this.searchContent + "/amount/"+ this.selected,{
+            //"http://localhost:3000/recipes/search/query/" + this.searchContent + "/amount/"+ this.selected,{
             params: {
               query: this.searchContent,
               number: this.selected,

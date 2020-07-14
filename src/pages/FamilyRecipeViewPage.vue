@@ -49,7 +49,8 @@ export default {
       //personal recipe
       console.log(this.$route.params);
       response = await this.axios.get(
-        "http://localhost:3000/user/myFamilyRecipeFull/id/" +
+        this.$root.store.BASE_URL + "/user/myFamilyRecipeFull/id/",
+        //"http://localhost:3000/user/myFamilyRecipeFull/id/" +
           //"https://ass3-2-adi-nicole.herokuapp.com/user/myFamilyRecipeFull/id/" +
           this.$route.params.recipeId,
         { withCredentials: true }
