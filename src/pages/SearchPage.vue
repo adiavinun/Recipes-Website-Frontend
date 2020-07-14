@@ -5,7 +5,7 @@
     
     <div style="display: flex;">
        <b-form @reset.prevent="onReset">
-      <b-form-input id="search" v-model="searchContent" placeholder="The name of the recipe or dish you would like to look for" type="search" list="search-options-list" style="width:430px; padding: 5px;" ></b-form-input>
+      <b-form-input id="search" v-model="searchContent" placeholder="recipe or dish name" type="search" list="search-options-list" style="width:430px; padding: 5px;" ></b-form-input>
       <b-form-group label="Number of search results:">
       <b-form-radio-group id="radio-group-1" v-model="selected" :options="options" name="radio-options"></b-form-radio-group>
     </b-form-group>
