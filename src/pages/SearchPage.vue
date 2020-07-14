@@ -45,15 +45,15 @@
           </b-form-select>
       </b-form-group>
      
-     <b-form-group v-if="!noResults && !recipes.length && this.lastSearchTerm" class="lastSearchTerm">
+     <!--<b-form-group v-if="!noResults && !recipes.length && this.lastSearchTerm" class="lastSearchTerm">
         <div v-if="this.lastSearchTerm">
               <h4>Your last search was:</h4> {{this.lastSearchTerm}}
         </div>
-        </b-form-group>
+        </b-form-group>-->
 
       <b-form-group v-if="recipes.length" id="input-group-intolerances" label-cols-sm="3" label-for="Your last search was" > 
       <br> 
-          <div v-if="this.lastSearchTerm">
+          <div v-if="this.lastSearchTerm && $root.store.username">
               <h4>Your last search was: {{this.lastSearchTerm}} </h4>
         </div>   
        <!--<h4 >The result search:</h4>-->   
