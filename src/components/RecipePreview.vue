@@ -109,8 +109,8 @@ export default {
     async addToFavorites() {
       console.log(this.recipe);
       try {
-        const post = await this.axios.post
-         this.$root.store.BASE_URL + "/user/addFavRecipe",(
+        const post = await this.axios.post(
+         this.$root.store.BASE_URL + "/user/addFavRecipe",
           //"http://localhost:3000/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
@@ -118,7 +118,7 @@ export default {
           }
         );
         this.recipe.saved = true;
-        console.log(recipe.saved);
+        console.log(this.recipe.saved);
       } catch (error) {
         console.log(error.response);
       }
