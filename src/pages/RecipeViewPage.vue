@@ -112,7 +112,12 @@ export default {
       //vegan: require('@/assets/vegan.JPG')
     };
   },
-  async created() {
+  async created(){
+    this.created()
+  }, 
+ 
+  methods: {
+     async created() {
     try {
       let response;
       let _recipe;
@@ -225,7 +230,6 @@ export default {
       return;
     }
   },
-  methods: {
     async addToFavorites() {
       console.log(this.recipe);
       try {

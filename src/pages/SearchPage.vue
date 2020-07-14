@@ -33,7 +33,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <!--<b-button type="button" class="btn btn-primary" tyle="width:250px;" @click="search()" variant="primary">Search</b-button>-->
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <b-button type="button" class="btn btn-primary" style="width:430px;" @click="search()" variant="primary" :disabled="!searchContent.length">Search</b-button>
+      <b-button type="button" class="btn btn-primary" style="width:430px;" @click="search()" variant="primary" :disabled="!searchContent.length"><b-icon icon="search"></b-icon>Search</b-button>
        <br><br><br>
        <b-form-group id="input-group-sort" label-cols-sm="3" label="Sort By:" label-for="Sort By">    
           <b-form-select v-model="sort" @change="sortby" :disabled="!recipes || !recipes.length" width="20px">
@@ -45,14 +45,8 @@
           </b-form-select>
       </b-form-group>
      
-     <!--<b-form-group v-if="!noResults && !recipes.length && this.lastSearchTerm" class="lastSearchTerm">
-        <div v-if="this.lastSearchTerm">
-              <h4>Your last search was:</h4> {{this.lastSearchTerm}}
-        </div>
-        </b-form-group>-->
-
-      <b-form-group v-if="recipes.length" id="input-group-intolerances" label-cols-sm="3" label-for="Your last search was" > 
-      <br> 
+        <b-form-group v-if="recipes.length" id="input-group-intolerances" label-cols-sm="3" label-for="Your last search was" > 
+          <br> 
           <div v-if="this.lastSearchTerm && $root.store.username">
               <h4>Your last search was: {{this.lastSearchTerm}} </h4>
         </div>   
@@ -63,7 +57,6 @@
         <br>
         </div>-->
       </b-form-group>
-     <!--<h4>Your last search was:</h4>-->
       
 
       <b-form-group v-if="noResults" class="empty">
