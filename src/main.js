@@ -89,6 +89,9 @@ const shared_data = {
     Vue.$cookies.remove("session");
     localStorage.removeItem("username");
     this.username = undefined;
+    if(localStorage.lastSearch){
+      localStorage.removeItem('lastSearch');
+    }
   },
 };
 console.log(shared_data);
