@@ -45,9 +45,17 @@
           </b-form-select>
       </b-form-group>
      
-     <!--לשנות לרשימה אם משנים את דף הבית-->
+     <b-form-group v-if="!noResults && !recipes.length && this.lastSearchTerm" class="lastSearchTerm">
+        <div v-if="this.lastSearchTerm">
+              <h4>Your last search was:</h4> {{this.lastSearchTerm}}
+        </div>
+        </b-form-group>
+
       <b-form-group v-if="recipes.length" id="input-group-intolerances" label-cols-sm="3" label-for="Your last search was" > 
-      <br>       
+      <br> 
+          <div v-if="this.lastSearchTerm">
+              <h4>Your last search was: {{this.lastSearchTerm}} </h4>
+        </div>   
        <!--<h4 >The result search:</h4>-->   
         <RecipePreviewList title="The result search:" pageType="search"  :recipesList="recipes" class="SearchRecipes" /> 
         <!--<div v-for="r in recipes" :key="r.id"> 
@@ -56,16 +64,15 @@
         </div>-->
       </b-form-group>
      <!--<h4>Your last search was:</h4>-->
-    
+      
+
       <b-form-group v-if="noResults" class="empty">
         <h4> No results returned</h4>
       </b-form-group>
      </b-form >
      <br>
 
-    <!-- <div v-if="this.lastSearchTerm">
-      Your last search was: {{this.lastSearchTerm}}
-    </div>-->
+    
 
     
     </div>
@@ -151,15 +158,35 @@ export default {
           { text: '10', value: '10' },
           { text: '15', value: '15' },
         ],
-      lastSearchTerm: "",
+      lastSearch: "",
+      lastSearchTerm: ""
       
     };
   },
     mounted() {
     this.lastSearchTerm = localStorage.getItem("lastSearchTerm");
+    this.loadHistorySearch();
+
   },
   
   methods: {
+    async loadHistorySearch(){
+      try{
+        if(this.$root.store.username){
+          if(localStorage.lastSearch){
+            this.recipes = JSON.parse(localStorage.lastSearch);
+          }
+        }
+        else{
+          if(localStorage.lastSearch){
+            localStorage.removeItem('lastSearch');
+          }
+        }
+      } catch (err) {
+        console.log(err.response);
+      }
+    },
+
     async search() {
       try {
         var searchRecipes;
@@ -176,9 +203,15 @@ export default {
           }
         );
         searchRecipes = response.data;
+
+        localStorage.setItem("lastSearchTerm", this.searchContent);
+        this.lastSearchTerm = this.searchContent;
          console.log(response);
         this.recipes = [];
         this.recipes.push(...searchRecipes);
+
+        localStorage.setItem("lastSearch", JSON.stringify(this.recipes));
+        
         if (this.recipes.length == 0) {
           this.noResults = true;
         }
