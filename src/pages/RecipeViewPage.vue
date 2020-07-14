@@ -117,7 +117,7 @@ export default {
   }, 
  
   methods: {
-     async created() {
+    async created() {
     try {
       let response;
       let _recipe;
