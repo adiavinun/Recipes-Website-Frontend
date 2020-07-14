@@ -2,12 +2,16 @@ import Vue from "vue";
 import App from "./App.vue";
 import VueAxios from "vue-axios";
 import axios from "axios";
-import VueCookies from "vue-cookies";
-
-Vue.use(VueCookies);
 
 import routes from "./routes";
 import VueRouter from "vue-router";
+import VueCookies from 'vue-cookies';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+Vue.use(VueCookies);
+
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
@@ -43,11 +47,11 @@ import {
 Vue.use(Vuelidate);
 
 axios.interceptors.request.use(
-  function (config) {
+  function(config) {
     // Do something before request is sent
     return config;
   },
-  function (error) {
+  function(error) {
     // Do something with request error
     return Promise.reject(error);
   }
@@ -55,11 +59,11 @@ axios.interceptors.request.use(
 
 // Add a response interceptor
 axios.interceptors.response.use(
-  function (response) {
+  function(response) {
     // Do something with response data
     return response;
   },
-  function (error) {
+  function(error) {
     // Do something with response error
     return Promise.reject(error);
   }
