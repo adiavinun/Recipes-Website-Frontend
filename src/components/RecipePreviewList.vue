@@ -6,25 +6,36 @@
     </h3>
     <b-row>
       <div v-if="pageType === 'family'">
-        <b-row>
+        <!--<b-row>-->
           <b-col v-for="r in recipes" :key="r.id">
             <FamilyRecipePreview class="recipePreview" :recipe="r" />
+            <br>
           </b-col>
-        </b-row>
+        <!--</b-row>-->
       </div>
       <div v-else-if="pageType === 'random'">
-        <b-row>
+        <!--<b-row>-->
           <b-col v-for="r in recipesList" :key="r.id">
             <RecipePreview class="recipePreview" :recipe="r" />
+            <br>
           </b-col>
-        </b-row>
+         <!--</b-row>-->
+      </div>
+      <div v-else-if="pageType === 'search'">
+        <!--<b-row>-->
+          <b-col v-for="r in recipesList" :key="r.id">
+            <RecipePreview class="recipePreview" :recipe="r" />
+            <br>
+          </b-col>
+         <!--</b-row>-->
       </div>
       <div v-else>
-        <b-row>
+         <!--<b-row>-->
           <b-col v-for="r in recipes" :key="r.id">
             <RecipePreview class="recipePreview" :recipe="r" />
+            <br>
           </b-col>
-        </b-row>
+         <!--</b-row>-->
       </div>
     </b-row>
   </b-container>

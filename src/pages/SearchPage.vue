@@ -45,14 +45,15 @@
           </b-form-select>
       </b-form-group>
      
+     <!--לשנות לרשימה אם משנים את דף הבית-->
       <b-form-group v-if="recipes.length" id="input-group-intolerances" label-cols-sm="3" label-for="Your last search was" > 
       <br>       
-       <h4 >The result search:</h4>
-      
-        <div v-for="r in recipes" :key="r.id"> 
+       <!--<h4 >The result search:</h4>-->   
+        <RecipePreviewList title="The result search:" pageType="search"  :recipesList="recipes" class="SearchRecipes" /> 
+        <!--<div v-for="r in recipes" :key="r.id"> 
         <RecipePreview title="The result search:" class="recipePreview" :recipe="r" />
         <br>
-        </div>
+        </div>-->
       </b-form-group>
      <!--<h4>Your last search was:</h4>-->
     
@@ -72,10 +73,10 @@
   </div>
 </template>
 <script>
-import RecipePreview from "../components/RecipePreview";
+import RecipePreviewList from "../components/RecipePreviewList";
 export default {
   components: {
-    RecipePreview
+    RecipePreviewList
   },
 
   data() {
