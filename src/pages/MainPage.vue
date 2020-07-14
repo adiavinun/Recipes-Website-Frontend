@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <!-- <h1 class="title">Main Page</h1>-->
-
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
@@ -19,7 +18,7 @@
           </div>
           <div v-else>
             <RecipePreviewList
-              title="Last Visited Recipes:"
+              title="Last Watched Recipes:"
               pageType="lastSeen"
               :class="{
                 RandomRecipes: true,
