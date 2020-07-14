@@ -110,7 +110,7 @@ export default {
       console.log(this.recipe);
       try {
         const post = await this.axios.post
-         this.$root.BASE_URL + "/user/addFavRecipe",(
+         this.$root.store.BASE_URL + "/user/addFavRecipe",(
           //"http://localhost:3000/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,

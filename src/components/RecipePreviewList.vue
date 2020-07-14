@@ -80,9 +80,9 @@ export default {
           var recipes;
           //let url = "https://ass3-2-adi-nicole.herokuapp.com/";
           let url = "http://localhost:3000/";
-          /*if (this.pageType == "random") {
+          if (this.pageType == "random") {
             url += "recipes/3randomRecipes";
-          } else*/ if (this.pageType == "lastSeen") {
+          } else if (this.pageType == "lastSeen") {
             url += "user/last3SeenRecipes";
           } else if (this.pageType == "myrecipes") {
             url += "user/myPersonalRecipesPreview";
@@ -101,7 +101,7 @@ export default {
             }
             //console.log(recipe_ids);
             const responseRecipeInfo = await this.axios.get(
-              this.$root.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
+              this.$root.store.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
               //"http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
               //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
               { withCredentials: true }

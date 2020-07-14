@@ -54,7 +54,7 @@ export default {
       try {
         const response = await this.axios.get(
           //this.$root.store.server_url + "/recipes/3randomRecipes"
-          this.$root.BASE_URL + "recipes/3randomRecipes",
+          this.$root.store.BASE_URL + "/recipes/3randomRecipes",
           //"http://localhost:3000/recipes/3randomRecipes",
           {
             params: {
@@ -71,7 +71,7 @@ export default {
           }
           //console.log(recipe_ids);
           const responseRecipeInfo = await this.axios.get(
-            this.$root.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
+            this.$root.store.BASE_URL + "/user/recipeInfo/id/[" + recipe_ids + "]",
             //"http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
             //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
             { withCredentials: true }

@@ -121,7 +121,7 @@ export default {
       if (this.$route.params.likes >= 0) {
         response = await this.axios.get(
           //"http://localhost:3000/recipes/fullRecipeInfo/id/[" +
-            this.$root.BASE_URL + "/recipes/fullRecipeInfo/id/[" +
+            this.$root.store.BASE_URL + "/recipes/fullRecipeInfo/id/[" +
             this.$route.params.recipeId +
             "]",
           { withCredentials: true }
@@ -129,7 +129,7 @@ export default {
         _recipe = response.data[0];
       } else {
         response = await this.axios.get(
-               this.$root.BASE_URL + "/user/myPersonalRecipeFull/id/"+
+               this.$root.store.BASE_URL + "/user/myPersonalRecipeFull/id/"+
           //"http://localhost:3000/user/myPersonalRecipeFull/id/" +
             //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
             this.$route.params.recipeId,
@@ -150,7 +150,7 @@ export default {
         if (this.$route.params.likes) {
           //console.log("im here3");
           const post = await this.axios.post(
-             this.$root.BASE_URL + "/user/addSeenRecipe",
+             this.$root.store.BASE_URL + "/user/addSeenRecipe",
             //"http://localhost:3000/user/addSeenRecipe",
             //"https://ass3-2-adi-nicole.herokuapp.com/user/addSeenRecipe",
             {
@@ -160,7 +160,7 @@ export default {
           );
         }
         const responseRecipeInfo = await this.axios.get(
-          this.$root.BASE_URL + "/user/recipeInfo/id/["+
+          this.$root.store.BASE_URL + "/user/recipeInfo/id/["+
           //"http://localhost:3000/user/recipeInfo/id/[" +
             this.$route.params.recipeId +
             "]",
@@ -230,7 +230,7 @@ export default {
       console.log(this.recipe);
       try {
         const post = await this.axios.post(
-          this.$root.BASE_URL + "/user/addFavRecipe",
+          this.$root.store.BASE_URL + "/user/addFavRecipe",
           //"http://localhost:3000/user/addFavRecipe",
           {
             recipe_id: this.recipe.id,
