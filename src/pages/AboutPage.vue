@@ -22,7 +22,7 @@
         >Nicole's Website</a
       >
     </div>
-    <br>
+    <br />
     <b-carousel
       class="carousel-1"
       v-model="slide"
@@ -77,26 +77,44 @@
     <br />
     <br />
     <br />
-    <p>We hope you enjoyed our website as much as we did making it</p>
+    <p
+      style="font-size: 18px;   text-align: center;"
+    >
+      We hope you enjoyed our website as much as we did making it <b-icon-emoji-smile></b-icon-emoji-smile>
+    </p>
   </div>
 </template>
+
+<script>
+import {
+  BIconEmojiSmile,
+} from "bootstrap-vue";
+
+export default {
+  components: {
+    BIconEmojiSmile,
+  }
+};
+</script>
 
 <style scoped>
 .carousel-1 {
   height: 300px;
   width: 500px;
   margin: 0 auto;
-
 }
 .container {
   font-family: Impact, Charcoal, sans-serif;
 }
-.project{
+.project {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.2);
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   font-weight: bold;
   width: 500px;
   margin: auto;
+    border: 3px solid #2c3e50;
+;
+  padding: 5px;
 }
 </style>

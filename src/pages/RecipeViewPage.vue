@@ -33,7 +33,7 @@
                 ><b-icon-clock-history></b-icon-clock-history> Ready in
                 {{ recipe.readyInMinutes }} minutes
               </b-col>
-              <b-col v-if="recipe.aggregateLikes"
+              <b-col v-if="recipe.aggregateLikes >= 0"
                 ><b-icon-hand-thumbs-up></b-icon-hand-thumbs-up>
                 {{ recipe.aggregateLikes }} likes</b-col
               >
@@ -41,7 +41,7 @@
                 ><b-icon-people></b-icon-people>
                 {{ recipe.servings }} servings</b-col
               >
-              <b-col v-if="this.$root.store.username && recipe.aggregateLikes"
+              <b-col v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
                 ><small v-if="!recipe.saved"
                   ><button @click="addToFavorites" class="button">
                     <b-icon-heart-fill
@@ -55,7 +55,7 @@
               <b-col
                 v-else-if="
                   this.$root.store.username &&
-                    recipe.aggregateLikes &&
+                    recipe.aggregateLikes >= 0 &&
                     recipe.saved
                 "
               >
@@ -77,7 +77,7 @@
               </li>
             </ul>
           </div>
-          <div v-if="recipe.aggregateLikes" class="wrapped">
+          <div v-if="recipe.aggregateLikes >= 0" class="wrapped">
             <strong style="font-size: 18px">Instructions:</strong>
             <ol>
               <li v-for="s in recipe.instructions" :key="s.number">
@@ -131,15 +131,7 @@ export default {
       let _recipe;
       //personal recipe
       console.log(this.$route.params);
-      if (!this.$route.params.likes) {
-        response = await this.axios.get(
-          "http://localhost:3000/user/myPersonalRecipeFull/id/" +
-            //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
-            this.$route.params.recipeId,
-          { withCredentials: true }
-        );
-        _recipe = response.data;
-      } else {
+      if (this.$route.params.likes >= 0) {
         response = await this.axios.get(
           "http://localhost:3000/recipes/fullRecipeInfo/id/[" +
             //this.$$root.BASE_URL + "/recipes/fullRecipeInfo/id/[" +
@@ -148,6 +140,14 @@ export default {
           { withCredentials: true }
         );
         _recipe = response.data[0];
+      } else {
+        response = await this.axios.get(
+          "http://localhost:3000/user/myPersonalRecipeFull/id/" +
+            //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
+            this.$route.params.recipeId,
+          { withCredentials: true }
+        );
+        _recipe = response.data;
       }
       console.log(_recipe);
       //console.log(response.data[0].instructions);

@@ -6,7 +6,7 @@
           :to="{
             name: 'recipe',
             params: { recipeId: recipe.id, likes: recipe.aggregateLikes },
-          }"
+          }"  
           class="recipe-preview"
         >
           <b-card-img
@@ -32,7 +32,7 @@
             <b-icon-clock-history></b-icon-clock-history>
             {{ recipe.readyInMinutes }} min
             <b-icon-hand-thumbs-up
-              v-if="recipe.aggregateLikes"
+              v-if="recipe.aggregateLikes >= 0"
             ></b-icon-hand-thumbs-up
             >{{ recipe.aggregateLikes }}
           </b-card-text>
@@ -57,7 +57,7 @@
             </small>
           </b-card-text>
           <b-card-text
-            v-if="this.$root.store.username && recipe.aggregateLikes"
+            v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
           >
             <small v-if="recipe.watched" class="h4 mb-2"
               ><b-icon-eye></b-icon-eye
