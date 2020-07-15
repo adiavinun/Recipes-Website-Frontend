@@ -24,5 +24,7 @@ export default {
 <style lang="scss" scoped>
 .MyRecipes {
   margin: 10px 0 10px;
+  width: 600px;
+  height: 800px;
 }
 </style>

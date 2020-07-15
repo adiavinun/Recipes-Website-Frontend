@@ -3,11 +3,11 @@
     :to="{ name: 'fullFamily', params: { recipeId: recipe.id } }"
     class="recipe-preview"
   >
-    <b-card-group deck >
+    <b-card-group deck>
       <b-card
         :title="recipe.title"
         class="card"
-        style="font-size: 17px"
+        style="font-size: 18px;"
         :img-src="recipe.image"
         img-alt="Image"
         img-top
@@ -117,6 +117,6 @@ export default {
 .card {
   background-color: rgba(0, 0, 0, 0.2);
   color: black;
-  font-weight: bold;
+  width: 500px;
 }
 </style>

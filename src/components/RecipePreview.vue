@@ -6,7 +6,7 @@
           :to="{
             name: 'recipe',
             params: { recipeId: recipe.id, likes: recipe.aggregateLikes },
-          }"  
+          }"
           class="recipe-preview"
         >
           <b-card-img
@@ -56,12 +56,18 @@
               ></b-card-img>
             </small>
           </b-card-text>
-          <b-card-text v-if="this.$root.store.username && recipe.aggregateLikes >= 0">
-            <small v-if="recipe.watched" class="h4 mb-2"><b-icon-eye></b-icon-eye ></small>
+          <b-card-text
+            v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
+          >
+            <small v-if="recipe.watched" class="h4 mb-2"
+              ><b-icon-eye></b-icon-eye
+            ></small>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <small v-if="!recipe.saved"><button @click="addToFavorites" class="button">
-                <b-icon-heart-fill style="color:#F874C4" ></b-icon-heart-fill></button ></small>
-            <small v-else><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill></small>
+            <AddToFavorites
+              v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
+              :recipeID="recipe.id"
+              :isSaved="recipe.saved"
+            ></AddToFavorites>
             <!--<small v-else>
               <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
             </small>-->
@@ -73,10 +79,11 @@
 </template>
 
 <script>
+import AddToFavorites from "../components/AddToFavorites";
+
 import {
   BIconClockHistory,
   BIconHandThumbsUp,
-  BIconHeartFill,
   BIconEye,
 } from "bootstrap-vue";
 
@@ -84,37 +91,13 @@ export default {
   components: {
     BIconClockHistory,
     BIconHandThumbsUp,
-    BIconHeartFill,
     BIconEye,
-  },
-  data() {
-    return {
-      image_load: false,
-    };
+    AddToFavorites,
   },
   props: {
     recipe: {
       type: Object,
       required: true,
-    },
-  },
-  methods: {
-    async addToFavorites() {
-      console.log(this.recipe);
-      try {
-        const post = await this.axios.post(
-         this.$root.store.BASE_URL + "/user/addFavRecipe",
-          //"http://localhost:3000/user/addFavRecipe",
-          {
-            recipe_id: this.recipe.id,
-            withCredentials: true,
-          }
-        );
-        this.recipe.saved = true;
-        console.log(this.recipe.saved);
-      } catch (error) {
-        console.log(error.response);
-      }
     },
   },
 };

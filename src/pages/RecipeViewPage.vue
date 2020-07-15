@@ -41,18 +41,12 @@
                 ><b-icon-people></b-icon-people>
                 {{ recipe.servings }} servings</b-col
               >
-              <b-col v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
-                ><small v-if="!recipe.saved"
-                  ><button @click="addToFavorites" class="button">
-                    <b-icon-heart-fill
-                      style="color:#F874C4"
-                    ></b-icon-heart-fill></button
-                ></small>
-               <small v-else><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill></small>
-              
-            <!--<small v-else>
-              <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
-            </small>-->
+              <b-col>
+                <AddToFavorites
+                  v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
+                  :recipeID="recipe.id"
+                  :isSaved="this.isSaved"
+                ></AddToFavorites>
               </b-col>
             </b-row>
           </b-container>
@@ -88,16 +82,16 @@
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
 <script>
+import AddToFavorites from "../components/AddToFavorites";
+
 import {
   BIconClockHistory,
   BIconHandThumbsUp,
   BIconPeople,
-  BIconHeartFill,
 } from "bootstrap-vue";
 
 export default {
@@ -105,148 +99,93 @@ export default {
     BIconClockHistory,
     BIconHandThumbsUp,
     BIconPeople,
-    BIconHeartFill,
+    AddToFavorites,
   },
   data() {
     return {
       recipe: null,
       likes: null,
+      isSaved: false,
+      isWatched: false,
     };
   },
- 
-  async created(){
-    this.created()
-  }, 
- 
+
+  async created() {
+    this.created();
+  },
+
   methods: {
     async created() {
-    try {
-      let response;
-      let _recipe;
-      console.log(this.$route.params);
-      if (this.$route.params.likes >= 0) {
-        response = await this.axios.get(
-          //"http://localhost:3000/recipes/fullRecipeInfo/id/[" +
-            this.$root.store.BASE_URL + "/recipes/fullRecipeInfo/id/[" +
-            this.$route.params.recipeId +
-            "]",
-          { withCredentials: true }
-        );
-        _recipe = response.data[0];
-      } else {
-        response = await this.axios.get(
-               this.$root.store.BASE_URL + "/user/myPersonalRecipeFull/id/"+
-          //"http://localhost:3000/user/myPersonalRecipeFull/id/" +
-            //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
-            this.$route.params.recipeId,
-          { withCredentials: true }
-        );
-        _recipe = response.data;
-      }
-      console.log(_recipe);
-      //console.log(response.data[0].instructions);
-      //}
-      // console.log("response.status", response.status);
-      //if (response.status !== 200) this.$router.replace("/NotFound");
-      //console.log(response.data);
-      console.log(this.$route.params);
-      //console.log("im here1");
-      if (this.$root.store.username) {
-        console.log("im here2");
-        if (this.$route.params.likes >= 0) {
-          console.log("im here3");
-          const post = await this.axios.post(
-             this.$root.store.BASE_URL + "/user/addSeenRecipe",
-            //"http://localhost:3000/user/addSeenRecipe",
-            //"https://ass3-2-adi-nicole.herokuapp.com/user/addSeenRecipe",
-            {
-              recipe_id: this.$route.params.recipeId,
-              withCredentials: true,
-            }
-          );
-        }
-        const responseRecipeInfo = await this.axios.get(
-          this.$root.store.BASE_URL + "/user/recipeInfo/id/[" +
-          //"http://localhost:3000/user/recipeInfo/id/[" +
-            this.$route.params.recipeId +
-            "]",
-          //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
-          { withCredentials: true }
-        );
-        var recipeInfo = responseRecipeInfo.data;
-        console.log(recipeInfo);
-      }
-      this.recipe = _recipe;
-      if (recipeInfo) {
-        this.recipe.watched = recipeInfo[this.recipe.id].watched;
-        this.recipe.saved = recipeInfo[this.recipe.id].saved;
-      }
-      console.log(this.recipe);
-      /*this.recipe = {
-        id: 638741,
-        title: "Chipotle Black Bean Soup with Avocado Cream",
-        readyInMinutes: 45,
-        aggregateLikes: 37,
-        vegetarian: true,
-        vegan: false,
-        glutenFree: true,
-        image: "https://spoonacular.com/recipeImages/638741-556x370.jpg",
-        ingredients: [
-          {
-            nameAndAmount:
-              "1 small ripe avocado, pitted, peeled and cut into cubes (about 1/2 cup)",
-          },
-          {
-            nameAndAmount:
-              "3 cans (about 15 ounces each) black beans, rinsed and drained",
-          },
-          { nameAndAmount: "4 large carrots, peeled and diced (about 2 cups)" },
-          {
-            nameAndAmount:
-              "4 cups Swanson® Chicken Broth (Regular, Natural Goodness® or Certified Organic)",
-          },
-          {
-            nameAndAmount:
-              "1 can (7 ounces) chipotle peppers in adobo sauce, minced",
-          },
-          { nameAndAmount: "2 tablespoons chopped fresh cilantro leaves" },
-          { nameAndAmount: "1 tablespoon lemon juice" },
-          { nameAndAmount: "2 tablespoons olive oil" },
-          { nameAndAmount: "2 large onions, diced (about 2 cups)" },
-          { nameAndAmount: "1/4 cup sour cream" },
-        ],
-        instructions: [
-          "Soak two 12- x 7-inch (30 x 18 cm) untreated cedar…er for at least 30 minutes or for up to 24 hours.",
-          "Place salmon fillets on top of each plank.",
-          "In small bowl, whisk together oil, lemon rind and …mustard, salt and pepper; brush some over salmon.",
-          "Place planks on grill over medium-high heat; close…r until fish flakes easily when tested with fork.",
-          "Dill Sauce:Meanwhile, in small bowl, combine sour cream, cucumber, dill, chives, salt and pepper.",
-          "Serve planks on platter with dill sauce.",
-        ],
-        servings: 8,
-      };*/
-    } catch (error) {
-      //console.log("error.response.status", error.response.status);
-      console.log(error);
-      this.$router.replace("/NotFound");
-      return;
-    }
-  },
-    async addToFavorites() {
-      console.log(this.recipe);
       try {
-        const post = await this.axios.post(
-          this.$root.store.BASE_URL + "/user/addFavRecipe",
-          //"http://localhost:3000/user/addFavRecipe",
-          {
-            recipe_id: this.recipe.id,
-            withCredentials: true,
+        let response;
+        let _recipe;
+        console.log(this.$route.params);
+        if (this.$route.params.likes >= 0) {
+          response = await this.axios.get(
+            //"http://localhost:3000/recipes/fullRecipeInfo/id/[" +
+            this.$root.store.BASE_URL +
+              "/recipes/fullRecipeInfo/id/[" +
+              this.$route.params.recipeId +
+              "]",
+            { withCredentials: true }
+          );
+          _recipe = response.data[0];
+        } else {
+          response = await this.axios.get(
+            this.$root.store.BASE_URL +
+              "/user/myPersonalRecipeFull/id/" +
+              //"http://localhost:3000/user/myPersonalRecipeFull/id/" +
+              //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
+              this.$route.params.recipeId,
+            { withCredentials: true }
+          );
+          _recipe = response.data;
+        }
+        console.log(_recipe);
+        //console.log(response.data[0].instructions);
+        //}
+        // console.log("response.status", response.status);
+        //if (response.status !== 200) this.$router.replace("/NotFound");
+        //console.log(response.data);
+        console.log(this.$route.params);
+        //console.log("im here1");
+        if (this.$root.store.username) {
+          console.log("im here2");
+          if (this.$route.params.likes >= 0) {
+            console.log("im here3");
+            const post = await this.axios.post(
+              this.$root.store.BASE_URL + "/user/addSeenRecipe",
+              //"http://localhost:3000/user/addSeenRecipe",
+              //"https://ass3-2-adi-nicole.herokuapp.com/user/addSeenRecipe",
+              {
+                recipe_id: this.$route.params.recipeId,
+                withCredentials: true,
+              }
+            );
           }
-        );
-        this.recipe.saved="",
-        this.recipe.saved = true;
+          const responseRecipeInfo = await this.axios.get(
+            this.$root.store.BASE_URL +
+              "/user/recipeInfo/id/[" +
+              //"http://localhost:3000/user/recipeInfo/id/[" +
+              this.$route.params.recipeId +
+              "]",
+            //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
+            { withCredentials: true }
+          );
+          var recipeInfo = responseRecipeInfo.data;
+          console.log(recipeInfo);
+        }
+        this.recipe = _recipe;
+        if (recipeInfo) {
+          this.isWatched = recipeInfo[this.recipe.id].watched;
+          this.isSaved = recipeInfo[this.recipe.id].saved;
+        }
+        console.log(this.recipe);
       } catch (error) {
-        console.log(error.response);
+        //console.log("error.response.status", error.response.status);
+        console.log(error);
+        this.$router.replace("/NotFound");
+        return;
       }
     },
   },

@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Family {
+.Favorite {
   margin: 10px 0 10px;
 }
 </style>
