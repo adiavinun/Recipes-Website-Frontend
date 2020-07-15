@@ -41,17 +41,18 @@
                 ><b-icon-people></b-icon-people>
                 {{ recipe.servings }} servings</b-col
               >
-              <b-col
-                v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
+              <b-col v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
                 ><small v-if="!recipe.saved"
                   ><button :disabled="recipe.saved" @click="addToFavorites" class="button">
                     <b-icon-heart-fill
                       style="color:#F874C4"
                     ></b-icon-heart-fill></button
                 ></small>
-                <small v-else>
-                  <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
-                </small>
+               <small v-if="recipe.saved"><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill></small>
+              
+            <!--<small v-else>
+              <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
+            </small>-->
               </b-col>
             </b-row>
           </b-container>
@@ -87,6 +88,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -112,6 +114,7 @@ export default {
       //vegan: require('@/assets/vegan.JPG')
     };
   },
+ 
   async created(){
     this.created()
   }, 
@@ -241,6 +244,7 @@ export default {
             withCredentials: true,
           }
         );
+        this.recipe.saved="",
         this.recipe.saved = true;
       } catch (error) {
         console.log(error.response);
