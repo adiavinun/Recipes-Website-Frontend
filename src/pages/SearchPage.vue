@@ -2,7 +2,6 @@
   <div class="container">
     <h1 class="title"><b-icon icon="search"></b-icon> Search</h1>
     <h4>What's your desire? <b-icon icon="chat-dots"></b-icon></h4>
-
     <div style="display: flex;">
       <b-form @reset.prevent="onReset">
         <b-form-input
@@ -11,7 +10,7 @@
           placeholder="recipe or dish name"
           type="search"
           list="search-options-list"
-          style="width:430px; padding: 5px;"
+          style="width: 430px; padding: 5px;"
         ></b-form-input>
         <b-form-group label="Number of search results:">
           <b-form-radio-group
@@ -114,10 +113,10 @@
               >Sort by time low to high</b-form-select-option
             >
             <b-form-select-option value="likeHigh"
-              >Sort by popular high to low</b-form-select-option
+              >Sort by popularity high to low</b-form-select-option
             >
             <b-form-select-option value="likeLow"
-              >Sort by popular low to how</b-form-select-option
+              >Sort by popularity low to how</b-form-select-option
             >
           </b-form-select>
         </b-form-group>
