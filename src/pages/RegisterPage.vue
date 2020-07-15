@@ -117,7 +117,7 @@
         <b-form-invalid-feedback
           v-if="$v.form.password.required && !$v.form.password.length"
         >
-          between 5-10 characters long
+          Your password should be 5-10 characters long
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -189,7 +189,7 @@
         >Register</b-button
       >
       <div class="mt-2">
-        You have an account already?
+        Have an account already?
         <router-link to="login"> Log in here</router-link>
       </div>
     </b-form>

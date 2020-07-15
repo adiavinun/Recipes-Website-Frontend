@@ -48,7 +48,7 @@
                       style="color:#F874C4"
                     ></b-icon-heart-fill></button
                 ></small>
-               <small v-if="recipe.saved"><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill></small>
+               <small v-else><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill></small>
               
             <!--<small v-else>
               <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
