@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Main Page</h1>
+    <h1 class="title">Recipes</h1>
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
@@ -110,5 +110,15 @@ export default {
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
   cursor: default;
+}
+.title{
+    background: url("https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300234/54088727-healthy-food-background-and-copy-space-studio-photo-of-different-fruits-and-vegetables-on-white-wood.jpg");
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-align: center;
+    font-family:"Trebuchet MS", Helvetica, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
 }
 </style>

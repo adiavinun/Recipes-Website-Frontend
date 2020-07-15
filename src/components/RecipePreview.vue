@@ -68,7 +68,10 @@
               :recipeID="recipe.id"
               :isSaved="recipe.saved"
             ></AddToFavorites>
+<<<<<<< HEAD
             
+=======
+>>>>>>> aa0af8ff96a5f0c808e99e709e7dd1ab2a40ac39
           </b-card-text>
         </b-card-body>
       </b-card>
@@ -79,11 +82,7 @@
 <script>
 import AddToFavorites from "../components/AddToFavorites";
 
-import {
-  BIconClockHistory,
-  BIconHandThumbsUp,
-  BIconEye,
-} from "bootstrap-vue";
+import { BIconClockHistory, BIconHandThumbsUp, BIconEye } from "bootstrap-vue";
 
 export default {
   components: {

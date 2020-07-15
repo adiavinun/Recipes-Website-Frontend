@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>
+    <h3 class="title">
       {{ title }}
       <slot></slot>
     </h3>
@@ -130,5 +130,13 @@ export default {
 <style lang="scss" scoped>
 .container {
   min-height: 400px;
+}
+.title{
+    color: #2c3e50;
+    -webkit-text-stroke-width: 1px;
+    text-align: center;
+    font-family:"Trebuchet MS", Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
 }
 </style>
