@@ -56,22 +56,15 @@
               ></b-card-img>
             </small>
           </b-card-text>
-          <b-card-text
-            v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
-          >
-            <small v-if="recipe.watched" class="h4 mb-2"
-              ><b-icon-eye></b-icon-eye
-            ></small>
+          <b-card-text v-if="this.$root.store.username && recipe.aggregateLikes >= 0">
+            <small v-if="recipe.watched" class="h4 mb-2"><b-icon-eye></b-icon-eye ></small>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <small v-if="!recipe.saved"
-              ><button @click="addToFavorites" class="button">
-                <b-icon-heart-fill
-                  style="color:#F874C4"
-                ></b-icon-heart-fill></button
-            ></small>
-            <small v-else>
+            <small v-if="!recipe.saved"><button @click="addToFavorites" class="button">
+                <b-icon-heart-fill style="color:#F874C4" ></b-icon-heart-fill></button ></small>
+            <small v-if="recipe.saved"><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill></small>
+            <!--<small v-else>
               <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
-            </small>
+            </small>-->
           </b-card-text>
         </b-card-body>
       </b-card>
