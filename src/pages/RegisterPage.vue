@@ -108,7 +108,7 @@
         </b-form-invalid-feedback>
           <b-form-invalid-feedback
           v-if="!$v.form.password.oneSpecialChar" >
-           Your password should have at least one special character
+           Your password should have at least one special character: #?!@$%^&*-
         </b-form-invalid-feedback>
         <b-form-text v-else-if="$v.form.password.$error" text-variant="info">
           Your password should be <strong>strong</strong>. <br />
@@ -260,7 +260,16 @@ export default {
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p)
+        length: (p) => minLength(5)(p) && maxLength(10)(p),
+        onlyDigit: function(value) {
+          return /[0-9]/.test(value);
+        },
+        oneSpecialChar: function(value) {
+          //return /[#?!@$%^&*-(),.?":{}|><]/.test(value);
+          return /[#?!@$%^&*-]/.test(value);
+         
+        },
+    
       },
       confirmedPassword: {
         required,
