@@ -253,13 +253,15 @@ export default {
         if (this.$root.store.username) {
           if (localStorage.lastSearch) {
             this.recipes = JSON.parse(localStorage.lastSearch);
+            console.log(this.recipes);
+           
           }
         } else {
           if (localStorage.lastSearch) {
             localStorage.removeItem("lastSearch");
           }
         }
-        console.log(1111,localStorage.lastSearch);
+        console.log(localStorage.lastSearch);
       } catch (err) {
         console.log(err.response);
       }

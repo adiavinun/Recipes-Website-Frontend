@@ -41,7 +41,18 @@ export default {
           }
         );
         this.saved = true;
-    
+        var recipes = JSON.parse(localStorage.lastSearch);
+        console.log(recipes);
+       /*  for (var i = 0; i < recipes.length; i++) {
+            if(recipes[i].recipeID == this.recipeID.type){
+              if(this.saved != recipes[i].saved){
+                recipes[i].saved == this.saved;
+              localStorage.removeItem("lastSearch");
+              console.log(localStorage.lastSearch);
+               localStorage.setItem("lastSearch", JSON.stringify(this.recipes));
+              }
+            }
+          }*/
     console.log(localStorage.lastSearch);
       } catch (error) {
         console.log(error.response);
