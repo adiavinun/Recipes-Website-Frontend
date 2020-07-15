@@ -41,19 +41,23 @@ export default {
           }
         );
         this.saved = true;
-        var recipes = JSON.parse(localStorage.lastSearch);
-        console.log(recipes);
-       /*  for (var i = 0; i < recipes.length; i++) {
-            if(recipes[i].recipeID == this.recipeID.type){
+        if(localStorage.lastSearch){
+          var recipes = JSON.parse(localStorage.lastSearch);
+          console.log(recipes);
+         for (var i = 0; i < recipes.length; i++) {
+            if(recipes[i].id == this.recipeID){
               if(this.saved != recipes[i].saved){
-                recipes[i].saved == this.saved;
-              localStorage.removeItem("lastSearch");
-              console.log(localStorage.lastSearch);
-               localStorage.setItem("lastSearch", JSON.stringify(this.recipes));
+                recipes[i].saved = this.saved;        
               }
             }
-          }*/
-    console.log(localStorage.lastSearch);
+          }
+          localStorage.removeItem("lastSearch");
+          //console.log(localStorage.lastSearch);
+            console.log(recipes);
+          localStorage.setItem("lastSearch", JSON.stringify(recipes));
+          console.log(localStorage.lastSearch);
+        }
+        
       } catch (error) {
         console.log(error.response);
       }

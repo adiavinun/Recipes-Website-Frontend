@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    
     <h1 class="title"><b-icon icon="search"></b-icon> Search</h1>
     <h4>What's your desire? <b-icon icon="chat-dots"></b-icon></h4>
     <div style="display: flex;">
@@ -320,9 +321,7 @@ export default {
         this.lastSearchTerm = this.searchContent;
       
         localStorage.setItem("lastSearch", JSON.stringify(this.recipes));
-        if(searchRecipes!=null && searchRecipes!=false){
-            this.recipes.push(...searchRecipes);
-        }
+        
         if (this.recipes.length == 0) {
           this.noResults = true;
         }

@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    
     <h1 class="title">My Favorite Recipes</h1>
     <div>
       <RecipePreviewList title="" pageType="favorite" class="Favorite center" />
