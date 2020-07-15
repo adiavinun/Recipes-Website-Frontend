@@ -109,7 +109,6 @@ export default {
     return {
       recipe: null,
       likes: null,
-      //vegan: require('@/assets/vegan.JPG')
     };
   },
   async created(){
@@ -121,7 +120,6 @@ export default {
     try {
       let response;
       let _recipe;
-      //personal recipe
       console.log(this.$route.params);
       if (this.$route.params.likes >= 0) {
         response = await this.axios.get(
@@ -148,12 +146,12 @@ export default {
       // console.log("response.status", response.status);
       //if (response.status !== 200) this.$router.replace("/NotFound");
       //console.log(response.data);
-      //console.log(this.$route.params);
+      console.log(this.$route.params);
       //console.log("im here1");
       if (this.$root.store.username) {
-        //console.log("im here2");
-        if (this.$route.params.likes) {
-          //console.log("im here3");
+        console.log("im here2");
+        if (this.$route.params.likes >= 0) {
+          console.log("im here3");
           const post = await this.axios.post(
              this.$root.store.BASE_URL + "/user/addSeenRecipe",
             //"http://localhost:3000/user/addSeenRecipe",
@@ -173,6 +171,7 @@ export default {
           { withCredentials: true }
         );
         var recipeInfo = responseRecipeInfo.data;
+        console.log(recipeInfo);
       }
       this.recipe = _recipe;
       if (recipeInfo) {

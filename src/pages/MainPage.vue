@@ -5,7 +5,6 @@
       <b-row>
         <b-col>
           <RandomRecipes :recipesArray="recipesList" class="RandomRecipes" />
-          <br/>
           <ButtonRandomRecipes v-on:represhRandom="updateNewRandomRecipes"/>
         </b-col>
         <b-col>
