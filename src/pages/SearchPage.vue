@@ -137,6 +137,7 @@
           <div v-if="this.lastSearchTerm && $root.store.username">
             <h4>Your last search was: {{ this.lastSearchTerm }}</h4>
           </div>
+      
           <!--<h4 >The result search:</h4>-->
           <RecipePreviewList
             title="Results:"
@@ -165,7 +166,6 @@ export default {
   components: {
     RecipePreviewList,
   },
-
   data() {
     return {
       cuisines: [
@@ -358,24 +358,6 @@ export default {
       }
       console.log("changed");
       console.log(this.num_of_recipes);
-    },
-    onReset() {
-      this.form = {
-        cuisines: "",
-        diets: "",
-        intolerances: "",
-        searchContent: "",
-        cuisinesInput: "",
-        dietsInput: "",
-        intolerancesInput: "",
-        noResults: false,
-        recipes: [],
-        sort: null,
-        selected: "5",
-      };
-      this.$nextTick(() => {
-        this.$reset();
-      });
     },
   },
 };

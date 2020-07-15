@@ -61,10 +61,10 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <small v-if="!recipe.saved"><button @click="addToFavorites" class="button">
                 <b-icon-heart-fill style="color:#F874C4" ></b-icon-heart-fill></button ></small>
-            <small v-if="recipe.saved"><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill></small>
-            <!--<small v-else>
+           <!-- <small v-if="recipe.saved"><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill></small>-->
+            <small v-else>
               <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
-            </small>-->
+            </small>
           </b-card-text>
         </b-card-body>
       </b-card>
@@ -90,8 +90,10 @@ export default {
   data() {
     return {
       image_load: false,
+     // saved: false,
     };
   },
+  
   props: {
     recipe: {
       type: Object,
