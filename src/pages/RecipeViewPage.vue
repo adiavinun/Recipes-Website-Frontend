@@ -41,27 +41,12 @@
                 ><b-icon-people></b-icon-people>
                 {{ recipe.servings }} servings</b-col
               >
-<<<<<<< HEAD
-              <b-col v-if="this.$root.store.username && this.recipe.aggregateLikes >= 0"
-                ><small v-if="!this.recipe.saved"
-                  ><button @click="addToFavorites" class="button">
-                    <b-icon-heart-fill
-                      style="color:#F874C4"
-                    ></b-icon-heart-fill></button
-                ></small>
-              <!-- <small v-if="recipe.saved"><b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill></small>-->
-              
-                  <small v-else>
-                    <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
-                  </small>
-=======
               <b-col>
                 <AddToFavorites
                   v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
                   :recipeID="recipe.id"
                   :isSaved="this.isSaved"
                 ></AddToFavorites>
->>>>>>> be5c7a41da77c4294e8557d03ae29f778fedac79
               </b-col>
             </b-row>
           </b-container>
@@ -120,16 +105,6 @@ export default {
     return {
       recipe: null,
       likes: null,
-<<<<<<< HEAD
-      saved: false,
-    };
-  },
- 
-  created(){
-    this.created()
-  }, 
- 
-=======
       isSaved: false,
       isWatched: false,
     };
@@ -139,7 +114,6 @@ export default {
     this.created();
   },
 
->>>>>>> be5c7a41da77c4294e8557d03ae29f778fedac79
   methods: {
     async created() {
       try {

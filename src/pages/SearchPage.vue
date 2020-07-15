@@ -259,6 +259,7 @@ export default {
             localStorage.removeItem("lastSearch");
           }
         }
+        console.log(1111,localStorage.lastSearch);
       } catch (err) {
         console.log(err.response);
       }
@@ -317,7 +318,9 @@ export default {
         this.lastSearchTerm = this.searchContent;
       
         localStorage.setItem("lastSearch", JSON.stringify(this.recipes));
-
+        if(searchRecipes!=null && searchRecipes!=false){
+            this.recipes.push(...searchRecipes);
+        }
         if (this.recipes.length == 0) {
           this.noResults = true;
         }

@@ -41,6 +41,8 @@ export default {
           }
         );
         this.saved = true;
+    
+    console.log(localStorage.lastSearch);
       } catch (error) {
         console.log(error.response);
       }
