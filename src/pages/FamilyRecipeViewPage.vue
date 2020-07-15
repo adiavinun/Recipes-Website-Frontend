@@ -3,8 +3,8 @@
     <div v-if="recipe">
       <div class="header">
         <h1>{{ recipe.title }}</h1>
-        <h5> By: {{recipe.recipeOwner}}</h5>
-        <h5>Occasion: {{recipe.whenUsuallyMakeRecipe}}</h5>
+        <h5>By: {{ recipe.recipeOwner }}</h5>
+        <h5>Occasion: {{ recipe.whenUsuallyMakeRecipe }}</h5>
         <img :src="recipe.image" class="center" />
         <br />
       </div>
@@ -12,23 +12,13 @@
         <div class="mb-3"></div>
         <div class="wrapper">
           <div class="wrapped">
-            <strong style="font-size: 18px">Ingredients:</strong>
-            <ul>
-              <li
-                v-for="(r, index) in recipe.ingredients"
-                :key="index + '_' + r.id"
-              >
-                {{ r.nameAndAmount }}
-              </li>
-            </ul>
+            <Ingredients :ingredients="this.recipe.ingredients"></Ingredients>
           </div>
           <div class="wrapped">
-            <strong style="font-size: 18px">Instructions:</strong>
-            <ol>
-              <li v-for="s in recipe.instructions" :key="s.number">
-                {{ s.description }}
-              </li>
-            </ol>
+            <Instructions
+              :instructions="this.recipe.instructions"
+              :likes="recipe.aggregateLikes"
+            ></Instructions>
           </div>
         </div>
       </div>
@@ -37,7 +27,14 @@
 </template>
 
 <script>
+import Ingredients from "../components/Ingredients";
+import Instructions from "../components/Instructions";
+
 export default {
+  components: {
+    Ingredients,
+    Instructions,
+  },
   data() {
     return {
       recipe: null,
@@ -49,8 +46,9 @@ export default {
       //personal recipe
       console.log(this.$route.params);
       response = await this.axios.get(
-        this.$root.store.BASE_URL + "/user/myFamilyRecipeFull/id/" +
-        //"http://localhost:3000/user/myFamilyRecipeFull/id/" +
+        this.$root.store.BASE_URL +
+          "/user/myFamilyRecipeFull/id/" +
+          //"http://localhost:3000/user/myFamilyRecipeFull/id/" +
           //"https://ass3-2-adi-nicole.herokuapp.com/user/myFamilyRecipeFull/id/" +
           this.$route.params.recipeId,
         { withCredentials: true }

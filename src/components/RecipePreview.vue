@@ -68,9 +68,6 @@
               :recipeID="recipe.id"
               :isSaved="recipe.saved"
             ></AddToFavorites>
-            <!--<small v-else>
-              <b-icon-heart-fill style="color:#F874C4"></b-icon-heart-fill>
-            </small>-->
           </b-card-text>
         </b-card-body>
       </b-card>
@@ -81,11 +78,7 @@
 <script>
 import AddToFavorites from "../components/AddToFavorites";
 
-import {
-  BIconClockHistory,
-  BIconHandThumbsUp,
-  BIconEye,
-} from "bootstrap-vue";
+import { BIconClockHistory, BIconHandThumbsUp, BIconEye } from "bootstrap-vue";
 
 export default {
   components: {

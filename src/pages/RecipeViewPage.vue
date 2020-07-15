@@ -44,7 +44,7 @@
               <b-col>
                 <AddToFavorites
                   v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
-                  :recipeID="recipe.id"
+                  :recipeID="this.recipe.id"
                   :isSaved="this.isSaved"
                 ></AddToFavorites>
               </b-col>
@@ -53,31 +53,10 @@
         </div>
         <div class="wrapper">
           <div class="wrapped">
-            <strong style="font-size: 18px">Ingredients:</strong>
-            <ul>
-              <li
-                v-for="(r, index) in recipe.ingredients"
-                :key="index + '_' + r.id"
-              >
-                {{ r.nameAndAmount }}
-              </li>
-            </ul>
+            <Ingredients :ingredients="this.recipe.ingredients"></Ingredients>
           </div>
-          <div v-if="recipe.aggregateLikes >= 0" class="wrapped">
-            <strong style="font-size: 18px">Instructions:</strong>
-            <ol>
-              <li v-for="s in recipe.instructions" :key="s.number">
-                {{ s }}
-              </li>
-            </ol>
-          </div>
-          <div v-else class="wrapped">
-            <strong style="font-size: 18px">Instructions:</strong>
-            <ol>
-              <li v-for="s in recipe.instructions" :key="s.number">
-                {{ s.description }}
-              </li>
-            </ol>
+          <div class="wrapped">
+            <Instructions :instructions="this.recipe.instructions" :likes="recipe.aggregateLikes"></Instructions>
           </div>
         </div>
       </div>
@@ -87,6 +66,8 @@
 
 <script>
 import AddToFavorites from "../components/AddToFavorites";
+import Ingredients from "../components/Ingredients";
+import Instructions from "../components/Instructions";
 
 import {
   BIconClockHistory,
@@ -100,6 +81,8 @@ export default {
     BIconHandThumbsUp,
     BIconPeople,
     AddToFavorites,
+    Ingredients,
+    Instructions,
   },
   data() {
     return {
