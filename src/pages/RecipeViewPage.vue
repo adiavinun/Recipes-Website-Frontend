@@ -2,7 +2,7 @@
   <div class="container">
     <div v-if="recipe">
       <div class="header">
-        <h1>{{ recipe.title }}</h1>
+        <h1 class="title">{{ recipe.title }}</h1>
         <span v-if="recipe.vegetarian">
           <img
             src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558862/Vegetarian-2-512_jzy0lc.png"
@@ -209,4 +209,5 @@ export default {
 .gluten {
   width: 54px;
 }
+
 </style>

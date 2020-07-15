@@ -1,27 +1,27 @@
 <template>
   <div id="nav">
     <b-nav tabs>
-      <b-nav-item
+      <b-nav-item class="nav2"
         ><router-link :to="{ name: 'main' }"
           ><b-icon icon="house-door"></b-icon>Home
         </router-link>
       </b-nav-item>
 
-      <b-nav-item
+      <b-nav-item class="nav2"
         ><router-link :to="{ name: 'search' }"
           ><b-icon icon="search"></b-icon>Search</router-link
         >
       </b-nav-item>
 
-      <b-nav-item
+      <b-nav-item class="nav2"
         ><router-link :to="{ name: 'about' }"
           ><b-icon icon="receipt"></b-icon>About</router-link
         >
       </b-nav-item>
       <b-navbar-nav class="ml-auto">
         <span v-if="!$root.store.username">
-          <b-nav tabs fill>
-            <b-nav-item disabled> Hello Guest: </b-nav-item>
+          <b-nav tabs fill class="nav2">
+            <b-nav-item disabled > Hello Guest: </b-nav-item>
             <b-nav-item>
               <router-link :to="{ name: 'register' }"
                 ><b-icon icon="person-circle"></b-icon>Register</router-link
@@ -92,6 +92,10 @@ export default {
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  
+}
+.nav2{
+  -webkit-text-stroke-width: 0.5px;
 }
 
 #nav a.router-link-exact-active {

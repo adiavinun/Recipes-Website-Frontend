@@ -95,7 +95,5 @@ export default {
   border-radius: 5px;
   padding: 2px;
 }
-/* .recipe-header{
 
-} */
 </style>
