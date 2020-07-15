@@ -44,7 +44,7 @@
               <b-col
                 v-if="this.$root.store.username && recipe.aggregateLikes >= 0"
                 ><small v-if="!recipe.saved"
-                  ><button :disabled="recipe.saved" @click="addToFavorites" class="button">
+                  ><button @click="addToFavorites" class="button">
                     <b-icon-heart-fill
                       style="color:#F874C4"
                     ></b-icon-heart-fill></button
@@ -160,7 +160,7 @@ export default {
           );
         }
         const responseRecipeInfo = await this.axios.get(
-          this.$root.store.BASE_URL + "/user/recipeInfo/id/["+
+          this.$root.store.BASE_URL + "/user/recipeInfo/id/[" +
           //"http://localhost:3000/user/recipeInfo/id/[" +
             this.$route.params.recipeId +
             "]",
