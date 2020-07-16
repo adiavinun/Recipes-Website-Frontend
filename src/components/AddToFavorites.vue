@@ -57,7 +57,6 @@ export default {
           localStorage.setItem("lastSearch", JSON.stringify(recipes));
           //console.log(localStorage.lastSearch);
         }
-        
       } catch (error) {
         console.log(error.response);
       }
