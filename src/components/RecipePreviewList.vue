@@ -77,7 +77,6 @@ export default {
     async updateRecipes() {
       try {
         //have their own component
-        console.log(this.recipesList);
         if (this.pageType != "random" && this.pageType != "search") {
           var recipes;
           //let url = "https://ass3-2-adi-nicole.herokuapp.com/";

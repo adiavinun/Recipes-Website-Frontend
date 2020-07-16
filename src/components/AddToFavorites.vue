@@ -43,7 +43,7 @@ export default {
         this.saved = true;
         if(localStorage.lastSearch){
           var recipes = JSON.parse(localStorage.lastSearch);
-          console.log(recipes);
+          //console.log(recipes);
          for (var i = 0; i < recipes.length; i++) {
             if(recipes[i].id == this.recipeID){
               if(this.saved != recipes[i].saved){
@@ -53,9 +53,9 @@ export default {
           }
           localStorage.removeItem("lastSearch");
           //console.log(localStorage.lastSearch);
-            console.log(recipes);
+          //console.log(recipes);
           localStorage.setItem("lastSearch", JSON.stringify(recipes));
-          console.log(localStorage.lastSearch);
+          //console.log(localStorage.lastSearch);
         }
         
       } catch (error) {
