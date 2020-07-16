@@ -87,6 +87,7 @@ export default {
     BIconEye,
     AddToFavorites,
   },
+  
   props: {
     recipe: {
       type: Object,

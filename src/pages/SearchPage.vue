@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    
     <h1 class="title"><b-icon icon="search"></b-icon> Search</h1>
     <h4>What's your desire? <b-icon icon="chat-dots"></b-icon></h4>
     <div style="display: flex;">
@@ -137,6 +138,7 @@
           <div v-if="this.lastSearchTerm && $root.store.username">
             <h4>Your last search was: {{ this.lastSearchTerm }}</h4>
           </div>
+      
           <!--<h4 >The result search:</h4>-->
           <RecipePreviewList
             title="Results:"
@@ -165,7 +167,6 @@ export default {
   components: {
     RecipePreviewList,
   },
-
   data() {
     return {
       cuisines: [
@@ -253,12 +254,15 @@ export default {
         if (this.$root.store.username) {
           if (localStorage.lastSearch) {
             this.recipes = JSON.parse(localStorage.lastSearch);
+            console.log(this.recipes);
+           
           }
         } else {
           if (localStorage.lastSearch) {
             localStorage.removeItem("lastSearch");
           }
         }
+        console.log(localStorage.lastSearch);
       } catch (err) {
         console.log(err.response);
       }
@@ -317,7 +321,7 @@ export default {
         this.lastSearchTerm = this.searchContent;
       
         localStorage.setItem("lastSearch", JSON.stringify(this.recipes));
-
+        
         if (this.recipes.length == 0) {
           this.noResults = true;
         }
@@ -358,24 +362,6 @@ export default {
       }
       console.log("changed");
       console.log(this.num_of_recipes);
-    },
-    onReset() {
-      this.form = {
-        cuisines: "",
-        diets: "",
-        intolerances: "",
-        searchContent: "",
-        cuisinesInput: "",
-        dietsInput: "",
-        intolerancesInput: "",
-        noResults: false,
-        recipes: [],
-        sort: null,
-        selected: "5",
-      };
-      this.$nextTick(() => {
-        this.$reset();
-      });
     },
   },
 };

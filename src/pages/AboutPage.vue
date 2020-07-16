@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    
     <h1 class="title">About us!</h1>
     <h3 style="text-align: center;">Adi Avinun & Nicole Dezoraive</h3>
     <br/>

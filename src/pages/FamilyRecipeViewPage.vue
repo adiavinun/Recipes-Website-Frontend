@@ -2,6 +2,7 @@
   <div class="container">
     <div v-if="recipe">
       <div class="header">
+        
         <h1>{{ recipe.title }}</h1>
         <h5>By: {{ recipe.recipeOwner }}</h5>
         <h5>Occasion: {{ recipe.whenUsuallyMakeRecipe }}</h5>

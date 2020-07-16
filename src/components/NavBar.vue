@@ -18,17 +18,17 @@
           ><b-icon icon="receipt"></b-icon>About</router-link
         >
       </b-nav-item>
-      <b-navbar-nav class="ml-auto">
+      <b-navbar-nav class="ml-auto" right>
         <span v-if="!$root.store.username">
-          <b-nav tabs fill class="nav2">
-            <b-nav-item disabled > Hello Guest: </b-nav-item>
+          <b-nav tabs fill class="nav2" right>
+            <b-nav-item disabled right> Hello Guest: </b-nav-item>
             <b-nav-item>
               <router-link :to="{ name: 'register' }"
                 ><b-icon icon="person-circle"></b-icon>Register</router-link
               ></b-nav-item
             >
 
-            <b-nav-item>
+            <b-nav-item right>
               <router-link :to="{ name: 'login' }"
                 ><b-icon icon="lock"></b-icon>Login</router-link
               ></b-nav-item
@@ -37,8 +37,8 @@
         </span>
 
         <span v-else>
-          <b-nav>
-            <b-dropdown text="Personal" size="sm">
+          <b-nav right>
+            <b-dropdown text="Personal" size="sm" right>
               <b-icon icon="person-lines-fill"></b-icon>
               <b-dropdown-item :to="{ name: 'myrecipes' }"
                 >My Recipes</b-dropdown-item
@@ -51,9 +51,10 @@
               >
             </b-dropdown>
 
-            <b-dropdown :text="$root.store.username" size="sm">
+            <b-dropdown :text="$root.store.username" size="sm" right>
               <b-dropdown-item active @click="Logout">Log Out</b-dropdown-item>
             </b-dropdown>
+            
             <!--לנסות להוסיף תמונות פרופיל בצד-->
             <!-- <img :src="$root.store.profileImg" class="profile-image" /> -->
 
@@ -62,6 +63,7 @@
         </span>
       </b-navbar-nav>
     </b-nav>
+   
   </div>
 </template>
 
@@ -84,7 +86,9 @@ export default {
 <style lang="scss">
 @import "@/scss/form-style.scss";
 
+
 #nav {
+  
   padding: 30px;
   font-size: 17px;
 }

@@ -2,6 +2,7 @@
   <div class="container">
     <div v-if="recipe">
       <div class="header">
+       
         <h1 class="title">{{ recipe.title }}</h1>
         <span v-if="recipe.vegetarian">
           <img
