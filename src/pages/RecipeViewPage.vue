@@ -135,19 +135,19 @@ export default {
         //console.log("im here1");
         if(localStorage.lastSearch){
           var recipes = JSON.parse(localStorage.lastSearch);
-          console.log(recipes);
+          //console.log(recipes);
          for (var i = 0; i < recipes.length; i++) {
-           console.log(recipes[i].id);
-           console.log( this.$route.params.recipeId);
+           //console.log(recipes[i].id);
+           //console.log( this.$route.params.recipeId);
             if(recipes[i].id ==  this.$route.params.recipeId){
               recipes[i].watched = true; 
             }
           }
           localStorage.removeItem("lastSearch");
           //console.log(localStorage.lastSearch);
-            console.log(recipes);
+           // console.log(recipes);
           localStorage.setItem("lastSearch", JSON.stringify(recipes));
-          console.log(localStorage.lastSearch);
+          //console.log(localStorage.lastSearch);
         }
         if (this.$root.store.username) {
          // console.log("im here2");
