@@ -133,6 +133,20 @@ export default {
         //console.log(response.data);
         //console.log(this.$route.params);
         //console.log("im here1");
+        if(localStorage.lastSearch){
+          var recipes = JSON.parse(localStorage.lastSearch);
+          console.log(recipes);
+         for (var i = 0; i < recipes.length; i++) {
+            if(recipes[i].id == this.recipeID){
+              recipes[i].watched = true; 
+            }
+          }
+          localStorage.removeItem("lastSearch");
+          //console.log(localStorage.lastSearch);
+            console.log(recipes);
+          localStorage.setItem("lastSearch", JSON.stringify(recipes));
+          console.log(localStorage.lastSearch);
+        }
         if (this.$root.store.username) {
          // console.log("im here2");
           if (this.$route.params.likes >= 0) {
@@ -164,7 +178,12 @@ export default {
           this.isWatched = recipeInfo[this.recipe.id].watched;
           this.isSaved = recipeInfo[this.recipe.id].saved;
         }
+<<<<<<< HEAD
+        
+        console.log(this.recipe);
+=======
         //console.log(this.recipe);
+>>>>>>> 1925bf4647384a8cba4c7fdc344d46a86ecabae0
       } catch (error) {
         //console.log("error.response.status", error.response.status);
         console.log(error);
