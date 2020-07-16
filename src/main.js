@@ -82,7 +82,7 @@ const shared_data = {
     localStorage.setItem("username", username);
     this.username = username;
     console.log("login", this.username);
-    console.log(Vue.$cookies.get("session"));
+    //console.log(Vue.$cookies.get("session"));
   },
   logout() {
     console.log("logout");
@@ -94,13 +94,12 @@ const shared_data = {
     }
   },
 };
-console.log(shared_data);
-console.log(Vue.$cookies.get("session"));
+
 router.beforeEach((to, from, next) => {
   // if there was a transition from logged in to session expired or localStorage was deleted
   // if we try to enter auth required pages and we are not authorized
-  console.log(shared_data.username);
-  console.log(Vue.$cookies.get("session"));
+  //console.log(shared_data.username);
+  //console.log(Vue.$cookies.get("session"));
   if (shared_data.username === undefined || !Vue.$cookies.get("session")) {
     if (
       (shared_data.username === undefined && Vue.$cookies.get("session")) ||

@@ -82,15 +82,18 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <!--<b-button type="button" class="btn btn-primary" tyle="width:250px;" @click="search()" variant="primary">Search</b-button>-->
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <center>
         <b-button
           type="button"
-          class="btn btn-primary"
-          style="width:430px;"
+          class="btn"
+          style="width:230px;  margin-left: auto;
+    margin-right: auto;"
           @click="search()"
           variant="primary"
           :disabled="!searchContent.length"
           >Search</b-button
         >
+        </center>
         <br /><br /><br />
         <b-form-group
           id="input-group-sort"
@@ -254,7 +257,7 @@ export default {
         if (this.$root.store.username) {
           if (localStorage.lastSearch) {
             this.recipes = JSON.parse(localStorage.lastSearch);
-            console.log(this.recipes);
+            //console.log(this.recipes);
            
           }
         } else {
@@ -262,7 +265,7 @@ export default {
             localStorage.removeItem("lastSearch");
           }
         }
-        console.log(localStorage.lastSearch);
+        //console.log(localStorage.lastSearch);
       } catch (err) {
         console.log(err.response);
       }
@@ -290,7 +293,7 @@ export default {
           }
         );
         searchRecipes = response.data;
-        console.log(searchRecipes);
+        //console.log(searchRecipes);
         if (this.$root.store.username) {
           const recipe_ids = [];
           for (var i = 0; i < searchRecipes.length; i++) {
@@ -304,7 +307,7 @@ export default {
             { withCredentials: true }
           );
           var recipeInfo = responseRecipeInfo.data;
-          console.log(recipeInfo);
+          //console.log(recipeInfo);
         }
         this.recipes = [];
         for (var i = 0; i < searchRecipes.length; i++) {
@@ -315,7 +318,7 @@ export default {
           }
           this.recipes.push(currRecipe);
         }
-        console.log(this.recipes);
+        //console.log(this.recipes);
 
         localStorage.setItem("lastSearchTerm", this.searchContent);
         this.lastSearchTerm = this.searchContent;
@@ -360,8 +363,8 @@ export default {
         }
         return this.recipes.sort(compareLikes);
       }
-      console.log("changed");
-      console.log(this.num_of_recipes);
+      //console.log("changed");
+      //console.log(this.num_of_recipes);
     },
   },
 };
@@ -384,4 +387,5 @@ export default {
     font-size: 43px;
     font-weight: bold;
 }
+
 </style>

@@ -35,7 +35,6 @@
     </div>
     <b-carousel
       class="carousel-1"
-      v-model="slide"
       :interval="4000"
       controls
       indicators
@@ -43,8 +42,6 @@
       img-width="500"
       img-height="200"
       style="text-shadow: 1px 1px 2px #333;"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
     >
       <b-carousel-slide
         img-src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594587925/WhatsApp_Image_2020-07-12_at_23.47.35_1_iijjto.jpg"

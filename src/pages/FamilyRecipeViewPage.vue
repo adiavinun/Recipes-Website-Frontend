@@ -45,7 +45,7 @@ export default {
     try {
       let response;
       //personal recipe
-      console.log(this.$route.params);
+      //console.log(this.$route.params);
       response = await this.axios.get(
         this.$root.store.BASE_URL +
           "/user/myFamilyRecipeFull/id/" +

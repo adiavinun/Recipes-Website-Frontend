@@ -31,11 +31,17 @@ const routes = [
     path: "/myrecipes",
     name: "myrecipes",
     component: () => import("./pages/MyRecipesPage"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/favorite",
     name: "favorite",
     component: () => import("./pages/FavoriteRecipesPage"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/family",
@@ -54,6 +60,9 @@ const routes = [
     path: "/familyRecipe/:recipeId",
     name: "fullFamily",
     component: () => import("./pages/FamilyRecipeViewPage"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "*",

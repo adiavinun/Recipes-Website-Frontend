@@ -103,7 +103,7 @@ export default {
       try {
         let response;
         let _recipe;
-        console.log(this.$route.params);
+       // console.log(this.$route.params);
         if (this.$route.params.likes >= 0) {
           response = await this.axios.get(
             //"http://localhost:3000/recipes/fullRecipeInfo/id/[" +
@@ -125,13 +125,13 @@ export default {
           );
           _recipe = response.data;
         }
-        console.log(_recipe);
+        //console.log(_recipe);
         //console.log(response.data[0].instructions);
         //}
         // console.log("response.status", response.status);
         //if (response.status !== 200) this.$router.replace("/NotFound");
         //console.log(response.data);
-        console.log(this.$route.params);
+        //console.log(this.$route.params);
         //console.log("im here1");
         if(localStorage.lastSearch){
           var recipes = JSON.parse(localStorage.lastSearch);
@@ -148,9 +148,9 @@ export default {
           console.log(localStorage.lastSearch);
         }
         if (this.$root.store.username) {
-          console.log("im here2");
+         // console.log("im here2");
           if (this.$route.params.likes >= 0) {
-            console.log("im here3");
+           // console.log("im here3");
             const post = await this.axios.post(
               this.$root.store.BASE_URL + "/user/addSeenRecipe",
               //"http://localhost:3000/user/addSeenRecipe",
@@ -171,15 +171,19 @@ export default {
             { withCredentials: true }
           );
           var recipeInfo = responseRecipeInfo.data;
-          console.log(recipeInfo);
+          //console.log(recipeInfo);
         }
         this.recipe = _recipe;
         if (recipeInfo) {
           this.isWatched = recipeInfo[this.recipe.id].watched;
           this.isSaved = recipeInfo[this.recipe.id].saved;
         }
+<<<<<<< HEAD
         
         console.log(this.recipe);
+=======
+        //console.log(this.recipe);
+>>>>>>> 1925bf4647384a8cba4c7fdc344d46a86ecabae0
       } catch (error) {
         //console.log("error.response.status", error.response.status);
         console.log(error);

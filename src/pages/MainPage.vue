@@ -52,7 +52,7 @@ export default {
   methods: {
     async updateNewRandomRecipes() {
       try {
-        console.log("im here");
+        //console.log("im here");
         const response = await this.axios.get(
           //this.$root.store.server_url + "/recipes/3randomRecipes"
           this.$root.store.BASE_URL + "/recipes/3randomRecipes",
@@ -78,7 +78,7 @@ export default {
             { withCredentials: true }
           );
           var recipeInfo = responseRecipeInfo.data;
-          console.log("im here2");
+          //console.log("im here2");
 
         }
         this.recipesList = [];
