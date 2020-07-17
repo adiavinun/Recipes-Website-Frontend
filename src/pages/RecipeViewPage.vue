@@ -178,12 +178,7 @@ export default {
           this.isWatched = recipeInfo[this.recipe.id].watched;
           this.isSaved = recipeInfo[this.recipe.id].saved;
         }
-<<<<<<< HEAD
-        
-        console.log(this.recipe);
-=======
         //console.log(this.recipe);
->>>>>>> 1925bf4647384a8cba4c7fdc344d46a86ecabae0
       } catch (error) {
         //console.log("error.response.status", error.response.status);
         console.log(error);
