@@ -2,7 +2,6 @@
   <div class="container">
     <div v-if="recipe">
       <div class="header">
-        
         <h1>{{ recipe.title }}</h1>
         <h5>By: {{ recipe.recipeOwner }}</h5>
         <h5>Occasion: {{ recipe.whenUsuallyMakeRecipe }}</h5>
@@ -43,24 +42,35 @@ export default {
   },
   async created() {
     try {
-      let response;
-      //personal recipe
-      //console.log(this.$route.params);
-      response = await this.axios.get(
-        this.$root.store.BASE_URL +
-          "/user/myFamilyRecipeFull/id/" +
-          //"http://localhost:3000/user/myFamilyRecipeFull/id/" +
-          //"https://ass3-2-adi-nicole.herokuapp.com/user/myFamilyRecipeFull/id/" +
-          this.$route.params.recipeId,
-        { withCredentials: true }
-      );
+      if (
+        this.$root.store.myFamilyRecipesFull.find(
+          (recipeFull) => recipeFull.id == this.$route.params.recipeId
+        )
+      ) {
+        this.recipe = this.$root.store.myFamilyRecipesFull.find(
+          (recipeFull) => recipeFull.id == this.$route.params.recipeId
+        );
+      } else {
+        let response;
+        //personal recipe
+        //console.log(this.$route.params);
+        response = await this.axios.get(
+          this.$root.store.BASE_URL +
+            "/user/myFamilyRecipeFull/id/" +
+            //"http://localhost:3000/user/myFamilyRecipeFull/id/" +
+            //"https://ass3-2-adi-nicole.herokuapp.com/user/myFamilyRecipeFull/id/" +
+            this.$route.params.recipeId,
+          { withCredentials: true }
+        );
 
-      //console.log(response.data[0].instructions);
-      //}
-      // console.log("response.status", response.status);
-      if (response.status !== 200) this.$router.replace("/NotFound");
-      let _recipe = response.data;
-      this.recipe = _recipe;
+        //console.log(response.data[0].instructions);
+        //}
+        // console.log("response.status", response.status);
+        if (response.status !== 200) this.$router.replace("/NotFound");
+        let _recipe = response.data;
+        this.recipe = _recipe;
+        this.$root.store.myFamilyRecipesFull.push(this.recipe);
+      }
     } catch (error) {
       //console.log("error.response.status", error.response.status);
       console.log(error);
@@ -96,5 +106,4 @@ export default {
   border-radius: 5px;
   padding: 2px;
 }
-
 </style>

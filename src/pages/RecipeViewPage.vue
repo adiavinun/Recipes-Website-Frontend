@@ -2,7 +2,6 @@
   <div class="container">
     <div v-if="recipe">
       <div class="header">
-       
         <h1 class="title">{{ recipe.title }}</h1>
         <span v-if="recipe.vegetarian">
           <img
@@ -57,7 +56,17 @@
             <Ingredients :ingredients="this.recipe.ingredients"></Ingredients>
           </div>
           <div class="wrapped">
-            <Instructions :instructions="this.recipe.instructions" :likes="recipe.aggregateLikes"></Instructions>
+            <div v-if="recipe.aggregateLikes">
+              <Instructions
+                :instructions="this.recipe.instructions"
+                :likes="recipe.aggregateLikes"
+              ></Instructions>
+            </div>
+            <div v-else>
+              <Instructions
+                :instructions="this.recipe.instructions"
+              ></Instructions>
+            </div>
           </div>
         </div>
       </div>
@@ -103,7 +112,9 @@ export default {
       try {
         let response;
         let _recipe;
-       // console.log(this.$route.params);
+        let personalRecipe = false;
+        let recipeFound = false;
+        //check if personal recipe or not
         if (this.$route.params.likes >= 0) {
           response = await this.axios.get(
             //"http://localhost:3000/recipes/fullRecipeInfo/id/[" +
@@ -115,44 +126,51 @@ export default {
           );
           _recipe = response.data[0];
         } else {
-          response = await this.axios.get(
-            this.$root.store.BASE_URL +
-              "/user/myPersonalRecipeFull/id/" +
-              //"http://localhost:3000/user/myPersonalRecipeFull/id/" +
-              //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
-              this.$route.params.recipeId,
-            { withCredentials: true }
-          );
-          _recipe = response.data;
+          personalRecipe = true;
+          if (
+            this.$root.store.myRecipesFull.find(
+              (recipeFull) => recipeFull.id == this.$route.params.recipeId
+            )
+          ) {
+            recipeFound = true;
+            this.recipe = this.$root.store.myRecipesFull.find(
+              (recipeFull) => recipeFull.id == this.$route.params.recipeId
+            );
+          } else {
+            response = await this.axios.get(
+              this.$root.store.BASE_URL +
+                "/user/myPersonalRecipeFull/id/" +
+                //"http://localhost:3000/user/myPersonalRecipeFull/id/" +
+                //"https://ass3-2-adi-nicole.herokuapp.com/user/myPersonalRecipeFull/id/" +
+                this.$route.params.recipeId,
+              { withCredentials: true }
+            );
+            _recipe = response.data;
+          }
         }
-        //console.log(_recipe);
-        //console.log(response.data[0].instructions);
-        //}
-        // console.log("response.status", response.status);
-        //if (response.status !== 200) this.$router.replace("/NotFound");
-        //console.log(response.data);
-        //console.log(this.$route.params);
-        //console.log("im here1");
-        if(localStorage.lastSearch){
+
+        //update local storage
+        if (!personalRecipe && localStorage.lastSearch) {
           var recipes = JSON.parse(localStorage.lastSearch);
           //console.log(recipes);
-         for (var i = 0; i < recipes.length; i++) {
-           //console.log(recipes[i].id);
-           //console.log( this.$route.params.recipeId);
-            if(recipes[i].id ==  this.$route.params.recipeId){
-              recipes[i].watched = true; 
+          for (var i = 0; i < recipes.length; i++) {
+            //console.log(recipes[i].id);
+            //console.log( this.$route.params.recipeId);
+            if (recipes[i].id == this.$route.params.recipeId) {
+              recipes[i].watched = true;
             }
           }
           localStorage.removeItem("lastSearch");
           //console.log(localStorage.lastSearch);
-           // console.log(recipes);
+          // console.log(recipes);
           localStorage.setItem("lastSearch", JSON.stringify(recipes));
           //console.log(localStorage.lastSearch);
         }
-        if (this.$root.store.username) {
-         // console.log("im here2");
+
+        //update recipe is now "seen"
+        if (!recipeFound && this.$root.store.username) {
           if (this.$route.params.likes >= 0) {
-           // console.log("im here3");
+            this.$root.store.lastSeenRecipes = [];
             const post = await this.axios.post(
               this.$root.store.BASE_URL + "/user/addSeenRecipe",
               //"http://localhost:3000/user/addSeenRecipe",
@@ -163,6 +181,8 @@ export default {
               }
             );
           }
+
+          //get watched and saved info
           const responseRecipeInfo = await this.axios.get(
             this.$root.store.BASE_URL +
               "/user/recipeInfo/id/[" +
@@ -176,6 +196,9 @@ export default {
           //console.log(recipeInfo);
         }
         this.recipe = _recipe;
+        if (personalRecipe && !recipeFound) {
+          this.$root.store.myRecipesFull.push(this.recipe);
+        }
         if (recipeInfo) {
           this.isWatched = recipeInfo[this.recipe.id].watched;
           this.isSaved = recipeInfo[this.recipe.id].saved;
@@ -226,5 +249,4 @@ export default {
 .gluten {
   width: 54px;
 }
-
 </style>

@@ -40,6 +40,8 @@ export default {
             withCredentials: true,
           }
         );
+        this.$root.store.favoriteRecipes = [];
+
         this.saved = true;
         if(localStorage.lastSearch){
           var recipes = JSON.parse(localStorage.lastSearch);

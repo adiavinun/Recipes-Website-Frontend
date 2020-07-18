@@ -29,7 +29,6 @@ export default {
     },
     likes: {
       type: Number,
-      required: true,
     },
   },
 };
