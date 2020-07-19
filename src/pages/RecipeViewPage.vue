@@ -1,11 +1,7 @@
 <template>
   <div class="container">
     <div v-if="recipe">
-<<<<<<< HEAD
-      <div class="header">   
-=======
       <div class="header">
->>>>>>> 7f55f46c42a9816af0fa68b64cd1839818cdf682
         <h1 class="title">{{ recipe.title }}</h1>
         <span v-if="recipe.vegetarian">
           <img
