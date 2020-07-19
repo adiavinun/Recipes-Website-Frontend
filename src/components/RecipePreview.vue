@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card-group deck>
+    <!--<b-card-group deck>-->
       <b-card class="card">
         <router-link
           :to="{
@@ -71,7 +71,7 @@
           </b-card-text>
         </b-card-body>
       </b-card>
-    </b-card-group>
+   <!-- </b-card-group>-->
   </div>
 </template>
 
