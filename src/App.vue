@@ -17,7 +17,6 @@ export default {
 
 <style lang="scss">
 @import "@/scss/form-style.scss";
-
 #app {
   font-family: Tahoma, Geneva, sans-serif;
   -webkit-font-smoothing: antialiased;
