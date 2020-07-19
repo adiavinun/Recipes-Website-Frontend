@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    
+  <div class="container">    
     <h1 class="title"><b-icon icon="search"></b-icon> Search</h1>
     <h4>What's your desire? <b-icon icon="chat-dots"></b-icon></h4>
     <div style="display: flex;">
