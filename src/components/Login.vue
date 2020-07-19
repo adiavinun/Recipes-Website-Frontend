@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-   
     <h1 class="title">Login</h1>
     <b-form @submit.prevent="onLogin">
       <b-form-group
@@ -8,7 +7,7 @@
         label-cols-sm="3"
         label="Username:"
         label-for="Username"
-      >      
+      >
         <b-form-input
           id="Username"
           v-model="$v.form.username.$model"
@@ -18,7 +17,6 @@
         <b-form-invalid-feedback v-if="!$v.form.username.required">
           Username is required
         </b-form-invalid-feedback>
-        
       </b-form-group>
 
       <b-form-group
@@ -74,19 +72,19 @@ export default {
       form: {
         username: "",
         password: "",
-        submitError: undefined
-      }
+        submitError: undefined,
+      },
     };
   },
   validations: {
     form: {
       username: {
-        required
+        required,
       },
       password: {
-        required
-      }
-    }
+        required,
+      },
+    },
   },
   methods: {
     validateState(param) {
@@ -100,17 +98,16 @@ export default {
           this.$root.store.BASE_URL + "/login",
           {
             username: this.form.username,
-            password: this.form.password
+            password: this.form.password,
           }
         );
         // console.log(response);
         // this.$root.loggedIn = true;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
-       // this.$router.push("/");
-        if(this.$route.path != "/")
-        {
-            this.$router.push("/").catch();
+        // this.$router.push("/");
+        if (this.$route.path != "/") {
+          this.$router.push("/").catch();
         }
       } catch (err) {
         console.log(err.response);
@@ -127,16 +124,15 @@ export default {
       // console.log("login method go");
 
       this.Login();
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
 .container {
   max-width: 400px;
 }
-.title{
+.title {
   text-align: center;
 }
-
 </style>

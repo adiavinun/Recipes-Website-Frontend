@@ -386,11 +386,13 @@
     <pre class="example"><code>[ {
   "readyInMinutes" : 45,
   "image" : "https://spoonacular.com/recipeImages/637776-556x370.jpg",
-  "instructions" : "Mix greek yogurt, egg white & almond extract into a small bowl\nIn a separate bowl combine flour, baking soda, sugar, & salt\nCombine and whisk till evenly mixed\nFold in 1/3 cup cherries\nPlace 1/4-cup batter onto non-stick skillet and cook till bubbles start appearing through the top of the pancake and then flip. NOTE: Cook on medium heat and I flattened out my batter with the spatula to cook more evenly.\nAbout 1-2 minutes on each side\nFor sauce:\nIn a sauce pan add 1/2 cup whole pitted cherries and maple syrup. Set temperature on medium, and when it starts to simmer, set the temperature to low and cook until thick and bubbly. Its done about the same time your pancakes are.",
+  "instructions" : [ "mix flour and water" ],
   "servings" : 3,
   "vegetarian" : false,
   "glutenFree" : true,
-  "ingredients" : [ "salt", 0.25, "tsp" ],
+  "ingredients" : [ {
+    "nameAndAmount" : "1 cup flour"
+  } ],
   "id" : 12,
   "vegan" : true,
   "title" : "pizza",
@@ -398,11 +400,13 @@
 }, {
   "readyInMinutes" : 45,
   "image" : "https://spoonacular.com/recipeImages/637776-556x370.jpg",
-  "instructions" : "Mix greek yogurt, egg white & almond extract into a small bowl\nIn a separate bowl combine flour, baking soda, sugar, & salt\nCombine and whisk till evenly mixed\nFold in 1/3 cup cherries\nPlace 1/4-cup batter onto non-stick skillet and cook till bubbles start appearing through the top of the pancake and then flip. NOTE: Cook on medium heat and I flattened out my batter with the spatula to cook more evenly.\nAbout 1-2 minutes on each side\nFor sauce:\nIn a sauce pan add 1/2 cup whole pitted cherries and maple syrup. Set temperature on medium, and when it starts to simmer, set the temperature to low and cook until thick and bubbly. Its done about the same time your pancakes are.",
+  "instructions" : [ "mix flour and water" ],
   "servings" : 3,
   "vegetarian" : false,
   "glutenFree" : true,
-  "ingredients" : [ "salt", 0.25, "tsp" ],
+  "ingredients" : [ {
+    "nameAndAmount" : "1 cup flour"
+  } ],
   "id" : 12,
   "vegan" : true,
   "title" : "pizza",
@@ -729,13 +733,18 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "recipeName" : "pizza",
-  "instructions" : [ 1, "mix flour and water" ],
+  "image" : "image",
+  "instructions" : [ {
+    "number" : 1,
+    "description" : "mix flour and water"
+  } ],
   "recipeOwner" : "Savta Sara",
   "whenUsuallyMakeRecipe" : "winter dinner",
-  "recipe_id" : "12",
-  "urlPic" : "urlPic",
-  "ingredients" : [ "flour", 2, "cups" ]
+  "ingredients" : [ {
+    "nameAndAmount" : "1 cup flour"
+  } ],
+  "id" : "12",
+  "title" : "pizza"
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -781,17 +790,17 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "recipeName" : "pizza",
+  "image" : "image",
   "recipeOwner" : "Savta Sara",
   "whenUsuallyMakeRecipe" : "winter dinner",
-  "recipe_id" : "12",
-  "urlPic" : "urlPic"
+  "id" : "12",
+  "title" : "pizza"
 }, {
-  "recipeName" : "pizza",
+  "image" : "image",
   "recipeOwner" : "Savta Sara",
   "whenUsuallyMakeRecipe" : "winter dinner",
-  "recipe_id" : "12",
-  "urlPic" : "urlPic"
+  "id" : "12",
+  "title" : "pizza"
 } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -898,16 +907,21 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "recipeName" : "pizza",
-  "instructions" : [ 1, "mix flour and water" ],
-  "recipe_id" : "12",
-  "urlPic" : "urlPic",
-  "isVegetarian" : true,
+  "readyInMinutes" : 45,
+  "image" : "https://veganinthefreezer.com/wp-content/uploads/2018/09/Herbed-Scalloped-Potatoes-feature.jpg",
+  "instructions" : [ {
+    "number" : 1,
+    "description" : "mix flour and water"
+  } ],
+  "servings" : 2,
+  "vegetarian" : true,
   "glutenFree" : true,
-  "ingredients" : [ "flour", 2, "cups" ],
-  "isVegan" : true,
-  "prepTime" : 45,
-  "numOfMeals" : 2
+  "ingredients" : [ {
+    "nameAndAmount" : "1 cup flour"
+  } ],
+  "id" : "12",
+  "vegan" : true,
+  "title" : "pizza"
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -953,21 +967,21 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "recipeName" : "pizza",
-  "recipe_id" : "12",
-  "urlPic" : "urlPic",
-  "isVegetarian" : true,
+  "readyInMinutes" : 45,
+  "image" : "image",
+  "vegetarian" : true,
   "glutenFree" : true,
-  "isVegan" : true,
-  "prepTime" : 45
+  "id" : "12",
+  "vegan" : true,
+  "title" : "pizza"
 }, {
-  "recipeName" : "pizza",
-  "recipe_id" : "12",
-  "urlPic" : "urlPic",
-  "isVegetarian" : true,
+  "readyInMinutes" : 45,
+  "image" : "image",
+  "vegetarian" : true,
   "glutenFree" : true,
-  "isVegan" : true,
-  "prepTime" : 45
+  "id" : "12",
+  "vegan" : true,
+  "title" : "pizza"
 } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -1053,7 +1067,7 @@
     <li><a href="#PersonalRecipeFull_instructions"><code>PersonalRecipeFull_instructions</code></a></li>
     <li><a href="#PersonalRecipePreview"><code>PersonalRecipePreview</code></a></li>
     <li><a href="#RecipeFull"><code>RecipeFull</code></a></li>
-    <li><a href="#RecipeFull_ingredients"><code>RecipeFull_ingredients</code></a></li>
+    <li><a href="#RecipeFull_instructions"><code>RecipeFull_instructions</code></a></li>
     <li><a href="#RecipePreview"><code>RecipePreview</code></a></li>
     <li><a href="#User"><code>User</code></a></li>
     <li><a href="#body"><code>body</code></a></li>
@@ -1077,32 +1091,32 @@
     <h3><a name="FamilyRecipeFull"><code>FamilyRecipeFull</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
-      <div class="param">recipe_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The reciepe identifier, returned for further processing and actions on recipes </div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The reciepe identifier, returned for further processing and actions on recipes </div>
           <div class="param-desc"><span class="param-type">example: 12</span></div>
-<div class="param">recipeName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe title </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe title </div>
           <div class="param-desc"><span class="param-type">example: pizza</span></div>
 <div class="param">recipeOwner (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe owner </div>
           <div class="param-desc"><span class="param-type">example: Savta Sara</span></div>
-<div class="param">urlPic (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The url of the recipe&#x27;s picture </div>
+<div class="param">image (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The url of the recipe&#x27;s picture </div>
 <div class="param">whenUsuallyMakeRecipe (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> when the owner usually makes this recipe </div>
           <div class="param-desc"><span class="param-type">example: winter dinner</span></div>
 <div class="param">ingredients (optional)</div><div class="param-desc"><span class="param-type"><a href="#PersonalRecipeFull_ingredients">array[PersonalRecipeFull_ingredients]</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: [&quot;flour&quot;,2,&quot;cups&quot;]</span></div>
+          <div class="param-desc"><span class="param-type">example: [{&quot;nameAndAmount&quot;:&quot;1 cup flour&quot;}]</span></div>
 <div class="param">instructions (optional)</div><div class="param-desc"><span class="param-type"><a href="#PersonalRecipeFull_instructions">array[PersonalRecipeFull_instructions]</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: [1,&quot;mix flour and water&quot;]</span></div>
+          <div class="param-desc"><span class="param-type">example: [{&quot;number&quot;:1,&quot;description&quot;:&quot;mix flour and water&quot;}]</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="FamilyRecipePreview"><code>FamilyRecipePreview</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
-      <div class="param">recipe_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The reciepe identifier, returned for further processing and actions on recipes </div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The reciepe identifier, returned for further processing and actions on recipes </div>
           <div class="param-desc"><span class="param-type">example: 12</span></div>
-<div class="param">recipeName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe title </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe title </div>
           <div class="param-desc"><span class="param-type">example: pizza</span></div>
 <div class="param">recipeOwner (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe owner </div>
           <div class="param-desc"><span class="param-type">example: Savta Sara</span></div>
-<div class="param">urlPic (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The url of the recipe&#x27;s picture </div>
+<div class="param">image (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The url of the recipe&#x27;s picture </div>
 <div class="param">whenUsuallyMakeRecipe (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> when the owner usually makes this recipe </div>
           <div class="param-desc"><span class="param-type">example: winter dinner</span></div>
     </div>  <!-- field-items -->
@@ -1117,31 +1131,30 @@
     <h3><a name="PersonalRecipeFull"><code>PersonalRecipeFull</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
-      <div class="param">recipe_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The reciepe identifier, returned for further processing and actions on recipes </div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The reciepe identifier, returned for further processing and actions on recipes </div>
           <div class="param-desc"><span class="param-type">example: 12</span></div>
-<div class="param">recipeName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe title </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe title </div>
           <div class="param-desc"><span class="param-type">example: pizza</span></div>
-<div class="param">urlPic (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The url of the recipe&#x27;s picture </div>
-<div class="param">prepTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> the time in minutes it takes to make the recipe </div>
+<div class="param">image (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The url of the recipe&#x27;s picture </div>
+          <div class="param-desc"><span class="param-type">example: https://veganinthefreezer.com/wp-content/uploads/2018/09/Herbed-Scalloped-Potatoes-feature.jpg</span></div>
+<div class="param">readyInMinutes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> the time in minutes it takes to make the recipe </div>
           <div class="param-desc"><span class="param-type">example: 45</span></div>
-<div class="param">isVegetarian (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">isVegan (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">vegetarian (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">vegan (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">glutenFree (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">numOfMeals (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">servings (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 2</span></div>
 <div class="param">ingredients (optional)</div><div class="param-desc"><span class="param-type"><a href="#PersonalRecipeFull_ingredients">array[PersonalRecipeFull_ingredients]</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: [&quot;flour&quot;,2,&quot;cups&quot;]</span></div>
+          <div class="param-desc"><span class="param-type">example: [{&quot;nameAndAmount&quot;:&quot;1 cup flour&quot;}]</span></div>
 <div class="param">instructions (optional)</div><div class="param-desc"><span class="param-type"><a href="#PersonalRecipeFull_instructions">array[PersonalRecipeFull_instructions]</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: [1,&quot;mix flour and water&quot;]</span></div>
+          <div class="param-desc"><span class="param-type">example: [{&quot;number&quot;:1,&quot;description&quot;:&quot;mix flour and water&quot;}]</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="PersonalRecipeFull_ingredients"><code>PersonalRecipeFull_ingredients</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
-      <div class="param">ingredient (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
-<div class="param">measuringUnit (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">nameAndAmount (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1156,15 +1169,15 @@
     <h3><a name="PersonalRecipePreview"><code>PersonalRecipePreview</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
-      <div class="param">recipe_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The reciepe identifier, returned for further processing and actions on recipes </div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The reciepe identifier, returned for further processing and actions on recipes </div>
           <div class="param-desc"><span class="param-type">example: 12</span></div>
-<div class="param">recipeName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe title </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The recipe title </div>
           <div class="param-desc"><span class="param-type">example: pizza</span></div>
-<div class="param">urlPic (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The url of the recipe&#x27;s picture </div>
-<div class="param">prepTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> the time in minutes it takes to make the recipe </div>
+<div class="param">image (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The url of the recipe&#x27;s picture </div>
+<div class="param">readyInMinutes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> the time in minutes it takes to make the recipe </div>
           <div class="param-desc"><span class="param-type">example: 45</span></div>
-<div class="param">isVegetarian (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">isVegan (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">vegetarian (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">vegan (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">glutenFree (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
@@ -1188,28 +1201,19 @@
           <div class="param-desc"><span class="param-type">example: true</span></div>
 <div class="param">image (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The url of the recipe&#x27;s picture </div>
           <div class="param-desc"><span class="param-type">example: https://spoonacular.com/recipeImages/637776-556x370.jpg</span></div>
-<div class="param">ingredients (optional)</div><div class="param-desc"><span class="param-type"><a href="#RecipeFull_ingredients">array[RecipeFull_ingredients]</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: [&quot;salt&quot;,0.25,&quot;tsp&quot;]</span></div>
-<div class="param">instructions (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The reciepe instructions </div>
-          <div class="param-desc"><span class="param-type">example: Mix greek yogurt, egg white &amp; almond extract into a small bowl
-In a separate bowl combine flour, baking soda, sugar, &amp; salt
-Combine and whisk till evenly mixed
-Fold in 1/3 cup cherries
-Place 1/4-cup batter onto non-stick skillet and cook till bubbles start appearing through the top of the pancake and then flip. NOTE: Cook on medium heat and I flattened out my batter with the spatula to cook more evenly.
-About 1-2 minutes on each side
-For sauce:
-In a sauce pan add 1/2 cup whole pitted cherries and maple syrup. Set temperature on medium, and when it starts to simmer, set the temperature to low and cook until thick and bubbly. Its done about the same time your pancakes are.</span></div>
+<div class="param">ingredients (optional)</div><div class="param-desc"><span class="param-type"><a href="#PersonalRecipeFull_ingredients">array[PersonalRecipeFull_ingredients]</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: [{&quot;nameAndAmount&quot;:&quot;1 cup flour&quot;}]</span></div>
+<div class="param">instructions (optional)</div><div class="param-desc"><span class="param-type"><a href="#RecipeFull_instructions">array[RecipeFull_instructions]</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: [&quot;mix flour and water&quot;]</span></div>
 <div class="param">servings (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The num of meals in this recipe </div>
           <div class="param-desc"><span class="param-type">example: 3</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="RecipeFull_ingredients"><code>RecipeFull_ingredients</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="RecipeFull_instructions"><code>RecipeFull_instructions</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
-      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of ingredient </div>
-<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span> The amount of ingredient </div>
-<div class="param">unit (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The unit of ingredient </div>
+      <div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">

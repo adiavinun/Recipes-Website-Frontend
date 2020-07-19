@@ -89,6 +89,7 @@ export default {
           }
           this.recipesList.push(currRecipe);
         }
+        console.log(this.recipesList);
       } catch (error) {
         console.log(error);
       }
