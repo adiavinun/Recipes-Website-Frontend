@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-  
     <h1 class="title">Register</h1>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
       <!--username-->
