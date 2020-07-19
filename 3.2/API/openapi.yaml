@@ -493,69 +493,68 @@ components:
     PersonalRecipePreview:
       type: object
       properties:
-        recipe_id:
+        id:
           type: string
           description: The reciepe identifier, returned for further processing and
             actions on recipes
           example: "12"
-        recipeName:
+        title:
           type: string
           description: The recipe title
           example: pizza
-        urlPic:
+        image:
           type: string
           description: The url of the recipe's picture
-        prepTime:
+        readyInMinutes:
           type: integer
           description: the time in minutes it takes to make the recipe
           example: 45
-        isVegetarian:
+        vegetarian:
           type: boolean
-        isVegan:
+        vegan:
           type: boolean
         glutenFree:
           type: boolean
     PersonalRecipeFull:
       type: object
       properties:
-        recipe_id:
+        id:
           type: string
           description: The reciepe identifier, returned for further processing and
             actions on recipes
           example: "12"
-        recipeName:
+        title:
           type: string
           description: The recipe title
           example: pizza
-        urlPic:
+        image:
           type: string
           description: The url of the recipe's picture
-        prepTime:
+          example: https://veganinthefreezer.com/wp-content/uploads/2018/09/Herbed-Scalloped-Potatoes-feature.jpg
+        readyInMinutes:
           type: integer
           description: the time in minutes it takes to make the recipe
           example: 45
-        isVegetarian:
+        vegetarian:
           type: boolean
-        isVegan:
+        vegan:
           type: boolean
         glutenFree:
           type: boolean
-        numOfMeals:
+        servings:
           type: integer
           example: 2
         ingredients:
           type: array
           example:
-          - flour
-          - 2
-          - cups
+          - nameAndAmount: 1 cup flour
           items:
             $ref: '#/components/schemas/PersonalRecipeFull_ingredients'
         instructions:
           type: array
           example:
-          - 1
-          - mix flour and water
+          - number: 1
+            description: mix flour and water
           items:
             $ref: '#/components/schemas/PersonalRecipeFull_instructions'
     RecipeFull:
@@ -597,23 +596,15 @@ components:
         ingredients:
           type: array
           example:
-          - salt
-          - 0.25
-          - tsp
+          - nameAndAmount: 1 cup flour
           items:
-            $ref: '#/components/schemas/RecipeFull_ingredients'
+            $ref: '#/components/schemas/PersonalRecipeFull_ingredients'
         instructions:
-          type: string
-          description: The reciepe instructions
-          example: |-
-            Mix greek yogurt, egg white & almond extract into a small bowl
-            In a separate bowl combine flour, baking soda, sugar, & salt
-            Combine and whisk till evenly mixed
-            Fold in 1/3 cup cherries
-            Place 1/4-cup batter onto non-stick skillet and cook till bubbles start appearing through the top of the pancake and then flip. NOTE: Cook on medium heat and I flattened out my batter with the spatula to cook more evenly.
-            About 1-2 minutes on each side
-            For sauce:
-            In a sauce pan add 1/2 cup whole pitted cherries and maple syrup. Set temperature on medium, and when it starts to simmer, set the temperature to low and cook until thick and bubbly. Its done about the same time your pancakes are.
+          type: array
+          example:
+          - mix flour and water
+          items:
+            $ref: '#/components/schemas/RecipeFull_instructions'
         servings:
           type: integer
           description: The num of meals in this recipe
@@ -621,12 +612,12 @@ components:
     FamilyRecipePreview:
       type: object
       properties:
-        recipe_id:
+        id:
           type: string
           description: The reciepe identifier, returned for further processing and
             actions on recipes
           example: "12"
-        recipeName:
+        title:
           type: string
           description: The recipe title
           example: pizza
@@ -634,7 +625,7 @@ components:
           type: string
           description: The recipe owner
           example: Savta Sara
-        urlPic:
+        image:
           type: string
           description: The url of the recipe's picture
         whenUsuallyMakeRecipe:
@@ -644,12 +635,12 @@ components:
     FamilyRecipeFull:
       type: object
       properties:
-        recipe_id:
+        id:
           type: string
           description: The reciepe identifier, returned for further processing and
             actions on recipes
           example: "12"
-        recipeName:
+        title:
           type: string
           description: The recipe title
           example: pizza
@@ -657,7 +648,7 @@ components:
           type: string
           description: The recipe owner
           example: Savta Sara
-        urlPic:
+        image:
           type: string
           description: The url of the recipe's picture
         whenUsuallyMakeRecipe:
@@ -667,16 +658,14 @@ components:
         ingredients:
           type: array
           example:
-          - flour
-          - 2
-          - cups
+          - nameAndAmount: 1 cup flour
           items:
             $ref: '#/components/schemas/PersonalRecipeFull_ingredients'
         instructions:
           type: array
           example:
-          - 1
-          - mix flour and water
+          - number: 1
+            description: mix flour and water
           items:
             $ref: '#/components/schemas/PersonalRecipeFull_instructions'
     User:
@@ -740,11 +729,7 @@ components:
     PersonalRecipeFull_ingredients:
       type: object
       properties:
-        ingredient:
-          type: string
-        amount:
-          type: integer
-        measuringUnit:
+        nameAndAmount:
           type: string
     PersonalRecipeFull_instructions:
       type: object
@@ -753,18 +738,11 @@ components:
           type: integer
         description:
           type: string
-    RecipeFull_ingredients:
+    RecipeFull_instructions:
       type: object
       properties:
-        name:
+        description:
           type: string
-          description: The name of ingredient
-        amount:
-          type: number
-          description: The amount of ingredient
-        unit:
-          type: string
-          description: The unit of ingredient
   securitySchemes:
     cookieAuth:
       type: apiKey
