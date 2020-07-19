@@ -329,6 +329,9 @@ export default {
         if (this.recipes.length == 0) {
           this.noResults = true;
         }
+        else{
+          this.noResults = false;
+        }
       } catch (err) {
         console.log(err.response);
         //this.form.submitError = err.response.data.message;
