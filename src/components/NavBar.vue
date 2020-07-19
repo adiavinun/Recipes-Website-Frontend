@@ -25,8 +25,7 @@
             <b-nav-item>
               <router-link :to="{ name: 'register' }"
                 ><b-icon icon="person-circle"></b-icon>Register</router-link
-              ></b-nav-item
-            >
+              ></b-nav-item>
 
             <b-nav-item right>
               <router-link :to="{ name: 'login' }"

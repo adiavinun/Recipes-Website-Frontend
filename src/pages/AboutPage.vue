@@ -80,6 +80,8 @@
         img-src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594588408/WhatsApp_Image_2020-07-12_at_23.57.05_vcxwwl.jpg"
       ></b-carousel-slide>
     </b-carousel>
+
+    
   </div>
 </template>
 

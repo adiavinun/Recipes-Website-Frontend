@@ -143,13 +143,13 @@
           </div>
       
           <!--<h4 >The result search:</h4>-->
-          <RecipePreviewList
+        <RecipePreviewList
             title="Results:"
             pageType="search"
             :recipesList="recipes"
             class="SearchRecipes"
           />
-          <!--<div v-for="r in recipes" :key="r.id"> 
+        <!--<div v-for="r in recipes" :key="r.id"> 
         <RecipePreview title="The result search:" class="recipePreview" :recipe="r" />
         <br>
         </div>-->
@@ -169,6 +169,7 @@ import RecipePreviewList from "../components/RecipePreviewList";
 export default {
   components: {
     RecipePreviewList,
+    
   },
   data() {
     return {
