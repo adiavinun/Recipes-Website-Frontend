@@ -98,10 +98,8 @@ async function getMyPersonalRecipeFull(user_id, recipe_id) {
 /*************************FAMILY RECIPES******************************************/
 async function getMyFamilyRecipesPreview(user_id) {
 
-  let myFamRec = (
-    await DButils.execQuery(
-      `SELECT * FROM dbo.familyRecipes WHERE author= '${user_id}'`
-    )
+  let myFamRec = await DButils.execQuery(
+    `SELECT id, title, recipeOwner, image, whenUsuallyMakeRecipe FROM dbo.familyRecipes WHERE author= '${user_id}'`
   );
   if (!myFamRec) {
     throw { status: 401, message: "no family recipes" };
@@ -117,7 +115,7 @@ async function getMyFamilyRecipesFull(user_id, recipe_id) {
   try {
     var myFamRec = (
       await DButils.execQuery(
-        `SELECT * FROM dbo.familyRecipes WHERE author= '${user_id}' AND id= '${recipe_id}'`
+        `SELECT id, title, recipeOwner, image, whenUsuallyMakeRecipe FROM dbo.familyRecipes WHERE author= '${user_id}' AND id= '${recipe_id}'`
       )
     )[0];
     if (!myFamRec) {
