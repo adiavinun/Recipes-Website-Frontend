@@ -35,9 +35,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  //background: url('https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300280/54088843-healthy-food-background-studio-photo-of-different-fruits-on-white-wooden-table-high-resolution-produ.jpg');
   background: url("https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300234/54088727-healthy-food-background-and-copy-space-studio-photo-of-different-fruits-and-vegetables-on-white-wood.jpg");
-  //background: url('https://p1.pxfuel.com/preview/914/15/585/food-knife-background-wooden.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
