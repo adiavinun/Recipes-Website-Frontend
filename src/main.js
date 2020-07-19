@@ -77,12 +77,14 @@ const shared_data = {
   //BASE_URL: "https://ass3-2-adi-nicole.herokuapp.com",
   BASE_URL: "http://localhost:3000",
   username: localStorage.username,
+  
   lastSeenRecipes: [],
   favoriteRecipes: [],
   familyRecipes: [],
   myRecipes: [],
   myFamilyRecipesFull: [],
   myRecipesFull: [],
+
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;
