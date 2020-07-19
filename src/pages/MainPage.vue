@@ -1,6 +1,5 @@
 <template>
   <div class="container">
- 
     <h1 class="title">Recipes</h1>
     <b-container class="bv-example-row">
       <b-row>
