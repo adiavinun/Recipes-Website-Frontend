@@ -45,7 +45,6 @@ export default {
         this.saved = true;
         if(localStorage.lastSearch){
           var recipes = JSON.parse(localStorage.lastSearch);
-          //console.log(recipes);
          for (var i = 0; i < recipes.length; i++) {
             if(recipes[i].id == this.recipeID){
               if(this.saved != recipes[i].saved){
