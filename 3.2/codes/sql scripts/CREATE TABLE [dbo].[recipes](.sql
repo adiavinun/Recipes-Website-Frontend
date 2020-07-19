@@ -7,10 +7,7 @@ CREATE TABLE [dbo].[personalRecipes](
 	[vegan] [BIT] NOT NULL,
 	[vegetarian] [BIT] NOT NULL,
 	[glutenFree] [BIT] NOT NULL,
-	--[instructions] [varchar](300) NOT NULL,
 	[servings] [int] NOT NULL,
-	--[ingredients] [varchar](MAX) NOT NULL,
-	--[numOfLikes] [int](300),
 	PRIMARY KEY (id),
 	FOREIGN KEY (author) REFERENCES users(user_id)
 )
@@ -40,7 +37,6 @@ CREATE TABLE [dbo].[familyRecipes](
 	[title] [varchar](300) NOT NULL,
 	[recipeOwner] [varchar] (300) NOT NULL,
 	[whenUsuallyMakeRecipe] [varchar] (300) NOT NULL,
-	--[instructions] [varchar](300) NOT NULL,
 	[image] [varchar](300) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (author) REFERENCES users(user_id)
@@ -58,7 +54,7 @@ CREATE TABLE [dbo].[familyIngredients](
 select * from familyInstructions
 
 CREATE TABLE [dbo].[familyInstructions](
-	id] [varchar](300) NOT NULL,
+	[id] [varchar](300) NOT NULL,
 	[number] [int] NOT NULL,
 	[description] [varchar](300) NOT NULL,
 	PRIMARY KEY (id, description),
@@ -75,10 +71,10 @@ CREATE TABLE [dbo].[lastSeen](
 )
 
 SELECT * FROM lastSeen
-Insert into lastSeen (recipe_id, author) values (630293, '9b6c41d7-009e-4994-801e-18a8bf440951');
-Insert into lastSeen (recipe_id, author) values (630293, 'e54d4785-6620-4d28-aa73-dc8c58625cb8');
-Insert into lastSeen (recipe_id, author) values (559251, 'e54d4785-6620-4d28-aa73-dc8c58625cb8');
-Insert into lastSeen (recipe_id, author) values (492560, 'e54d4785-6620-4d28-aa73-dc8c58625cb8');
+Insert into lastSeen (id, author) values (630293, '9b6c41d7-009e-4994-801e-18a8bf440951');
+Insert into lastSeen (id, author) values (630293, 'e54d4785-6620-4d28-aa73-dc8c58625cb8');
+Insert into lastSeen (id, author) values (559251, 'e54d4785-6620-4d28-aa73-dc8c58625cb8');
+Insert into lastSeen (id, author) values (492560, 'e54d4785-6620-4d28-aa73-dc8c58625cb8');
 
 CREATE TABLE [dbo].[favoriteRecipes](
 	[id] [varchar] (300) NOT NULL,
