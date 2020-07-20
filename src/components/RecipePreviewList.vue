@@ -13,15 +13,7 @@
         </b-col>
         <!--</b-row>-->
       </div>
-      <div v-else-if="pageType === 'random' && this.$root.store.username">
-        <!--<b-row>-->
-        <b-col v-for="r in recipes" :key="r.id">
-          <RecipePreview class="recipePreview" :recipe="r" />
-          <br />
-        </b-col>
-        <!--</b-row>-->
-      </div>
-      <div v-else-if="pageType === 'random' && !this.$root.store.username">
+      <div v-else-if="pageType === 'random'">
         <!--<b-row>-->
         <b-col v-for="r in recipesList" :key="r.id">
           <RecipePreview class="recipePreview" :recipe="r" />
@@ -70,15 +62,6 @@ export default {
     recipesList: {
       type: Array,
     },
-    checkIfLogin: {
-      type: String,
-      required: false,
-    },
-  },
-  watch: {
-    checkIfLogin: async function(val) {
-      this.getRecipeInfo();
-    },
   },
 
   data() {
@@ -94,11 +77,6 @@ export default {
     async updateRecipes() {
       try {
         let globalRecipes = [];
-        if(this.pageType == "random" && this.recipesList){
-          console.log("check here");
-          this.recipes = this.recipesList;
-          console.log(this.recipesList);
-        }
         if (this.pageType != "random" && this.pageType != "search") {
           var recipes;
           //let url = "https://ass3-2-adi-nicole.herokuapp.com/";
@@ -170,41 +148,11 @@ export default {
             }
             this.recipes.push(currRecipe);
           }
-          //console.log(recipes);
+          console.log(recipes);
         }
       } catch (error) {
         console.log(error);
       }
-    },
-    async getRecipeInfo() {
-      if (this.$root.store.username) {
-        const recipe_ids = [];
-        for (var i = 0; i < this.recipesList.length; i++) {
-          recipe_ids.push(this.recipesList[i].id);
-        }
-        //console.log(recipe_ids);
-        const responseRecipeInfo = await this.axios.get(
-          this.$root.store.BASE_URL +
-            "/user/recipeInfo/id/[" +
-            recipe_ids +
-            "]",
-          //"http://localhost:3000/user/recipeInfo/id/[" + recipe_ids + "]",
-          //"https://ass3-2-adi-nicole.herokuapp.com/user/recipeInfo/id/[" + recipe_ids + "]",
-          { withCredentials: true }
-        );
-        var recipeInfo = responseRecipeInfo.data;
-        //console.log(recipeInfo);
-      }
-      this.recipes = [];
-      for (var i = 0; i < this.recipesList.length; i++) {
-        var currRecipe = this.recipesList[i];
-        if (recipeInfo) {
-          currRecipe.watched = recipeInfo[currRecipe.id].watched;
-          currRecipe.saved = recipeInfo[currRecipe.id].saved;
-        }
-        this.recipes.push(currRecipe);
-      }
-      //console.log(this.recipes);
     },
   },
 };
