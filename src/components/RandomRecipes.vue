@@ -7,7 +7,6 @@
       class="RandomRecipes"
       :checkIfLogin="this.$root.store.username"
     />
-
     <!--<b-button v-on:click="this.updateNewRandomRecipes">view other recipes!</b-button> -->
   </div>
 </template>
