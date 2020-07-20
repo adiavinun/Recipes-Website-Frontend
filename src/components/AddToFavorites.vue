@@ -27,8 +27,8 @@ export default {
     },
   },
   created() {
-    console.log(this.recipeID);
-    console.log(this.isSaved);
+    //console.log(this.recipeID);
+    //console.log(this.isSaved);
     this.saved = this.isSaved;
   },
    methods: {
