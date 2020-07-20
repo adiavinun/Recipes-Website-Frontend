@@ -148,7 +148,7 @@ export default {
             }
             this.recipes.push(currRecipe);
           }
-          console.log(recipes);
+          //console.log(recipes);
         }
       } catch (error) {
         console.log(error);
