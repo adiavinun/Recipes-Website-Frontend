@@ -1,4 +1,4 @@
-# Assignment 3.3 - Frontend Development (Vue.js)
+# Recipes Website - Frontend Development (Vue.js)
 
 ## Created by:
 * Adi Avinun
