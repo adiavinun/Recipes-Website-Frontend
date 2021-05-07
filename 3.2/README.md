@@ -1,4 +1,4 @@
-# Assignment 3.2 - Backend Development
+# Recipes Website - Backend Development
 
 ## Created by:
 * Adi Avinun
